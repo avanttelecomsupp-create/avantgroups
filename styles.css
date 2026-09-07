@@ -185,8 +185,8 @@ body {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
 }
 
 .portfolio-card {
@@ -204,16 +204,17 @@ body {
 }
 
 .card-image {
-    height: 200px;
+    height: 180px;
     background-size: cover;
     background-position: center;
 }
 
-/* 4 Color-Matched Custom Images */
+/* 5 Color-Matched Custom Images */
 .telecom-img { background-image: url('https://images.unsplash.com/photo-1544855581-64d96a6f1947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
 .it-img { background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
 .logistics-img { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c663c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
 .agro-img { background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
+.energy-img { background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
 
 .card-content {
     padding: 20px;
@@ -221,7 +222,7 @@ body {
 
 .card-content h4 {
     color: #0b1a30;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin: 0;
 }
 
