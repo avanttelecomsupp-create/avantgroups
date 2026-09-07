@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>এভাণ্ট গ্ৰুপছ | আনুষ্ঠানিক পৰ্টেল</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Bengali:wght@400;600&display=swap" rel="stylesheet">
-    
-    <!-- CRITICAL FIX: The forward slash ensures it finds your CSS in the root folder -->
+    <title>এভাণ্ট গ্ৰুপছ | বিকাশক সৱলীকৰণ কৰা</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -27,45 +25,59 @@
     </div>
 
     <header class="main-header">
-        <div class="container header-content">
+        <div class="container header-flex">
             <div class="logo-area">
-                <h1>এভাণ্ট গ্ৰুপছ</h1>
-                <p>ভাৰতক সংযোগ আৰু সৱলীকৰণ কৰা</p>
+                <img src="/logo.png" alt="এভাণ্ট গ্ৰুপছ" class="site-logo">
             </div>
-            <div class="emblem-area">
-                <div class="badge">ISO প্ৰমাণিত</div>
-            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="/as/" class="active">মুখ্য পৃষ্ঠা</a></li>
+                    <li><a href="#">আমাৰ গোট</a></li>
+                    <li><a href="#">বিনিয়োগ</a></li>
+                    <li><a href="#">বাতৰি</a></li>
+                    <li><a href="#">যোগাযোগ কৰক</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <nav class="main-nav">
-        <div class="container">
-            <ul class="nav-links">
-                <li><a href="/as/">মুখ্য পৃষ্ঠা</a></li>
-                <li><a href="#">আমাৰ বিষয়ে</a></li>
-                <li><a href="#">বিভাগসমূহ</a></li>
-                <li><a href="/telecom/">এভাণ্ট টেলিকম</a></li>
-                <li><a href="#">নিবিদা</a></li>
-                <li><a href="#">যোগাযোগ</a></li>
-            </ul>
-        </div>
-    </nav>
+    <main id="main-content">
+        <section class="hero-section">
+            <div class="hero-overlay">
+                <div class="container">
+                    <div class="hero-text">
+                        <h2>বিকাশক সৱলীকৰণ কৰা।<br>ভৱিষ্যতত বিনিয়োগ কৰা।</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <div class="news-ticker">
-        <div class="container ticker-flex">
-            <div class="ticker-label">শেহতীয়া আপডেট</div>
-            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-                এভাণ্ট গ্ৰুপছৰ নতুন আনুষ্ঠানিক পৰ্টেললৈ স্বাগতম। | এভাণ্ট টেলিকমৰ সৈতে একত্ৰীকৰণ বৰ্তমান চলি আছে।
-            </marquee>
-        </div>
-    </div>
-
-    <main id="main-content" class="container hero-section">
-        <div class="hero-text">
-            <h2>কাইলৈৰ বাবে শক্তিশালী আন্তঃগাঁথনি গঢ়ি তোলা</h2>
-            <p>এভাণ্ট গ্ৰুপছ আমাৰ বিশেষ বিভাগসমূহৰ জৰিয়তে উচ্চ-মানদণ্ডৰ, স্কেলেবল সমাধান প্ৰদান কৰিবলৈ সমৰ্পিত, যিয়ে আমাৰ ৰাষ্ট্ৰীয় কাৰ্যকলাপৰ বাবে সুৰক্ষিত আৰু নিৰ্ভৰযোগ্য সেৱা নিশ্চিত কৰে।</p>
-            <a href="#" class="btn-primary">আমাৰ সেৱাসমূহ চাওক</a>
-        </div>
+        <section class="portfolio-section container">
+            <h3 class="section-title">বৈচিত্ৰ্যময় পৰ্টফলিঅ' খণ্ড</h3>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="card-image telecom-img"></div>
+                    <div class="card-content">
+                        <h4>এভাণ্ট টেলিকম</h4>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="card-image logistics-img"></div>
+                    <div class="card-content">
+                        <h4>এভাণ্ট লজিষ্টিকছ</h4>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="card-image energy-img"></div>
+                    <div class="card-content">
+                        <h4>এভাণ্ট এনাৰ্জি</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
