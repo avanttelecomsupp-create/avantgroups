@@ -170,7 +170,7 @@ body {
     font-weight: 700;
 }
 
-/* --- Portfolio Sectors Grid (5 Columns Left-to-Right) --- */
+/* --- Portfolio Sectors Horizontal Scroll Grid --- */
 .portfolio-section {
     padding: 60px 0;
     text-align: center;
@@ -184,24 +184,35 @@ body {
 }
 
 .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
     gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    scroll-snap-type: x mandatory;
+    justify-content: flex-start;
 }
 
-@media (max-width: 1100px) {
-    .portfolio-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    }
+.portfolio-grid::-webkit-scrollbar {
+    height: 8px;
+}
+.portfolio-grid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+.portfolio-grid::-webkit-scrollbar-thumb {
+    background: #0b1a30;
+    border-radius: 4px;
 }
 
 .portfolio-card {
+    flex: 0 0 220px;
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid #e0e0e0;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    scroll-snap-align: start;
 }
 
 .portfolio-card:hover {
@@ -215,7 +226,7 @@ body {
     background-position: center;
 }
 
-/* 5 Color-Matched Custom Images */
+/* 5 Custom Color-Matched Images */
 .telecom-img { background-image: url('https://images.unsplash.com/photo-1544855581-64d96a6f1947?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
 .it-img { background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
 .logistics-img { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c663c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
