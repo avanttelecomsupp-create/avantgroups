@@ -1,0 +1,186 @@
+/* Global Reset and Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Using Noto Sans for excellent multi-language script support */
+    font-family: 'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Bengali', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f4f6f8;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Top Utility Bar */
+.top-bar {
+    background-color: #1a2b4c; /* Deep corporate blue */
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 8px 0;
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.top-bar a:hover {
+    text-decoration: underline;
+}
+
+.language-switcher .active {
+    font-weight: 700;
+    color: #fca311; /* Highlight active language */
+}
+
+.text-resize {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Main Header */
+.main-header {
+    background-color: #ffffff;
+    padding: 20px 0;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area h1 {
+    color: #0b1a30;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.logo-area p {
+    color: #666;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.badge {
+    background-color: #eef2f5;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a2b4c;
+}
+
+/* Navigation Menu */
+.main-nav {
+    background-color: #0b1a30;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background-color: #fca311;
+    color: #0b1a30;
+}
+
+/* News Ticker */
+.news-ticker {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+.ticker-flex {
+    display: flex;
+    align-items: center;
+}
+
+.ticker-label {
+    background-color: #d32f2f; /* Alert Red */
+    color: #fff;
+    padding: 8px 15px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+marquee {
+    padding: 0 15px;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: #fff;
+    margin-top: 30px;
+    padding: 60px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.hero-text h2 {
+    font-size: 2.5rem;
+    color: #1a2b4c;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #fca311;
+    color: #0b1a30;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 4px;
+    transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background-color: #0b1a30;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
