@@ -18,12 +18,12 @@ body {
     margin: 0 auto;
 }
 
-/* --- Top Utility & Language Bar --- */
+/* --- Top Utility & Language Dropdown --- */
 .top-bar {
     background-color: #0b1a30;
     color: #fff;
     font-size: 0.85rem;
-    padding: 8px 0;
+    padding: 10px 0;
 }
 
 .top-bar-content {
@@ -32,24 +32,71 @@ body {
     align-items: center;
 }
 
-.top-bar a {
+.top-bar .accessibility-links a {
     color: #fff;
     text-decoration: none;
     margin-right: 15px;
 }
 
-.top-bar a:hover {
+.top-bar .accessibility-links a:hover {
     text-decoration: underline;
-}
-
-.language-switcher .active {
-    font-weight: 700;
-    color: #9c1c1c; /* Avant Red */
 }
 
 .text-resize {
     margin-left: 10px;
     cursor: pointer;
+}
+
+.language-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border: 1px solid #ffffff40;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.3s;
+}
+
+.language-dropdown:hover .dropbtn {
+    background-color: #1a365d;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0; 
+    background-color: #ffffff;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 999;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #333333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.dropdown-content a:hover,
+.dropdown-content a.active {
+    background-color: #f1f1f1;
+    color: #9c1c1c;
+}
+
+.language-dropdown:hover .dropdown-content {
+    display: block;
 }
 
 /* --- Modern Header & Nav --- */
@@ -138,7 +185,7 @@ body {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
 
@@ -162,9 +209,11 @@ body {
     background-position: center;
 }
 
+/* 4 Color-Matched Custom Images */
 .telecom-img { background-image: url('https://images.unsplash.com/photo-1544855581-64d96a6f1947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
+.it-img { background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
 .logistics-img { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c663c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
-.energy-img { background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
+.agro-img { background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
 
 .card-content {
     padding: 20px;
