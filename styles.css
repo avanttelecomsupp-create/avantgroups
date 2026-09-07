@@ -1,3 +1,57 @@
+/* --- Global Reset and Typography --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f4f6f8;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Top Utility & Language Bar --- */
+.top-bar {
+    background-color: #0b1a30;
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 8px 0;
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.top-bar a:hover {
+    text-decoration: underline;
+}
+
+.language-switcher .active {
+    font-weight: 700;
+    color: #9c1c1c; /* Avant Red */
+}
+
+.text-resize {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 /* --- Modern Header & Nav --- */
 .main-header {
     background-color: #ffffff;
@@ -12,12 +66,12 @@
 }
 
 .site-logo {
-    height: 55px; /* Adjust this value to make your logo bigger/smaller */
+    height: 55px; 
     width: auto;
 }
 
 .main-nav {
-    background-color: transparent; /* Removes the old dark blue background */
+    background-color: transparent;
 }
 
 .nav-links {
@@ -37,13 +91,12 @@
 
 .nav-links li a:hover, 
 .nav-links li a.active {
-    color: #9c1c1c; /* Avant Red accent */
+    color: #9c1c1c; 
     border-bottom: 2px solid #9c1c1c;
 }
 
 /* --- Full-Width Hero Section --- */
 .hero-section {
-    /* High-quality placeholder office image from Unsplash */
     background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
@@ -52,7 +105,6 @@
     position: relative;
 }
 
-/* Creates the blue fade on the left side of the image */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -110,7 +162,6 @@
     background-position: center;
 }
 
-/* Placeholder images for the cards */
 .telecom-img { background-image: url('https://images.unsplash.com/photo-1544855581-64d96a6f1947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
 .logistics-img { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c663c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
 .energy-img { background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
@@ -123,4 +174,13 @@
     color: #0b1a30;
     font-size: 1.3rem;
     margin: 0;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    margin-top: 40px;
+    border-top: 1px solid #eaeaea;
 }
