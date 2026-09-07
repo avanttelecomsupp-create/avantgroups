@@ -170,7 +170,7 @@ body {
     font-weight: 700;
 }
 
-/* --- Portfolio Sectors Grid --- */
+/* --- Portfolio Sectors Grid (5 Columns Left-to-Right) --- */
 .portfolio-section {
     padding: 60px 0;
     text-align: center;
@@ -185,8 +185,14 @@ body {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 1100px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
 }
 
 .portfolio-card {
@@ -204,25 +210,25 @@ body {
 }
 
 .card-image {
-    height: 180px;
+    height: 160px;
     background-size: cover;
     background-position: center;
 }
 
 /* 5 Color-Matched Custom Images */
-.telecom-img { background-image: url('https://images.unsplash.com/photo-1544855581-64d96a6f1947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
-.it-img { background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
-.logistics-img { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c663c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
-.agro-img { background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
-.energy-img { background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'); }
+.telecom-img { background-image: url('https://images.unsplash.com/photo-1544855581-64d96a6f1947?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
+.it-img { background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
+.logistics-img { background-image: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c663c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
+.agro-img { background-image: url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
+.energy-img { background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); }
 
 .card-content {
-    padding: 20px;
+    padding: 15px;
 }
 
 .card-content h4 {
     color: #0b1a30;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     margin: 0;
 }
 
