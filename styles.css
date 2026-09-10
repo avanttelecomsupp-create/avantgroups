@@ -114,20 +114,34 @@ body {
     border-color: #0077b6;
 }
 
-body > .skiptranslate {
+/* Completely hide the Google Translate top banner bar, popups, and floating logo */
+body > .skiptranslate,
+.goog-te-banner-frame {
     display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
 }
 
 body {
     top: 0 !important;
+    position: static !important;
 }
 
-.goog-logo-link, .gskiptranslate {
+.goog-te-gadget,
+.goog-tooltip,
+#goog-gt-tt,
+.goog-logo-link,
+.gskiptranslate {
     display: none !important;
 }
 
 .goog-te-gadget {
     font-size: 0px !important;
+}
+
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
 /* Hero Section */
