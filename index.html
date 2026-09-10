@@ -1,4 +1,4 @@
-<!-- index.html (English Home Page) -->
+<!-- index.html (English - Single Source of Truth for Auto-Translation) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +25,7 @@
                 </ul>
             </nav>
             <div class="lang-selector">
-                <a href="index.html" class="lang-btn active">EN</a>
-                <a href="hi/index.html" class="lang-btn">हि</a>
-                <a href="bn/index.html" class="lang-btn">বা</a>
-                <a href="as/index.html" class="lang-btn">অ</a>
+                <div id="google_translate_element"></div>
             </div>
         </div>
     </header>
@@ -45,52 +42,28 @@
             <h2>Diversified Portfolio Sectors</h2>
             <div class="services-grid">
               <div class="service-card telecom-card">
-                <div class="service-img">
-                  <img src="photo/telecom_image.png" alt="Avant Telecom">
-                </div>
-                <div class="service-icon">
-                  <i class="fas fa-broadcast-tower"></i>
-                </div>
+                <div class="service-img"><img src="photo/telecom_image.png" alt="Avant Telecom"></div>
+                <div class="service-icon"><i class="fas fa-broadcast-tower"></i></div>
                 <h3>Avant Telecom</h3>
               </div>
-
               <div class="service-card it-card">
-                <div class="service-img">
-                  <img src="photo/it_image.png" alt="Avant IT Services">
-                </div>
-                <div class="service-icon">
-                  <i class="fas fa-laptop-code"></i>
-                </div>
+                <div class="service-img"><img src="photo/it_image.png" alt="Avant IT Services"></div>
+                <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
                 <h3>Avant IT Services</h3>
               </div>
-
               <div class="service-card logistics-card">
-                <div class="service-img">
-                  <img src="photo/logistics_image.png" alt="Avant Logistics">
-                </div>
-                <div class="service-icon">
-                  <i class="fas fa-shipping-fast"></i>
-                </div>
+                <div class="service-img"><img src="photo/logistics_image.png" alt="Avant Logistics"></div>
+                <div class="service-icon"><i class="fas fa-shipping-fast"></i></div>
                 <h3>Avant Logistics</h3>
               </div>
-
               <div class="service-card agro-card">
-                <div class="service-img">
-                  <img src="photo/agro_image.png" alt="Avant Agro">
-                </div>
-                <div class="service-icon">
-                  <i class="fas fa-seedling"></i>
-                </div>
+                <div class="service-img"><img src="photo/agro_image.png" alt="Avant Agro"></div>
+                <div class="service-icon"><i class="fas fa-seedling"></i></div>
                 <h3>Avant Agro</h3>
               </div>
-
               <div class="service-card energy-card">
-                <div class="service-img">
-                  <img src="photo/energy_image.png" alt="Avant Energy">
-                </div>
-                <div class="service-icon">
-                  <i class="fas fa-solar-panel"></i>
-                </div>
+                <div class="service-img"><img src="photo/energy_image.png" alt="Avant Energy"></div>
+                <div class="service-icon"><i class="fas fa-solar-panel"></i></div>
                 <h3>Avant Energy</h3>
               </div>
             </div>
@@ -105,7 +78,7 @@
                 <h2>Connect With Us</h2>
                 <p>AVANT GROUP</p>
             </div>
-            <!-- Google Sheet Web App endpoint or Form Action integration -->
+            <!-- Google Sheet Web App endpoint integration -->
             <form id="contactForm" action="YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE" method="POST" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
                     <label>SERVICE REQUIRED</label>
@@ -156,6 +129,19 @@
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
 
+    <!-- Google Translate Script Initialization -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,bn,as',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script>
         function openContactModal(e) {
             e.preventDefault();
@@ -171,8 +157,6 @@
             }
         }
         function handleFormSubmit(e) {
-            // Standard asynchronous submission to Google Sheets / Apps Script backend
-            // Backend script should record row data and trigger MailApp.sendEmail("info@avantgroups.in", ...)
             alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
             closeContactModal();
         }
