@@ -1,4 +1,4 @@
-/* avantgroups-main/styles.css */
+/* styles.css */
 :root {
     --primary-color: #0b192c;
     --accent-telecom: #0077b6;
@@ -24,7 +24,7 @@ body {
     line-height: 1.6;
 }
 
-/* Professional Side-by-Side Office Header */
+/* Professional Header Layout (Right-aligned menu after languages) */
 .site-header {
     background-color: var(--card-bg);
     box-shadow: 0 2px 10px rgba(0,0,0,0.06);
@@ -51,6 +51,12 @@ body {
     height: 42px;
     width: auto;
     object-fit: contain;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .main-nav {
@@ -112,7 +118,7 @@ body {
     color: #fff;
 }
 
-/* Hero Section updated with photo/Background.png */
+/* Hero Section */
 .hero-section {
     position: relative;
     height: 460px;
@@ -225,11 +231,15 @@ footer {
     border-top: 1px solid #eaeaea;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
     .header-container {
         flex-direction: column;
         gap: 15px;
         padding: 1rem;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 15px;
     }
     .main-nav ul {
         gap: 20px;
