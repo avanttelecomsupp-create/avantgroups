@@ -1,3 +1,4 @@
+<!-- index.html (English Home Page) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,14 +25,7 @@
                 </ul>
             </nav>
             <div class="lang-selector">
-                <div id="google_translate_element" style="display:none;"></div>
-                <select id="languageSelect" onchange="changeLanguage(this)">
-                    <option value="" disabled selected>Select Language</option>
-                    <option value="en">English</option>
-                    <option value="hi">हिंदी (Hindi)</option>
-                    <option value="bn">বাংলা (Bengali)</option>
-                    <option value="as">অসমীয়া (Assamese)</option>
-                </select>
+                <div id="google_translate_element"></div>
             </div>
         </div>
     </header>
@@ -134,10 +128,15 @@
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
 
-    <!-- Google Translate Script Setup -->
+    <!-- Google Translate Official Widget Script Initialization -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,hi,bn,as', autoDisplay: false}, 'google_translate_element');
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,bn,as',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -159,17 +158,6 @@
         function handleFormSubmit(e) {
             alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
             closeContactModal();
-        }
-        function changeLanguage(selectObj) {
-            let lang = selectObj.value;
-            if (!lang) return;
-            if (lang === 'en') {
-                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                location.reload();
-                return;
-            }
-            document.cookie = "googtrans=/en/" + lang + "; path=/; domain=" + window.location.hostname;
-            location.reload();
         }
     </script>
 </body>
