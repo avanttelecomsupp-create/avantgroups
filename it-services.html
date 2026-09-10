@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avant IT Services - Avant Groups</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .it-header-banner {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f2f6;
+            position: relative;
+        }
+        .it-logo-box {
+            width: 100px; 
+            height: 100px; 
+            background: #ffffff; 
+            border-radius: 16px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 0 8px 20px rgba(0, 95, 115, 0.15);
+            border: 1px solid #eaeaea;
+            overflow: hidden;
+            padding: 10px;
+        }
+        .it-logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Country Selector Toggle */
+        .country-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #e1e4e8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .country-toggle label {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .country-toggle select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            background: #ffffff;
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, #0b192c, #005f73);
+            color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(11, 25, 44, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .highlight-card::after {
+            content: '\f121'; /* Code icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -20px;
+            bottom: -40px;
+            font-size: 18rem;
+            color: rgba(255, 255, 255, 0.04);
+            pointer-events: none;
+        }
+        .highlight-card h2 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+        .highlight-card .tagline {
+            font-size: 1.2rem;
+            color: #4cc9f0;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            background: rgba(76, 201, 240, 0.1);
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: 1px solid rgba(76, 201, 240, 0.3);
+        }
+        .highlight-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #e0e6ed;
+            max-width: 850px;
+        }
+        
+        .guarantee-banner {
+            background-color: #e6f4ea;
+            border-left: 5px solid #1e8e3e;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        .guarantee-banner h4 {
+            color: #1e8e3e;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .guarantee-banner p {
+            color: #2d3748;
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        /* DIPP Startup Story Section */
+        .dipp-card {
+            background: linear-gradient(135deg, #fff9e6, #fff0c2);
+            border: 2px solid #ffd700;
+            padding: 35px 40px;
+            border-radius: 16px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+        .dipp-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .dipp-header i {
+            font-size: 2.5rem;
+            color: #d4af37;
+        }
+        .dipp-header h3 {
+            font-size: 1.8rem;
+            color: #856404;
+            margin: 0;
+            font-weight: 900;
+        }
+        .dipp-card p {
+            font-size: 1.1rem;
+            color: #664d03;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        /* Pricing Grid */
+        .pricing-section {
+            margin: 50px 0;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .price-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+        }
+        .price-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 95, 115, 0.1);
+            border-color: var(--accent-it);
+        }
+        .price-card i {
+            font-size: 2.2rem;
+            color: var(--accent-it);
+            margin-bottom: 15px;
+        }
+        .price-card h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        .price-card .price {
+            font-size: 1.8rem;
+            color: #0b192c;
+            font-weight: 900;
+            margin-bottom: 5px;
+            transition: opacity 0.3s;
+        }
+        .price-card .price span {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 600;
+        }
+        .price-card .note {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        /* Core Capabilities Grid */
+        .capabilities-section {
+            margin: 60px 0;
+        }
+        .capabilities-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .capabilities-header span {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .capabilities-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-top: 15px;
+            font-weight: 900;
+        }
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .cap-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            padding: 40px 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .cap-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 95, 115, 0.1);
+            border-color: var(--accent-it);
+        }
+        .cap-icon {
+            width: 65px;
+            height: 65px;
+            background: #f8f9fa;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent-it);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        .cap-card:hover .cap-icon {
+            background: var(--accent-it);
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+        .cap-card h4 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        .cap-card p {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .cap-card ul {
+            list-style: none;
+            margin-top: 15px;
+            padding-left: 5px;
+        }
+        .cap-card ul li {
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cap-card ul li i {
+            color: #1e8e3e;
+        }
+        
+        @media (max-width: 768px) {
+            .country-toggle {
+                position: relative;
+                margin-top: 20px;
+                justify-content: space-between;
+            }
+            .it-header-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logo.png" alt="Avant Groups Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our-group.html">Our Group</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="services-section" style="max-width: 1200px; margin: 50px auto; padding: 0 20px;">
+            <div style="background: #ffffff; padding: 60px 50px; border-radius: 24px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: left;">
+                
+                <!-- Main Header -->
+                <div class="it-header-banner">
+                    <div class="it-logo-box">
+                        <img src="photo/ait.png" alt="Avant IT Services Logo">
+                    </div>
+                    <div>
+                        <h1 style="font-size: 3.2rem; color: var(--primary-color); margin: 0; font-weight: 900; letter-spacing: -1px;">Avant IT Services</h1>
+                        <p style="color: #666; font-weight: 600; font-size: 1.1rem; margin-top: 8px;">A division of Avant Groups</p>
+                    </div>
+                    
+                    <!-- Country Pricing Toggle -->
+                    <div class="country-toggle">
+                        <label for="countrySelect"><i class="fas fa-globe-asia"></i> Region:</label>
+                        <select id="countrySelect" onchange="updatePricing()">
+                            <option value="India">India (INR)</option>
+                            <option value="Others">Others (USD)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Hero Banner / Tagline -->
+                <div class="highlight-card">
+                    <div class="tagline"><i class="fas fa-handshake"></i> 100% Guaranteed — Pay After Satisfied Delivery</div>
+                    <h2>Your Vision, Digitally Engineered.</h2>
+                    <p>Avant IT Services delivers cutting-edge software solutions tailored to modern enterprise and individual needs. We specialize in building any kind of website, robust Android/iOS mobile applications, and native Windows executable software. Our absolute commitment to quality means <strong>you only pay when you are completely satisfied with the final product.</strong></p>
+                </div>
+
+                <!-- Fast Delivery Guarantee Banner -->
+                <div class="guarantee-banner">
+                    <h4><i class="fas fa-bolt"></i> Lightning Fast Turnaround</h4>
+                    <p>Standard timeline for simple Web Pages, Windows Applications, and Mobile Apps is just <strong>1 Day!</strong> <br><small style="color: #4a5568; font-weight: 400;">(For large-scale or complex projects, the delivery timeline will be set through mutual discussion with the client).</small></p>
+                </div>
+
+                <!-- DIPP Startup Section (Hidden on "Others") -->
+                <div id="dippSection" class="dipp-card">
+                    <div class="dipp-header">
+                        <i class="fas fa-rocket"></i>
+                        <h3>30% OFF For DIPP Recognized Startups</h3>
+                    </div>
+                    <p><strong>We know the struggle because we lived it.</strong> Back in 2017, we faced a major problem: web developers demanded massive upfront payments before delivering anything, and charged exorbitant extra fees for every minor modification. A simple application ended up costing us over ₹50,000!</p>
+                    <p>We want to ensure no other founder has to face that barrier. If your company holds a valid DIPP (Startup India) certificate, you instantly avail a flat 30% discount on all our development fees.</p>
+                </div>
+
+                <!-- Pricing Section -->
+                <div class="pricing-section">
+                    <h2 style="color: var(--primary-color); font-size: 2.2rem; margin-bottom: 10px; font-weight: 900; text-align: center;">Transparent Pricing Structure</h2>
+                    <p style="color: #666; font-size: 1.1rem; text-align: center; max-width: 700px; margin: 0 auto;">Professional development services designed to scale with your budget.</p>
+                    
+                    <div class="pricing-grid">
+                        <div class="price-card">
+                            <i class="fas fa-globe"></i>
+                            <h4>Web Development</h4>
+                            <div class="price" id="price-web" data-inr="1,000" data-usd="60">₹1,000 <span>onwards</span></div>
+                            <div class="note">Any kind of website<br>(Excluding domain costs)</div>
+                        </div>
+                        <div class="price-card">
+                            <i class="fab fa-windows"></i>
+                            <h4>Windows Apps</h4>
+                            <div class="price" id="price-win" data-inr="1,500" data-usd="90">₹1,500 <span>onwards</span></div>
+                            <div class="note">.exe & .msi software<br>(32-bit & 64-bit)</div>
+                        </div>
+                        <div class="price-card">
+                            <i class="fab fa-android"></i>
+                            <h4>Android Apps</h4>
+                            <div class="price" id="price-android" data-inr="5,000" data-usd="300">₹5,000 <span>onwards</span></div>
+                            <div class="note">Custom mobile applications</div>
+                        </div>
+                        <div class="price-card">
+                            <i class="fab fa-apple"></i>
+                            <h4>iOS Apps</h4>
+                            <div class="price" id="price-ios" data-inr="6,000" data-usd="360">₹6,000 <span>onwards</span></div>
+                            <div class="note">Optimized for Apple Ecosystem</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core Capabilities Grid -->
+                <div class="capabilities-section">
+                    <div class="capabilities-header">
+                        <span>Capabilities & Perks</span>
+                        <h2>Included in Our Service</h2>
+                    </div>
+                    
+                    <div class="capabilities-grid">
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-desktop"></i></div>
+                            <h4>Windows Executable Apps</h4>
+                            <p>Robust native Windows applications optimized for any OS. Perfect for standalone utilities, point-of-sale systems, invoice generators, or enterprise desktop tools.</p>
+                        </div>
+                        
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <h4>Any Mobile or Web App</h4>
+                            <p>From complex custom e-commerce platforms to internal company portals and native mobile experiences, we deliver seamless UI/UX design.</p>
+                        </div>
+
+                        <div class="cap-card" style="border: 1px solid #c6f6d5; background: #f0fff4;">
+                            <div class="cap-icon" style="background: #1e8e3e; color: #fff;"><i class="fas fa-gift"></i></div>
+                            <h4>Complimentary Benefits</h4>
+                            <p>We believe in absolute transparency and supporting your growth. Every project includes:</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Three (3) Free Consultations</li>
+                                <li><i class="fas fa-check-circle"></i> No arbitrary fee increments</li>
+                                <li><i class="fas fa-check-circle"></i> Free Custom Mail Configuration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 60px; text-align: center; padding-top: 40px; border-top: 1px solid #eaeaea;">
+                    <a href="contact.html" class="submit-btn" style="display: inline-block; width: auto; padding: 18px 50px; font-size: 1.15rem; text-decoration: none; box-shadow: 0 10px 25px rgba(11, 25, 44, 0.2); border-radius: 50px;">INQUIRE ABOUT IT SERVICES</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Avant Groups. All rights reserved.</p>
+    </footer>
+
+    <!-- Script to Handle Pricing Currency Swap -->
+    <script>
+        function updatePricing() {
+            const country = document.getElementById('countrySelect').value;
+            const priceWeb = document.getElementById('price-web');
+            const priceWin = document.getElementById('price-win');
+            const priceAndroid = document.getElementById('price-android');
+            const priceIos = document.getElementById('price-ios');
+            const dippSection = document.getElementById('dippSection');
+            
+            // Apply quick fade out for transition effect
+            const prices = [priceWeb, priceWin, priceAndroid, priceIos];
+            prices.forEach(el => el.style.opacity = '0');
+
+            setTimeout(() => {
+                if (country === 'India') {
+                    priceWeb.innerHTML = '₹' + priceWeb.getAttribute('data-inr') + ' <span>onwards</span>';
+                    priceWin.innerHTML = '₹' + priceWin.getAttribute('data-inr') + ' <span>onwards</span>';
+                    priceAndroid.innerHTML = '₹' + priceAndroid.getAttribute('data-inr') + ' <span>onwards</span>';
+                    priceIos.innerHTML = '₹' + priceIos.getAttribute('data-inr') + ' <span>onwards</span>';
+                    dippSection.style.display = 'block'; // Show DIPP Story
+                } else {
+                    priceWeb.innerHTML = '$' + priceWeb.getAttribute('data-usd') + ' <span>onwards</span>';
+                    priceWin.innerHTML = '$' + priceWin.getAttribute('data-usd') + ' <span>onwards</span>';
+                    priceAndroid.innerHTML = '$' + priceAndroid.getAttribute('data-usd') + ' <span>onwards</span>';
+                    priceIos.innerHTML = '$' + priceIos.getAttribute('data-usd') + ' <span>onwards</span>';
+                    dippSection.style.display = 'none'; // Hide DIPP Story for international
+                }
+                
+                // Fade back in
+                prices.forEach(el => el.style.opacity = '1');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
