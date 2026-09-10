@@ -1,1 +1,113 @@
+<!-- our-group.html (Our Group Page) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Group - Avant Groups</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logo.png" alt="Avant Groups Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our-group.html" class="active">Our Group</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="#" onclick="openContactModal(event)">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="lang-selector">
+                <a href="index.html" class="lang-btn active">EN</a>
+                <a href="hi/index.html" class="lang-btn">हि</a>
+                <a href="bn/index.html" class="lang-btn">বা</a>
+                <a href="as/index.html" class="lang-btn">অ</a>
+            </div>
+        </div>
+    </header>
 
+    <main class="main-content">
+        <section class="services-section">
+            <h2>Our Group Companies & Vision</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px auto; color: #555;">Avant Groups operates at the forefront of core industrial innovation, sustainable energy, advanced telecommunications, and digital infrastructure across markets.</p>
+            <div class="services-grid">
+              <div class="service-card telecom-card">
+                <div class="service-img"><img src="photo/telecom_image.png" alt="Avant Telecom"></div>
+                <div class="service-icon"><i class="fas fa-broadcast-tower"></i></div>
+                <h3>Avant Telecom</h3>
+              </div>
+              <div class="service-card it-card">
+                <div class="service-img"><img src="photo/it_image.png" alt="Avant IT Services"></div>
+                <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Avant IT Services</h3>
+              </div>
+              <div class="service-card logistics-card">
+                <div class="service-img"><img src="photo/logistics_image.png" alt="Avant Logistics"></div>
+                <div class="service-icon"><i class="fas fa-shipping-fast"></i></div>
+                <h3>Avant Logistics</h3>
+              </div>
+              <div class="service-card agro-card">
+                <div class="service-img"><img src="photo/agro_image.png" alt="Avant Agro"></div>
+                <div class="service-icon"><i class="fas fa-seedling"></i></div>
+                <h3>Avant Agro</h3>
+              </div>
+              <div class="service-card energy-card">
+                <div class="service-img"><img src="photo/energy_image.png" alt="Avant Energy"></div>
+                <div class="service-icon"><i class="fas fa-solar-panel"></i></div>
+                <h3>Avant Energy</h3>
+              </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal template included for consistency -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeContactModal()">&times;</button>
+            <div class="modal-header">
+                <h2>Connect With Us</h2>
+                <p>AVANT GROUP</p>
+            </div>
+            <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>SERVICE REQUIRED</label>
+                    <select name="service" required>
+                        <option value="" disabled selected>Select a Service...</option>
+                        <option value="Avant Telecom">Avant Telecom</option>
+                        <option value="Avant IT Services">Avant IT Services</option>
+                        <option value="Avant Logistics">Avant Logistics</option>
+                        <option value="Avant Agro">Avant Agro</option>
+                        <option value="Avant Energy">Avant Energy</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>FULL NAME</label><input type="text" name="name" placeholder="John Doe" required></div>
+                <div class="form-row">
+                    <div class="form-group half"><label>EMAIL</label><input type="email" name="email" placeholder="john@company.com" required></div>
+                    <div class="form-group half"><label>PHONE</label>
+                        <div class="phone-input-group">
+                            <select name="country_code"><option value="+91">+91 (IN)</option></select>
+                            <input type="tel" name="phone" placeholder="98765 43210" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"><label>MESSAGE</label><textarea name="message" rows="4" placeholder="How can we help you?" required></textarea></div>
+                <button type="submit" class="submit-btn">SEND MESSAGE</button>
+            </form>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 Avant Groups. All rights reserved.</p></footer>
+    <script>
+        function openContactModal(e) { e.preventDefault(); document.getElementById('contactModal').style.display = 'flex'; }
+        function closeContactModal() { document.getElementById('contactModal').style.display = 'none'; }
+        function handleFormSubmit(e) { alert('Thank you! Sent to info@avantgroups.in'); closeContactModal(); }
+    </script>
+</body>
+</html>
