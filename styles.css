@@ -1,3 +1,4 @@
+/* styles.css */
 :root {
     --primary-color: #0b192c;
     --accent-telecom: #0077b6;
@@ -90,13 +91,13 @@ body {
     border-radius: 2px;
 }
 
-/* Custom Language Dropdown Styling */
+/* Professional Google Translate Integration Styling */
 .lang-selector {
     display: flex;
     align-items: center;
 }
 
-.lang-selector select {
+.goog-te-combo {
     padding: 7px 14px;
     border-radius: 6px;
     border: 1px solid #dcdde1;
@@ -109,11 +110,11 @@ body {
     transition: all 0.2s;
 }
 
-.lang-selector select:hover {
+.goog-te-combo:hover {
     border-color: #0077b6;
 }
 
-/* Completely hide Google translation bars, frames, and widgets */
+/* Hide Google top banner, tooltips, and floating logos */
 body > .skiptranslate,
 .goog-te-banner-frame {
     display: none !important;
@@ -132,6 +133,10 @@ body {
 .goog-logo-link,
 .gskiptranslate {
     display: none !important;
+}
+
+.goog-te-gadget {
+    font-size: 0px !important;
 }
 
 .goog-text-highlight {
@@ -405,7 +410,5 @@ footer {
         font-size: 2.2rem;
     }
     .form-row {
-        flex-direction: column;
-        gap: 0;
     }
 }
