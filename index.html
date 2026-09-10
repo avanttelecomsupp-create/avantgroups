@@ -78,6 +78,7 @@
                 <h2>Connect With Us</h2>
                 <p>AVANT GROUP</p>
             </div>
+            <!-- Form configured for Google Apps Script Web App backend integration -->
             <form id="contactForm" action="YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE" method="POST" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
                     <label>SERVICE REQUIRED</label>
@@ -128,7 +129,7 @@
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
 
-    <!-- Google Translate Official Widget Script Initialization -->
+    <!-- Google Translate Script Initialization -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
@@ -156,6 +157,8 @@
             }
         }
         function handleFormSubmit(e) {
+            // Standard asynchronous submission to Google Sheets / Apps Script backend
+            // Backend script should record row data and trigger MailApp.sendEmail("info@avantgroups.in", ...)
             alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
             closeContactModal();
         }
