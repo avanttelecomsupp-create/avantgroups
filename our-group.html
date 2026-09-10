@@ -1,3 +1,4 @@
+<!-- our-group.html (Our Group Page) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,14 +25,7 @@
                 </ul>
             </nav>
             <div class="lang-selector">
-                <div id="google_translate_element" style="display:none;"></div>
-                <select id="languageSelect" onchange="changeLanguage(this)">
-                    <option value="" disabled selected>Select Language</option>
-                    <option value="en">English</option>
-                    <option value="hi">हिंदी (Hindi)</option>
-                    <option value="bn">বাংলা (Bengali)</option>
-                    <option value="as">অসমীয়া (Assamese)</option>
-                </select>
+                <div id="google_translate_element"></div>
             </div>
         </div>
     </header>
@@ -93,17 +87,6 @@
         function openContactModal(e) { e.preventDefault(); document.getElementById('contactModal').style.display = 'flex'; }
         function closeContactModal() { document.getElementById('contactModal').style.display = 'none'; }
         function handleFormSubmit(e) { alert('Thank you! Sent to info@avantgroups.in'); closeContactModal(); }
-        function changeLanguage(selectObj) {
-            let lang = selectObj.value;
-            if (!lang) return;
-            if (lang === 'en') {
-                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                location.reload();
-                return;
-            }
-            document.cookie = "googtrans=/en/" + lang + "; path=/; domain=" + window.location.hostname;
-            location.reload();
-        }
     </script>
 </body>
 </html>
