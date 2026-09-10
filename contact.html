@@ -55,7 +55,7 @@
                     <div class="form-row">
                         <div class="form-group half">
                             <label>EMAIL</label>
-                            <input type="email" name="email" placeholder="john@company.com" required>
+                            <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@domain.com)" required>
                         </div>
                         <div class="form-group half">
                             <label>PHONE</label>
@@ -88,8 +88,7 @@
                                     <option value="+257">Burundi (+257)</option>
                                     <option value="+855">Cambodia (+855)</option>
                                     <option value="+237">Cameroon (+237)</option>
-                                    <option value="+1">USA (+1)</option>
-                                    <option value="+1">Canada (+1)</option>
+                                    <option value="+1">Canada/USA (+1)</option>
                                     <option value="+238">Cape Verde (+238)</option>
                                     <option value="+236">CAR (+236)</option>
                                     <option value="+235">Chad (+235)</option>
@@ -232,7 +231,7 @@
                                     <option value="+260">Zambia (+260)</option>
                                     <option value="+263">Zimbabwe (+263)</option>
                                 </select>
-                                <input type="tel" name="phone" placeholder="98765 43210" required>
+                                <input type="tel" name="phone" placeholder="9876543210" pattern="[0-9]{7,15}" title="Please enter a valid phone number (digits only)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                             </div>
                         </div>
                     </div>
@@ -266,7 +265,7 @@
 
             fetch(scriptURL, { method: 'POST', body: formData })
                 .then(response => {
-                    alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
+                    alert('Thank you! Your message has been sent successfully, We will contact you Soon');
                     form.reset();
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'SEND MESSAGE';
