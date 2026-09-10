@@ -1,107 +1,104 @@
+<!-- hi/index.html (Hindi) -->
 <!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>एवांट ग्रुप्स | विकास को सशक्त बनाना</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
+    <title>Avant Groups - सेवाएँ</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-    <div class="top-bar">
-        <div class="container top-bar-content">
-            <div class="accessibility-links">
-                <a href="#main-content">मुख्य विषय-वस्तु पर जाएं</a>
-                <a href="#">स्क्रीन रीडर एक्सेस</a>
-                <span class="text-resize">A- | A | A+</span>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="../logo.png" alt="Avant Groups Logo">
             </div>
-            <div class="language-dropdown">
-                <button class="dropbtn">भाषा: हिन्दी ▼</button>
-                <div class="dropdown-content">
-                    <a href="/">English</a>
-                    <a href="/hi/" class="active">हिन्दी</a>
-                    <a href="/as/">অসমীয়া</a>
+            <div class="header-right">
+                <div class="lang-selector">
+                    <a href="../index.html" class="lang-btn">EN</a>
+                    <a href="index.html" class="lang-btn active">हि</a>
+                    <a href="../as/index.html" class="lang-btn">অ</a>
                 </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="active">होम</a></li>
+                        <li><a href="#our-group">हमारा समूह</a></li>
+                        <li><a href="#investments">निवेश</a></li>
+                        <li><a href="#news">समाचार</a></li>
+                        <li><a href="#contact">संपर्क करें</a></li>
+                    </ul>
+                </nav>
             </div>
-        </div>
-    </div>
-
-    <header class="main-header">
-        <div class="container header-flex">
-            <div class="logo-area">
-                <img src="/logo.png" alt="एवांट ग्रुप्स" class="site-logo">
-            </div>
-            <nav class="main-nav">
-                <ul class="nav-links">
-                    <li><a href="/hi/" class="active">होम</a></li>
-                    <li><a href="#">हमारा समूह</a></li>
-                    <li><a href="#">निवेश</a></li>
-                    <li><a href="#">समाचार</a></li>
-                    <li><a href="#">संपर्क करें</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <main id="main-content">
-        <section class="hero-section">
-            <div class="hero-overlay">
-                <div class="container">
-                    <div class="hero-text">
-                        <h2>विकास को सशक्त बनाना।<br>भविष्य में निवेश।</h2>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>विकास को सशक्त बनाना।<br>भविष्य में निवेश करना।</h1>
+        </div>
+    </section>
 
-        <section class="portfolio-section container">
-            <h3 class="section-title">विविध पोर्टफोलियो क्षेत्र</h3>
-            
-            <div class="portfolio-grid">
-                <div class="portfolio-card">
-                    <div class="card-image telecom-img"></div>
-                    <div class="card-content">
-                        <h4>एवांट टेलीकॉम</h4>
-                    </div>
+    <main class="main-content" id="our-group">
+        <section class="services-section">
+            <h2>विविध पोर्टफोलियो क्षेत्र</h2>
+            <div class="services-grid">
+              <div class="service-card telecom-card">
+                <div class="service-img">
+                  <img src="../photo/telecom_image.png" alt="Avant Telecom">
                 </div>
+                <div class="service-icon">
+                  <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <h3>Avant Telecom</h3>
+              </div>
 
-                <div class="portfolio-card">
-                    <div class="card-image it-img"></div>
-                    <div class="card-content">
-                        <h4>एवांट आईटी सेवाएं</h4>
-                    </div>
+              <div class="service-card it-card">
+                <div class="service-img">
+                  <img src="../photo/it_image.png" alt="Avant IT Services">
                 </div>
-                
-                <div class="portfolio-card">
-                    <div class="card-image logistics-img"></div>
-                    <div class="card-content">
-                        <h4>एवांट लॉजिस्टिक्स</h4>
-                    </div>
+                <div class="service-icon">
+                  <i class="fas fa-laptop-code"></i>
                 </div>
-                
-                <div class="portfolio-card">
-                    <div class="card-image agro-img"></div>
-                    <div class="card-content">
-                        <h4>एवांट एग्रो</h4>
-                    </div>
-                </div>
+                <h3>Avant IT Services</h3>
+              </div>
 
-                <div class="portfolio-card">
-                    <div class="card-image energy-img"></div>
-                    <div class="card-content">
-                        <h4>एवांट एनर्जी</h4>
-                    </div>
+              <div class="service-card logistics-card">
+                <div class="service-img">
+                  <img src="../photo/logistics_image.png" alt="Avant Logistics">
                 </div>
+                <div class="service-icon">
+                  <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3>Avant Logistics</h3>
+              </div>
+
+              <div class="service-card agro-card">
+                <div class="service-img">
+                  <img src="../photo/agro_image.png" alt="Avant Agro">
+                </div>
+                <div class="service-icon">
+                  <i class="fas fa-seedling"></i>
+                </div>
+                <h3>Avant Agro</h3>
+              </div>
+
+              <div class="service-card energy-card">
+                <div class="service-img">
+                  <img src="../photo/energy_image.png" alt="Avant Energy">
+                </div>
+                <div class="service-icon">
+                  <i class="fas fa-solar-panel"></i>
+                </div>
+                <h3>Avant Energy</h3>
+              </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Avant Groups. सर्वाधिकार सुरक्षित।</p>
-        </div>
+        <p>&copy; 2026 Avant Groups. सर्वाधिकार सुरक्षित।</p>
     </footer>
-
 </body>
 </html>
