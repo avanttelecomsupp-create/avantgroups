@@ -1,4 +1,3 @@
-/* styles.css */
 :root {
     --primary-color: #0b192c;
     --accent-telecom: #0077b6;
@@ -114,7 +113,7 @@ body {
     border-color: #0077b6;
 }
 
-/* Completely hide Google top banner bar, popups, and floating logo */
+/* Completely hide Google translation bars, frames, and widgets */
 body > .skiptranslate,
 .goog-te-banner-frame {
     display: none !important;
