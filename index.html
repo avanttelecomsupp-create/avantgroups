@@ -1,107 +1,86 @@
+<!-- avantgroups-main/index.html (English) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avant Groups | Empowering Growth</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Avant Groups - Services</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-    <div class="top-bar">
-        <div class="container top-bar-content">
-            <div class="accessibility-links">
-                <a href="#main-content">Skip to Main Content</a>
-                <a href="#">Screen Reader Access</a>
-                <span class="text-resize">A- | A | A+</span>
-            </div>
-            <div class="language-dropdown">
-                <button class="dropbtn">Language: English ▼</button>
-                <div class="dropdown-content">
-                    <a href="/" class="active">English</a>
-                    <a href="/hi/">हिन्दी</a>
-                    <a href="/as/">অসমীয়া</a>
-                </div>
-            </div>
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Avant Groups Logo">
         </div>
-    </div>
-
-    <header class="main-header">
-        <div class="container header-flex">
-            <div class="logo-area">
-                <img src="logo.png" alt="Avant Groups Logo" class="site-logo">
-            </div>
-            <nav class="main-nav">
-                <ul class="nav-links">
-                    <li><a href="/" class="active">Home</a></li>
-                    <li><a href="#">Our Group</a></li>
-                    <li><a href="#">Investments</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">English</a></li>
+                <li><a href="hi/index.html">हिन्दी</a></li>
+                <li><a href="as/index.html">অসমীয়া</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main id="main-content">
-        <section class="hero-section">
-            <div class="hero-overlay">
-                <div class="container">
-                    <div class="hero-text">
-                        <h2>Empowering Growth.<br>Investing in the Future.</h2>
-                    </div>
+    <main>
+        <section class="services-section">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+              <div class="service-card">
+                <div class="service-img">
+                  <img src="photo/telecom_image.png" alt="Avant Telecom">
                 </div>
-            </div>
-        </section>
+                <div class="service-icon">
+                  <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <h3>Avant Telecom</h3>
+              </div>
 
-        <section class="portfolio-section container">
-            <h3 class="section-title">Diversified Portfolio Sectors</h3>
-            
-            <div class="portfolio-grid">
-                <div class="portfolio-card">
-                    <div class="card-image telecom-img"></div>
-                    <div class="card-content">
-                        <h4>Avant Telecom</h4>
-                    </div>
+              <div class="service-card">
+                <div class="service-img">
+                  <img src="photo/it_image.png" alt="Avant IT Services">
                 </div>
+                <div class="service-icon">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Avant IT Services</h3>
+              </div>
 
-                <div class="portfolio-card">
-                    <div class="card-image it-img"></div>
-                    <div class="card-content">
-                        <h4>Avant IT Services</h4>
-                    </div>
+              <div class="service-card">
+                <div class="service-img">
+                  <img src="photo/logistics_image.png" alt="Avant Logistics">
                 </div>
-                
-                <div class="portfolio-card">
-                    <div class="card-image logistics-img"></div>
-                    <div class="card-content">
-                        <h4>Avant Logistics</h4>
-                    </div>
+                <div class="service-icon">
+                  <i class="fas fa-shipping-fast"></i>
                 </div>
-                
-                <div class="portfolio-card">
-                    <div class="card-image agro-img"></div>
-                    <div class="card-content">
-                        <h4>Avant Agro</h4>
-                    </div>
-                </div>
+                <h3>Avant Logistics</h3>
+              </div>
 
-                <div class="portfolio-card">
-                    <div class="card-image energy-img"></div>
-                    <div class="card-content">
-                        <h4>Avant Energy</h4>
-                    </div>
+              <div class="service-card">
+                <div class="service-img">
+                  <img src="photo/agro_image.png" alt="Avant Agro">
                 </div>
+                <div class="service-icon">
+                  <i class="fas fa-seedling"></i>
+                </div>
+                <h3>Avant Agro</h3>
+              </div>
+
+              <div class="service-card">
+                <div class="service-img">
+                  <img src="photo/energy_image.png" alt="Avant Energy">
+                </div>
+                <div class="service-icon">
+                  <i class="fas fa-solar-panel"></i>
+                </div>
+                <h3>Avant Energy</h3>
+              </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Avant Groups. All Rights Reserved.</p>
-        </div>
+        <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
-
 </body>
 </html>
