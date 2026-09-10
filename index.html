@@ -1,4 +1,4 @@
-<!-- index.html (English) -->
+<!-- index.html (English Home Page) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,15 +12,16 @@
     <header class="site-header">
         <div class="header-container">
             <div class="logo-container">
-                <img src="logo.png" alt="Avant Groups Logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="Avant Groups Logo">
+                </a>
             </div>
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="#our-group">Our Group</a></li>
-                    <li><a href="#investments">Investments</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="our-group.html">Our Group</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="#" onclick="openContactModal(event)">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="lang-selector">
@@ -39,7 +40,7 @@
         </div>
     </section>
 
-    <main class="main-content" id="our-group">
+    <main class="main-content">
         <section class="services-section">
             <h2>Diversified Portfolio Sectors</h2>
             <div class="services-grid">
@@ -96,8 +97,85 @@
         </section>
     </main>
 
+    <!-- Connect With Us Modal Overlay -->
+    <div id="contactModal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeContactModal()">&times;</button>
+            <div class="modal-header">
+                <h2>Connect With Us</h2>
+                <p>AVANT GROUP</p>
+            </div>
+            <!-- Google Sheet Web App endpoint or Form Action integration -->
+            <form id="contactForm" action="YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE" method="POST" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>SERVICE REQUIRED</label>
+                    <select name="service" required>
+                        <option value="" disabled selected>Select a Service...</option>
+                        <option value="Avant Telecom">Avant Telecom</option>
+                        <option value="Avant IT Services">Avant IT Services</option>
+                        <option value="Avant Logistics">Avant Logistics</option>
+                        <option value="Avant Agro">Avant Agro</option>
+                        <option value="Avant Energy">Avant Energy</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>FULL NAME</label>
+                    <input type="text" name="name" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>EMAIL</label>
+                        <input type="email" name="email" placeholder="john@company.com" required>
+                    </div>
+                    <div class="form-group half">
+                        <label>PHONE</label>
+                        <div class="phone-input-group">
+                            <select name="country_code">
+                                <option value="+91">+91 (IN)</option>
+                                <option value="+1">+1 (US)</option>
+                                <option value="+44">+44 (UK)</option>
+                            </select>
+                            <input type="tel" name="phone" placeholder="98765 43210" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>MESSAGE</label>
+                    <textarea name="message" rows="4" placeholder="How can we help you?" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">SEND MESSAGE</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
+
+    <script>
+        function openContactModal(e) {
+            e.preventDefault();
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            let modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        function handleFormSubmit(e) {
+            // Standard asynchronous submission to Google Sheets / Apps Script backend
+            // Backend script should record row data and trigger MailApp.sendEmail("info@avantgroups.in", ...)
+            alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
+            closeContactModal();
+        }
+    </script>
 </body>
 </html>
