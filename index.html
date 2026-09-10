@@ -1,4 +1,4 @@
-<!-- index.html (English - Single Source of Truth for Auto-Translation) -->
+<!-- index.html (English Home Page) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +25,13 @@
                 </ul>
             </nav>
             <div class="lang-selector">
-                <div id="google_translate_element"></div>
+                <select id="languageSelect" onchange="changeLanguage(this.value)">
+                    <option value="" disabled selected>Select Language</option>
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="as">অসমীয়া (Assamese)</option>
+                </select>
             </div>
         </div>
     </header>
@@ -78,7 +84,7 @@
                 <h2>Connect With Us</h2>
                 <p>AVANT GROUP</p>
             </div>
-            <!-- Google Sheet Web App endpoint integration -->
+            <!-- Google Sheet Web App endpoint or Form Action integration -->
             <form id="contactForm" action="YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE" method="POST" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
                     <label>SERVICE REQUIRED</label>
@@ -129,19 +135,6 @@
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
 
-    <!-- Google Translate Script Initialization -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,hi,bn,as',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <script>
         function openContactModal(e) {
             e.preventDefault();
@@ -159,6 +152,11 @@
         function handleFormSubmit(e) {
             alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
             closeContactModal();
+        }
+        function changeLanguage(lang) {
+            if (!lang) return;
+            document.cookie = "googtrans=/en/" + lang + "; path=/; domain=" + window.location.hostname;
+            location.reload();
         }
     </script>
 </body>
