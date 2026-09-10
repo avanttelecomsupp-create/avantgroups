@@ -91,26 +91,43 @@ body {
     border-radius: 2px;
 }
 
+/* Google Translate Styling Container at Extreme Right */
 .lang-selector {
     display: flex;
-    gap: 6px;
     align-items: center;
 }
 
-.lang-btn {
-    text-decoration: none;
-    font-size: 0.8rem;
+.goog-te-combo {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #dcdde1;
+    background-color: #f1f2f6;
+    font-size: 0.85rem;
     font-weight: 600;
-    padding: 4px 8px;
-    border-radius: 4px;
-    color: #555;
-    background: #f1f2f6;
+    color: #333;
+    outline: none;
+    cursor: pointer;
     transition: all 0.2s;
 }
 
-.lang-btn.active, .lang-btn:hover {
-    background: var(--primary-color);
-    color: #fff;
+.goog-te-combo:hover {
+    border-color: #0077b6;
+}
+
+body > .skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+.goog-logo-link, .gskiptranslate {
+    display: none !important;
+}
+
+.goog-te-gadget {
+    font-size: 0px !important;
 }
 
 /* Hero Section */
@@ -217,7 +234,7 @@ body {
     font-weight: 700;
 }
 
-/* Connect With Us Modal Form Styles matching exact snap */
+/* Modal Form Styles */
 .modal-overlay {
     display: none;
     position: fixed;
