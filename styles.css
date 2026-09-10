@@ -127,7 +127,6 @@ body {
     position: static !important;
 }
 
-.goog-te-gadget,
 .goog-tooltip,
 #goog-gt-tt,
 .goog-logo-link,
@@ -135,8 +134,37 @@ body {
     display: none !important;
 }
 
+/* Hide only the "Powered by Google Translate" text, keep the widget itself visible */
 .goog-te-gadget {
+    color: transparent !important;
     font-size: 0px !important;
+}
+
+.goog-te-gadget > span > a {
+    display: none !important;
+}
+
+/* Restore visible styling for the actual controls inside the gadget */
+.goog-te-gadget .goog-te-combo,
+.goog-te-gadget-simple {
+    font-size: 0.85rem !important;
+    color: #333 !important;
+}
+
+.goog-te-gadget-simple {
+    background-color: #f1f2f6 !important;
+    border: 1px solid #dcdde1 !important;
+    border-radius: 6px !important;
+    padding: 6px 10px !important;
+    cursor: pointer !important;
+}
+
+.goog-te-gadget-simple .goog-te-menu-value {
+    color: #333 !important;
+}
+
+.goog-te-gadget-simple .goog-te-menu-value span {
+    color: #333 !important;
 }
 
 .goog-text-highlight {
