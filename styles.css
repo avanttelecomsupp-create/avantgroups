@@ -91,87 +91,6 @@ body {
     border-radius: 2px;
 }
 
-/* Professional Google Translate Integration Styling */
-.lang-selector {
-    display: flex;
-    align-items: center;
-}
-
-.goog-te-combo {
-    padding: 7px 14px;
-    border-radius: 6px;
-    border: 1px solid #dcdde1;
-    background-color: #f1f2f6;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #333;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.goog-te-combo:hover {
-    border-color: #0077b6;
-}
-
-/* Hide Google top banner, tooltips, and floating logos */
-body > .skiptranslate,
-.goog-te-banner-frame {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-}
-
-body {
-    top: 0 !important;
-    position: static !important;
-}
-
-.goog-tooltip,
-#goog-gt-tt,
-.goog-logo-link,
-.gskiptranslate {
-    display: none !important;
-}
-
-/* Hide only the "Powered by Google Translate" text, keep the widget itself visible */
-.goog-te-gadget {
-    color: transparent !important;
-    font-size: 0px !important;
-}
-
-.goog-te-gadget > span > a {
-    display: none !important;
-}
-
-/* Restore visible styling for the actual controls inside the gadget */
-.goog-te-gadget .goog-te-combo,
-.goog-te-gadget-simple {
-    font-size: 0.85rem !important;
-    color: #333 !important;
-}
-
-.goog-te-gadget-simple {
-    background-color: #f1f2f6 !important;
-    border: 1px solid #dcdde1 !important;
-    border-radius: 6px !important;
-    padding: 6px 10px !important;
-    cursor: pointer !important;
-}
-
-.goog-te-gadget-simple .goog-te-menu-value {
-    color: #333 !important;
-}
-
-.goog-te-gadget-simple .goog-te-menu-value span {
-    color: #333 !important;
-}
-
-.goog-text-highlight {
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-
 /* Hero Section */
 .hero-section {
     position: relative;
@@ -436,7 +355,5 @@ footer {
     }
     .hero-content h1 {
         font-size: 2.2rem;
-    }
-    .form-row {
     }
 }
