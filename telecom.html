@@ -7,12 +7,177 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .partner-section {
-            padding: 50px 20px;
-            background-color: #f1f2f6;
-            border-radius: 12px;
-            margin: 40px 0;
+        .telecom-header-banner {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f1f2f6;
+        }
+        .telecom-logo-box {
+            width: 100px; 
+            height: 100px; 
+            background: #ffffff;
+            border-radius: 16px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eaeaea;
+            overflow: hidden;
+            padding: 10px;
+        }
+        .telecom-logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .highlight-card {
+            background: linear-gradient(135deg, #0b192c, #1d3557);
+            color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 15px 35px rgba(11, 25, 44, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .highlight-card::after {
+            content: '\f0ac'; /* Globe icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -20px;
+            bottom: -40px;
+            font-size: 18rem;
+            color: rgba(255, 255, 255, 0.03);
+            pointer-events: none;
+        }
+        .highlight-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+        .highlight-card .subtitle {
+            font-size: 1.2rem;
+            color: #4cc9f0;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .highlight-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #e0e6ed;
+            max-width: 800px;
+        }
+        .contact-links {
+            display: flex;
+            gap: 35px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .contact-links a {
+            color: #4cc9f0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-links a:hover {
+            color: #ffffff;
+        }
+        
+        /* Core Capabilities Grid - Elegant Styling */
+        .capabilities-section {
+            margin: 60px 0;
+        }
+        .capabilities-header {
             text-align: center;
+            margin-bottom: 40px;
+        }
+        .capabilities-header span {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .capabilities-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-top: 15px;
+            font-weight: 900;
+        }
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .cap-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            padding: 40px 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .cap-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,119,182,0.1);
+            border-color: #4cc9f0;
+        }
+        .cap-icon {
+            width: 65px;
+            height: 65px;
+            background: #f8f9fa;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent-telecom);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        .cap-card:hover .cap-icon {
+            background: var(--accent-telecom);
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+        .cap-card h4 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        .cap-card p {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .partner-section {
+            padding: 60px 30px;
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            margin: 60px 0;
+            text-align: center;
+            border: 1px solid #eaeaea;
         }
         .partner-grid {
             display: flex;
@@ -20,27 +185,32 @@
             align-items: center;
             gap: 40px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 40px;
         }
         .partner-logo {
             background: #ffffff;
-            padding: 20px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #333;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
             border: 1px solid #eaeaea;
             display: flex;
             align-items: center;
-            gap: 15px;
+            justify-content: center;
+            width: 240px;
+            height: 130px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .jio-logo { color: #e31837; }
-        .aviat-logo { color: #005a9c; }
-        .ceragon-logo { color: #000000; }
-        
+        .partner-logo:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
         .certificate-section {
-            margin: 40px 0;
+            margin: 60px 0 40px 0;
         }
         .cert-grid {
             display: grid;
@@ -51,14 +221,15 @@
         .cert-card {
             background: #ffffff;
             border: 1px solid #e1e4e8;
-            padding: 25px 20px;
-            border-radius: 10px;
+            padding: 30px 20px;
+            border-radius: 12px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
         .cert-card:hover {
             transform: translateY(-5px);
+            border-color: var(--accent-telecom);
         }
         .cert-card i {
             font-size: 2.5rem;
@@ -68,10 +239,11 @@
         .cert-card h4 {
             color: var(--primary-color);
             margin-bottom: 8px;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            font-weight: 800;
         }
         .cert-card p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #666;
             font-weight: 600;
         }
@@ -79,11 +251,12 @@
             display: inline-block;
             background-color: #e6f4ea;
             color: #1e8e3e;
-            padding: 4px 10px;
+            padding: 6px 12px;
             border-radius: 20px;
             font-size: 0.75rem;
-            font-weight: 700;
-            margin-top: 10px;
+            font-weight: 800;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -107,53 +280,103 @@
     </header>
 
     <main class="main-content">
-        <section class="services-section" style="max-width: 1000px; margin: 50px auto; padding: 0 20px;">
-            <div style="background: #ffffff; padding: 50px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: left;">
+        <section class="services-section" style="max-width: 1200px; margin: 50px auto; padding: 0 20px;">
+            <div style="background: #ffffff; padding: 60px 50px; border-radius: 24px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: left;">
                 
-                <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-                    <div style="width: 70px; height: 70px; background-color: var(--bg-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--accent-telecom); box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                        <i class="fas fa-broadcast-tower"></i>
+                <!-- Main Header with Avant Telecom Logo -->
+                <div class="telecom-header-banner">
+                    <div class="telecom-logo-box">
+                        <img src="photo/Operator Logo/avant-telecom-high-resolution-logo-transparent.png" alt="Avant Telecom Logo">
                     </div>
-                    <h1 style="font-size: 2.8rem; color: var(--primary-color); margin: 0; font-weight: 800;">Avant Telecom</h1>
+                    <div>
+                        <h1 style="font-size: 3.2rem; color: var(--primary-color); margin: 0; font-weight: 900; letter-spacing: -1px;">Avant Telecom</h1>
+                        <p style="color: #666; font-weight: 600; font-size: 1.1rem; margin-top: 8px;">A division of Avant Groups</p>
+                    </div>
                 </div>
                 
-                <img src="photo/telecom_image.png" alt="Avant Telecom" style="width: 100%; height: 450px; object-fit: cover; border-radius: 12px; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                
-                <div style="font-size: 1.15rem; color: #444; line-height: 1.8; margin-bottom: 30px;">
-                    <p style="margin-bottom: 20px;">Avant Telecom is at the forefront of the digital revolution, building robust, high-capacity infrastructure to connect businesses and communities. We specialize in the deployment of next-generation 5G networks, extensive optical fiber corridors, and secure enterprise communications solutions.</p>
-                    <p>Our mission is to reduce latency, ensure seamless connectivity, and provide the backbone for tomorrow's smart cities and IoT innovations. We operate strictly within national compliance standards to future-proof your digital presence.</p>
+                <!-- Hero Banner / Regional Dominance -->
+                <div class="highlight-card">
+                    <div class="subtitle">Connecting Today</div>
+                    <h2>Powering Tomorrow.</h2>
+                    <p>Avant Telecom delivers end-to-end telecom solutions with precision, passion, and performance. With a highly skilled technical team stationed strategically all over North East India, we specialize in rapid, reliable, and carrier-grade infrastructure rollouts across rugged regional corridors and pan-India domains.</p>
+                    
+                    <div class="contact-links">
+                        <a href="https://www.avanttelecom.in" target="_blank">
+                            <i class="fas fa-globe"></i> avanttelecom.in
+                        </a>
+                        <a href="mailto:support@avanttelecom.in">
+                            <i class="fas fa-envelope"></i> support@avanttelecom.in
+                        </a>
+                    </div>
                 </div>
 
-                <div style="background-color: #f8f9fa; padding: 25px 30px; border-radius: 10px; border-left: 5px solid var(--accent-telecom); margin-bottom: 40px;">
-                    <h3 style="color: var(--primary-color); margin-bottom: 12px; font-size: 1.3rem;">Regional Presence & Direct Support</h3>
-                    <p style="color: #444; margin-bottom: 15px; line-height: 1.6;">We are currently executing major telecommunication infrastructure projects extensively across the <strong>North East area of Assam</strong>, ensuring reliable connectivity reaches vital regional corridors.</p>
-                    <p style="color: #444; margin-bottom: 8px;"><i class="fas fa-globe" style="color: var(--accent-telecom); width: 25px;"></i> <strong>Dedicated Website:</strong> <a href="https://www.avanttelecom.in" target="_blank" style="color: var(--accent-telecom); text-decoration: none; font-weight: 600;">avanttelecom.in</a></p>
-                    <p style="color: #444;"><i class="fas fa-envelope" style="color: var(--accent-telecom); width: 25px;"></i> <strong>Direct Support:</strong> <a href="mailto:support@avanttelecom.in" style="color: var(--accent-telecom); text-decoration: none; font-weight: 600;">support@avanttelecom.in</a></p>
+                <!-- Core Capabilities Section -->
+                <div class="capabilities-section">
+                    <div class="capabilities-header">
+                        <span>Capabilities</span>
+                        <h2>End-to-End Telecom Solutions</h2>
+                    </div>
+                    
+                    <div class="capabilities-grid">
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-satellite-dish"></i></div>
+                            <h4>Microwave & UBR Solutions</h4>
+                            <p>Specialized deployment of high-capacity MW and Unlicensed Band Radio (UBR) links, including rigorous Line-of-Sight (LOS) surveys and transmission routing.</p>
+                        </div>
+                        
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-broadcast-tower"></i></div>
+                            <h4>5G & 4G Installation</h4>
+                            <p>Turnkey installation, network commissioning, precise antenna height adjustments, and safe de-installation processes for major carrier sites.</p>
+                        </div>
+
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-network-wired"></i></div>
+                            <h4>Optical Fiber Cable</h4>
+                            <p>Our expert team specializes in the installation of fiber optic cables, ensuring a seamless transition to high-speed, reliable communication networks.</p>
+                        </div>
+
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-map-marked-alt"></i></div>
+                            <h4>Telecom Infra Development</h4>
+                            <p>Our Telecom Infrastructure Development journey begins with meticulous site planning, structural analysis, and comprehensive feasibility studies.</p>
+                        </div>
+
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-hard-hat"></i></div>
+                            <h4>Civil & Electrical Infrastructure</h4>
+                            <p>Building the foundation with dependable electrical systems, civil engineering works, tower base construction, and structural pole erections.</p>
+                        </div>
+
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-wrench"></i></div>
+                            <h4>Telecom Infra Maintenance</h4>
+                            <p>Proactive maintenance is the cornerstone of a reliable network. We offer scheduled inspections, prompt troubleshooting, and swift operational resolutions.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <hr style="border: none; height: 1px; background-color: #eaeaea; margin: 40px 0;">
-
-                <!-- Technology Partners Section -->
+                <!-- Technology Partners Section with Actual Logos -->
                 <div class="partner-section">
-                    <h2 style="color: var(--primary-color); font-size: 2rem; margin-bottom: 10px;">Our Technology Partners</h2>
-                    <p style="color: #666; font-size: 1.05rem;">Proudly collaborating with industry leaders to deliver world-class telecommunication networks.</p>
+                    <h2 style="color: var(--primary-color); font-size: 2.2rem; margin-bottom: 15px; font-weight: 900;">Trusted Technology Partners</h2>
+                    <p style="color: #666; font-size: 1.15rem; max-width: 700px; margin: 0 auto;">Proudly collaborating with the world's leading operators and equipment providers to execute cutting-edge UBR and MW deployments.</p>
                     <div class="partner-grid">
-                        <div class="partner-logo jio-logo">
-                            <i class="fas fa-circle-notch"></i> Reliance Jio
+                        <div class="partner-logo">
+                            <img src="photo/Operator Logo/Reliance_Jio_Logo.svg.webp" alt="Reliance Jio">
                         </div>
-                        <div class="partner-logo aviat-logo">
-                            <i class="fas fa-satellite-dish"></i> Aviat Networks
+                        <div class="partner-logo">
+                            <img src="photo/Operator Logo/Aviat_Networks_logo.svg" alt="Aviat Networks">
                         </div>
-                        <div class="partner-logo ceragon-logo">
-                            <i class="fas fa-network-wired"></i> Ceragon
+                        <div class="partner-logo">
+                            <img src="photo/Operator Logo/Ceragon.png" alt="Ceragon">
                         </div>
                     </div>
                 </div>
 
                 <!-- Compliance and Certifications Section -->
                 <div class="certificate-section">
-                    <h2 style="color: var(--primary-color); font-size: 2rem; text-align: center; margin-bottom: 10px;">Official Certifications & Compliance</h2>
-                    <p style="color: #666; font-size: 1.05rem; text-align: center; margin-bottom: 30px;">Avant Telecom is a fully registered and compliant corporate entity operating in India.</p>
+                    <h2 style="color: var(--primary-color); font-size: 2.2rem; text-align: center; margin-bottom: 15px; font-weight: 900;">Official Certifications & Compliance</h2>
+                    <p style="color: #666; font-size: 1.15rem; text-align: center; margin-bottom: 40px;">Avant Telecom is a fully registered and strictly compliant corporate entity operating in India.</p>
                     
                     <div class="cert-grid">
                         <div class="cert-card">
@@ -183,8 +406,8 @@
                     </div>
                 </div>
                 
-                <div style="margin-top: 50px; text-align: center;">
-                    <a href="contact.html" class="submit-btn" style="display: inline-block; width: auto; padding: 15px 40px; font-size: 1.1rem; text-decoration: none; box-shadow: 0 4px 15px rgba(11, 25, 44, 0.2);">INQUIRE ABOUT TELECOM SERVICES</a>
+                <div style="margin-top: 60px; text-align: center; padding-top: 40px; border-top: 1px solid #eaeaea;">
+                    <a href="contact.html" class="submit-btn" style="display: inline-block; width: auto; padding: 18px 50px; font-size: 1.15rem; text-decoration: none; box-shadow: 0 10px 25px rgba(11, 25, 44, 0.2); border-radius: 50px;">INQUIRE ABOUT TELECOM SERVICES</a>
                 </div>
             </div>
         </section>
