@@ -261,7 +261,7 @@
             submitBtn.textContent = 'SENDING...';
 
             // Replace with your Google Apps Script Web App URL
-            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwd3ZOWvF114ZGRXfLE0yW-vn1DKXLh4fJrrf-tSy68xHfxE6jZ9oM-xZQzQ1bSYwK1YQ/exec';
             const formData = new FormData(form);
 
             fetch(scriptURL, { method: 'POST', body: formData })
