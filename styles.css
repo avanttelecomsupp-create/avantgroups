@@ -112,11 +112,11 @@ body {
     color: #fff;
 }
 
-/* Office Hero Section */
+/* Hero Section updated with photo/Background.png */
 .hero-section {
     position: relative;
     height: 460px;
-    background: linear-gradient(rgba(11, 25, 44, 0.4), rgba(11, 25, 44, 0.65)), url('photo/it_image.png') no-repeat center center/cover;
+    background: linear-gradient(rgba(11, 25, 44, 0.45), rgba(11, 25, 44, 0.65)), url('photo/Background.png') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: flex-start;
