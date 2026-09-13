@@ -15,6 +15,10 @@
                     <img src="logo.png" alt="Avant Groups Logo">
                 </a>
             </div>
+            <!-- Mobile toggle button -->
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -25,19 +29,16 @@
             </nav>
         </div>
     </header>
-
     <main class="main-content">
         <section class="services-section">
             <h2>Project Updates & News</h2>
             <p class="section-intro">Regular updates regarding our ongoing initiatives, achievements, and structural expansions.</p>
-            
             <div class="news-feed-container">
                 <article class="news-card border-telecom">
                     <span class="news-date">September 11, 2026</span>
                     <h3>Avant Telecom Expands 5G Optical Infrastructure</h3>
                     <p>We have successfully deployed high-capacity nodes across major corridors, enhancing seamless connectivity and reducing latency across enterprise networks.</p>
                 </article>
-
                 <article class="news-card border-energy">
                     <span class="news-date">September 10, 2026</span>
                     <h3>Avant Energy Initiates Next-Gen Solar Grid Project</h3>
@@ -46,9 +47,28 @@
             </div>
         </section>
     </main>
-
     <footer>
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if(mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
