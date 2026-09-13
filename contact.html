@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact Us - Avant Groups</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logo.png" alt="Avant Groups Logo">
+                </a>
+            </div>
+            <!-- Mobile toggle button -->
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our-group.html">Our Group</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="contact.html" class="active">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+        <section class="contact-page-section">
+            <div class="contact-form-container">
+                <div class="form-header">
+                    <h2>Connect With Us</h2>
+                    <p>AVANT GROUP</p>
+                </div>
+                <form id="contactForm" onsubmit="submitContactForm(event)">
+                    <div class="form-group">
+                        <label>SERVICE REQUIRED</label>
+                        <select name="service" required>
+                            <option value="" disabled selected>Select a Service...</option>
+                            <option value="Avant Telecom">Avant Telecom</option>
+                            <option value="Avant IT Services">Avant IT Services</option>
+                            <option value="Avant Logistics">Avant Logistics</option>
+                            <option value="Avant Agro">Avant Agro</option>
+                            <option value="Avant Energy">Avant Energy</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>FULL NAME</label>
+                        <input type="text" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>EMAIL</label>
+                            <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@domain.com)" required>
+                        </div>
+                        <div class="form-group half">
+                            <label>PHONE</label>
+                            <div class="phone-input-group">
+                                <select name="country_code">
+                                    <option value="+91" selected>India (+91)</option>
+                                    <option value="+1">Canada/USA (+1)</option>
+                                    <option value="+44">United Kingdom (+44)</option>
+                                    <option value="+61">Australia (+61)</option>
+                                </select>
+                                <input type="tel" name="phone" placeholder="9876543210" pattern="[0-9]{7,15}" title="Please enter a valid phone number (digits only)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>MESSAGE</label>
+                        <textarea name="message" rows="4" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn" class="submit-btn">SEND MESSAGE</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Avant Groups. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating Back Button (Apple Frosted Glass Style) -->
+    <a href="javascript:history.back()" class="floating-back-btn" title="Go Back">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+
+    <script>
+        // Apple-style Smooth Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if(mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.body.style.overflow = 'auto'; // Restore scrolling
+                }
+            });
+        }
+    </script>
+    <script>
+        function submitContactForm(e) {
+            e.preventDefault();
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'SENDING...';
+
+            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+            const formData = new FormData(form);
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'SEND MESSAGE';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Submission failed. Please check your Google Apps Script Web App URL.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'SEND MESSAGE';
+                });
+        }
+    </script>
+</body>
+</html>
