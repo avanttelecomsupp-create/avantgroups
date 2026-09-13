@@ -9,7 +9,6 @@
     <script src="layout.js"></script>
 </head>
 <body>
-    
     <section class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -69,106 +68,5 @@
             </div>
         </section>
     </main>
-    
-
-    <!-- Floating Back Button -->
-    
-
-    
-    
-                </div>
-                <div class="form-group">
-                    <label>MESSAGE</label>
-                    <textarea name="message" rows="4" placeholder="How can we help you?" required></textarea>
-                </div>
-                <button type="submit" id="submitBtn" class="submit-btn">SEND MESSAGE</button>
-            </form>
-        </div>
-    </div>
-
-        <script>
-        // Apple-style Smooth Mobile Navigation Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu');
-        const mainNav = document.querySelector('.main-nav');
-
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
-                const icon = this.querySelector('i');
-                if(mainNav.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                    document.body.style.overflow = 'auto'; // Restore scrolling
-                }
-            });
-        }
-
-        // Modal Logic
-        function openContactModal(e, serviceName = '') {
-            if(e) e.preventDefault();
-            const modal = document.getElementById('contactModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // prevent bg scroll
-            
-            if(serviceName) {
-                const select = document.getElementById('modalServiceSelect');
-                if(select) select.value = serviceName;
-            }
-            
-            // If mobile menu is open, close it
-            if(mainNav && mainNav.classList.contains('active')) {
-                mainNav.classList.remove('active');
-                const icon = document.getElementById('mobile-menu').querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        }
-
-        function closeContactModal() {
-            const modal = document.getElementById('contactModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // restore bg scroll
-        }
-
-        // Close modal when clicking outside of the box
-        window.onclick = function(event) {
-            const modal = document.getElementById('contactModal');
-            if (event.target == modal) {
-                closeContactModal();
-            }
-        }
-
-        // Contact Form Submit Logic
-        function submitContactForm(e) {
-            e.preventDefault();
-            const form = document.getElementById('contactForm');
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'SENDING...';
-
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec';
-            const formData = new FormData(form);
-
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => {
-                    alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
-                    form.reset();
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE';
-                    closeContactModal();
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    alert('Submission failed. Please check your Google Apps Script Web App URL.');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE';
-                });
-        }
-    </script>
-    
 </body>
 </html>
