@@ -1,16 +1,13 @@
 /**
  * Avant Groups - Universal Modular Layout Injector
- * This file dynamically injects the Header, Navigation, Footer, Back Button,
- * and the Contact Popup Modal across all pages on the site.
- * Any future changes made to this file will instantly update all pages!
  */
 
 (function() {
-    // 1. Determine current page filename for active link highlighting
     const path = window.location.pathname;
     const page = path.split("/").pop() || "index.html";
+    const isHomePage = (page === "index.html" || page === "" || page === "/");
 
-    // 2. Build Header HTML
+    // 1. Header HTML
     const headerHTML = `
     <header class="site-header">
         <div class="header-container">
@@ -24,7 +21,7 @@
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html"${page === 'index.html' || page === '' ? ' class="active"' : ''}>Home</a></li>
+                    <li><a href="index.html"${isHomePage ? ' class="active"' : ''}>Home</a></li>
                     <li><a href="our-group.html"${page === 'our-group.html' ? ' class="active"' : ''}>Our Group</a></li>
                     <li><a href="news.html"${page === 'news.html' ? ' class="active"' : ''}>News</a></li>
                     <li><a href="free-apps.html"${page === 'free-apps.html' ? ' class="active"' : ''}>Free Apps</a></li>
@@ -35,18 +32,21 @@
     </header>
     `;
 
-    // 3. Build Footer, Back Button, and Contact Modal HTML
+    // 2. Footer HTML (Floating back button hidden on homepage!)
+    const backBtnHTML = isHomePage ? '' : `
+    <a href="javascript:history.back()" class="floating-back-btn" title="Go Back">
+        <i class="fas fa-chevron-left"></i>
+    </a>`;
+
     const footerHTML = `
     <footer>
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
 
-    <a href="javascript:history.back()" class="floating-back-btn" title="Go Back">
-        <i class="fas fa-chevron-left"></i>
-    </a>
+    ${backBtnHTML}
 
-    <!-- Global Contact Modal Overlay -->
-    <div class="modal-overlay" id="contactModal">
+    <!-- Global Contact Modal Overlay (Guaranteed Hidden by Default) -->
+    <div class="modal-overlay" id="contactModal" style="display: none;">
         <div class="modal-content">
             <button type="button" class="modal-close" onclick="closeContactModal()"><i class="fas fa-times"></i></button>
             <div class="form-header" style="text-align: center; margin-bottom: 25px;">
@@ -72,7 +72,7 @@
                 <div class="form-row" style="display:flex; gap: 15px; margin-bottom: 18px;">
                     <div class="form-group half" style="flex:1;">
                         <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">EMAIL</label>
-                        <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@domain.com)" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;">
+                        <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$" title="Please enter a valid email address" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;">
                     </div>
                     <div class="form-group half" style="flex:1;">
                         <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">PHONE</label>
@@ -83,7 +83,7 @@
                                 <option value="+44">UK (+44)</option>
                                 <option value="+61">Aus (+61)</option>
                             </select>
-                            <input type="tel" name="phone" placeholder="9876543210" pattern="[0-9]{7,15}" title="Please enter a valid phone number (digits only)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required style="flex:1; min-width:0; padding: 12px 12px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;">
+                            <input type="tel" name="phone" placeholder="9876543210" pattern="[0-9]{7,15}" title="Please enter a valid phone number" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required style="flex:1; min-width:0; padding: 12px 12px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;">
                         </div>
                     </div>
                 </div>
@@ -97,15 +97,12 @@
     </div>
     `;
 
-    // 4. Inject into DOM when loaded
+    // 3. Inject elements
     document.addEventListener("DOMContentLoaded", function() {
-        // Insert Header at the top of <body>
         document.body.insertAdjacentHTML("afterbegin", headerHTML);
-
-        // Insert Footer, Back Button, and Modal at the bottom of <body>
         document.body.insertAdjacentHTML("beforeend", footerHTML);
 
-        // Bind Mobile Navigation Toggle
+        // Mobile nav bind
         const mobileBtn = document.getElementById("mobile-menu");
         if (mobileBtn) {
             mobileBtn.addEventListener("click", function() {
@@ -127,10 +124,11 @@
         }
     });
 
-    // 5. Global Modal Control Functions
+    // 4. Modal Functions
     window.openContactModal = function(serviceName) {
         const modal = document.getElementById("contactModal");
         if (modal) {
+            modal.style.display = "flex";
             modal.classList.add("active");
             document.body.style.overflow = "hidden";
         }
@@ -152,6 +150,7 @@
     window.closeContactModal = function() {
         const modal = document.getElementById("contactModal");
         if (modal) {
+            modal.style.display = "none";
             modal.classList.remove("active");
             document.body.style.overflow = "auto";
         }
