@@ -15,6 +15,10 @@
                     <img src="logo.png" alt="Avant Groups Logo">
                 </a>
             </div>
+            <!-- Mobile toggle button -->
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -25,7 +29,6 @@
             </nav>
         </div>
     </header>
-
     <main class="main-content">
         <section class="services-section" style="max-width: 900px; margin: 50px auto; padding: 0 20px;">
             <div style="background: #ffffff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: left;">
@@ -35,23 +38,39 @@
                     </div>
                     <h1 style="font-size: 2.5rem; color: var(--primary-color); margin: 0;">Avant Energy</h1>
                 </div>
-                
                 <img src="photo/energy_image.png" alt="Avant Energy" style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 30px;">
-                
                 <div style="font-size: 1.1rem; color: #444; line-height: 1.8;">
                     <p style="margin-bottom: 15px;">Avant Energy is driving the transition toward a sustainable future by investing heavily in renewable energy solutions. Our projects span large-scale solar grids, wind energy farms, and next-generation energy storage systems.</p>
 <p>We aim to reduce global dependence on fossil fuels by delivering clean, efficient, and reliable power. Our state-of-the-art infrastructure is designed to power industries and cities while maintaining strict environmental stewardship.</p>
                 </div>
-                
                 <div style="margin-top: 40px; text-align: center;">
                     <a href="contact.html" class="submit-btn" style="display: inline-block; width: auto; padding: 12px 30px; text-decoration: none;">INQUIRE ABOUT THIS SERVICE</a>
                 </div>
             </div>
         </section>
     </main>
-
     <footer>
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if(mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
