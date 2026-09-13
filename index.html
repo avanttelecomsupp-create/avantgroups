@@ -15,6 +15,10 @@
                     <img src="logo.png" alt="Avant Groups Logo">
                 </a>
             </div>
+            <!-- Mobile toggle button -->
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
@@ -25,7 +29,6 @@
             </nav>
         </div>
     </header>
-
     <section class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -37,73 +40,76 @@
         <section class="services-section">
             <h2>Diversified Portfolio Sectors</h2>
             <div class="services-grid">
-                
                 <a href="telecom.html" style="text-decoration: none; color: inherit;">
                     <div class="service-card telecom-card">
                         <div class="service-img">
                             <img src="photo/telecom_image.png" alt="Avant Telecom">
                         </div>
-                        <div class="service-icon">
-                            <i class="fas fa-broadcast-tower"></i>
-                        </div>
+                        <div class="service-icon"><i class="fas fa-broadcast-tower"></i></div>
                         <h3>Avant Telecom</h3>
                     </div>
                 </a>
-
                 <a href="it-services.html" style="text-decoration: none; color: inherit;">
                     <div class="service-card it-card">
                         <div class="service-img">
                             <img src="photo/it_image.png" alt="Avant IT Services">
                         </div>
-                        <div class="service-icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
+                        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
                         <h3>Avant IT Services</h3>
                     </div>
                 </a>
-
                 <a href="logistics.html" style="text-decoration: none; color: inherit;">
                     <div class="service-card logistics-card">
                         <div class="service-img">
                             <img src="photo/logistics_image.png" alt="Avant Logistics">
                         </div>
-                        <div class="service-icon">
-                            <i class="fas fa-shipping-fast"></i>
-                        </div>
+                        <div class="service-icon"><i class="fas fa-shipping-fast"></i></div>
                         <h3>Avant Logistics</h3>
                     </div>
                 </a>
-
                 <a href="agro.html" style="text-decoration: none; color: inherit;">
                     <div class="service-card agro-card">
                         <div class="service-img">
                             <img src="photo/agro_image.png" alt="Avant Agro">
                         </div>
-                        <div class="service-icon">
-                            <i class="fas fa-seedling"></i>
-                        </div>
+                        <div class="service-icon"><i class="fas fa-seedling"></i></div>
                         <h3>Avant Agro</h3>
                     </div>
                 </a>
-
                 <a href="energy.html" style="text-decoration: none; color: inherit;">
                     <div class="service-card energy-card">
                         <div class="service-img">
                             <img src="photo/energy_image.png" alt="Avant Energy">
                         </div>
-                        <div class="service-icon">
-                            <i class="fas fa-solar-panel"></i>
-                        </div>
+                        <div class="service-icon"><i class="fas fa-solar-panel"></i></div>
                         <h3>Avant Energy</h3>
                     </div>
                 </a>
-
             </div>
         </section>
     </main>
-
     <footer>
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if(mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
