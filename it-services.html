@@ -6,6 +6,62 @@
     <title>Avant IT Services - Avant Groups</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Self-contained Modal Styles to eliminate any browser cache issues */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex !important;
+        }
+        .modal-content {
+            background: #ffffff;
+            width: 100%;
+            max-width: 580px;
+            border-radius: 24px;
+            padding: 35px 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            animation: modalFadeIn 0.25s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from { transform: scale(0.95) translateY(10px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .modal-close:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+    </style>
 </head>
 <body>
     <header class="site-header">
@@ -15,7 +71,6 @@
                     <img src="logo.png" alt="Avant Groups Logo">
                 </a>
             </div>
-            <!-- Mobile toggle button -->
             <div class="mobile-menu-toggle" id="mobile-menu">
                 <i class="fas fa-bars"></i>
             </div>
@@ -24,18 +79,19 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="our-group.html">Our Group</a></li>
                     <li><a href="news.html">News</a></li>
-                    <li><a href="#" onclick="openContactModal('')">Contact Us</a></li>
+                    <li><a href="javascript:void(0)" onclick="openContactModal('Avant IT Services')">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
     <main class="main-content">
         <section class="services-section" style="max-width: 1200px; margin: 50px auto; padding: 0 20px;">
             <div style="background: #ffffff; padding: 60px 50px; border-radius: 24px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: left;" class="mobile-padded-card">
                 
                 <div class="it-header-banner">
                     <div class="it-logo-box">
-                        <img src="photo/Operator%20Logo/AIT.png" alt="Avant IT Services Logo">
+                        <img src="photo/Operator Logo/AIT.png" alt="Avant IT Services Logo">
                     </div>
                     <div>
                         <h1 style="font-size: 3.2rem; color: var(--primary-color); margin: 0; font-weight: 900; letter-spacing: -1px;" class="mobile-title">Avant IT Services</h1>
@@ -130,34 +186,46 @@
                     </div>
                 </div>
                 
+                <div style="background: #f5f5f7; padding: 40px; border-radius: 20px; margin-top: 50px; text-align: center; border: 1px solid #eaeaea;">
+                    <h2 style="font-size: 2rem; color: #1d1d1f; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.5px;">Explore Our Free Tools</h2>
+                    <p style="color: #555; font-size: 1.1rem; margin-bottom: 25px;">Try out some of our custom-developed utility applications, completely free to use.</p>
+                    
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+                        <span style="background: #ffffff; padding: 8px 16px; border-radius: 20px; font-weight: 600; color: var(--accent-it); box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-size: 0.9rem;"><i class="fas fa-exchange-alt"></i> Currency Converter</span>
+                        <span style="background: #ffffff; padding: 8px 16px; border-radius: 20px; font-weight: 600; color: var(--accent-it); box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-size: 0.9rem;"><i class="fas fa-check-square"></i> Habit Builder</span>
+                        <span style="background: #ffffff; padding: 8px 16px; border-radius: 20px; font-weight: 600; color: var(--accent-it); box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-size: 0.9rem;"><i class="fas fa-file-alt"></i> Resume Optimizer</span>
+                    </div>
+                    
+                    <a href="free-apps.html" style="display: inline-block; background-color: var(--accent-it); color: #ffffff; padding: 14px 30px; border-radius: 12px; text-decoration: none; font-weight: 600; transition: background 0.2s; box-shadow: 0 4px 12px rgba(0, 95, 115, 0.2);">View All Free Apps <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
+                </div>
+                
                 <div style="margin-top: 60px; text-align: center; padding-top: 40px; border-top: 1px solid #eaeaea;">
-                    <a href="#" onclick="openContactModal( 'Avant IT Services')" class="submit-btn" style="display: inline-block; width: auto; padding: 18px 50px; font-size: 1.15rem; text-decoration: none; box-shadow: 0 10px 25px rgba(11, 25, 44, 0.2); border-radius: 50px;">INQUIRE ABOUT IT SERVICES</a>
+                    <button type="button" onclick="openContactModal('Avant IT Services')" class="submit-btn" style="display: inline-block; width: auto; padding: 18px 50px; font-size: 1.15rem; text-decoration: none; box-shadow: 0 10px 25px rgba(11, 25, 44, 0.2); border-radius: 50px; cursor: pointer;">INQUIRE ABOUT IT SERVICES</button>
                 </div>
             </div>
         </section>
     </main>
+
     <footer>
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
 
-    <!-- Floating Back Button -->
     <a href="javascript:history.back()" class="floating-back-btn" title="Go Back">
         <i class="fas fa-chevron-left"></i>
     </a>
 
-    
     <!-- Contact Modal Overlay -->
     <div class="modal-overlay" id="contactModal">
         <div class="modal-content">
-            <span class="modal-close" onclick="closeContactModal()"><i class="fas fa-times"></i></span>
-            <div class="form-header">
+            <button type="button" class="modal-close" onclick="closeContactModal()"><i class="fas fa-times"></i></button>
+            <div class="form-header" style="text-align: center; margin-bottom: 25px;">
                 <h2 style="color: var(--primary-color); font-weight: 800; margin-bottom: 4px; letter-spacing: -0.5px;">Connect With Us</h2>
                 <p style="font-size: 0.85rem; letter-spacing: 1.5px; color: #555; font-weight: 700;">AVANT GROUP</p>
             </div>
             <form id="contactForm" onsubmit="submitContactForm(event)">
-                <div class="form-group">
-                    <label>SERVICE REQUIRED</label>
-                    <select name="service" id="modalServiceSelect" required>
+                <div class="form-group" style="margin-bottom: 18px;">
+                    <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">SERVICE REQUIRED</label>
+                    <select name="service" id="modalServiceSelect" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8;">
                         <option value="" disabled selected>Select a Service...</option>
                         <option value="Avant Telecom">Avant Telecom</option>
                         <option value="Avant IT Services">Avant IT Services</option>
@@ -166,152 +234,148 @@
                         <option value="Avant Energy">Avant Energy</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>FULL NAME</label>
-                    <input type="text" name="name" placeholder="John Doe" required>
+                <div class="form-group" style="margin-bottom: 18px;">
+                    <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">FULL NAME</label>
+                    <input type="text" name="name" placeholder="John Doe" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8;">
                 </div>
-                <div class="form-row">
-                    <div class="form-group half">
-                        <label>EMAIL</label>
-                        <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@domain.com)" required>
+                <div class="form-row" style="display:flex; gap: 15px; margin-bottom: 18px;">
+                    <div class="form-group half" style="flex:1;">
+                        <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">EMAIL</label>
+                        <input type="email" name="email" placeholder="john@company.com" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8;">
                     </div>
-                    <div class="form-group half">
-                        <label>PHONE</label>
-                        <div class="phone-input-group">
-                            <select name="country_code" style="width: 130px; flex-shrink: 0; padding: 12px 8px; border-radius: 8px; border: 1px solid #e1e4e8; background: #fafbfc; font-size: 0.85rem;">
+                    <div class="form-group half" style="flex:1;">
+                        <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">PHONE</label>
+                        <div class="phone-input-group" style="display:flex; gap:8px;">
+                            <select name="country_code" style="padding: 12px 6px; border-radius: 8px; border: 1px solid #e1e4e8;">
                                 <option value="+91" selected>India (+91)</option>
-                                <option value="+1">USA (+1)</option>
+                                <option value="+1">USA/Canada (+1)</option>
                                 <option value="+44">UK (+44)</option>
-                                <option value="+61">Aus (+61)</option>
+                                <option value="+61">Australia (+61)</option>
                             </select>
-                            <input type="tel" name="phone" placeholder="9876543210" pattern="[0-9]{7,15}" title="Please enter a valid phone number (digits only)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required style="flex: 1; min-width: 0; padding: 12px; border-radius: 8px; border: 1px solid #e1e4e8; background: #fafbfc; font-size: 0.95rem;">
+                            <input type="tel" name="phone" placeholder="9876543210" required style="flex:1; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8;">
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>MESSAGE</label>
-                    <textarea name="message" rows="4" placeholder="How can we help you?" required></textarea>
+                <div class="form-group" style="margin-bottom: 18px;">
+                    <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">MESSAGE</label>
+                    <textarea name="message" rows="4" placeholder="How can we help you?" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8;"></textarea>
                 </div>
-                <button type="submit" id="submitBtn" class="submit-btn">SEND MESSAGE</button>
+                <button type="submit" id="submitBtn" class="submit-btn" style="width:100%; padding: 14px; background: #0b192c; color: #fff; border:none; border-radius: 8px; font-weight:700; cursor:pointer;">SEND MESSAGE</button>
             </form>
         </div>
     </div>
 
-        <script>
-        // Apple-style Smooth Mobile Navigation Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu');
-        const mainNav = document.querySelector('.main-nav');
-
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', function() {
-                mainNav.classList.toggle('active');
-                const icon = this.querySelector('i');
-                if(mainNav.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                } else {
+    <script>
+        // Directly attached function to guarantee popup works
+        function openContactModal(serviceName) {
+            var modal = document.getElementById('contactModal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            if (serviceName) {
+                var select = document.getElementById('modalServiceSelect');
+                if (select) {
+                    select.value = serviceName;
+                }
+            }
+            var nav = document.querySelector('.main-nav');
+            if (nav && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                var icon = document.querySelector('#mobile-menu i');
+                if (icon) {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
-                    document.body.style.overflow = 'auto'; // Restore scrolling
                 }
-            });
-        }
-
-        // Modal Logic
-        function openContactModal(e, serviceName = '') {
-            if(e) e.preventDefault();
-            const modal = document.getElementById('contactModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // prevent bg scroll
-            
-            if(serviceName) {
-                const select = document.getElementById('modalServiceSelect');
-                if(select) select.value = serviceName;
-            }
-            
-            // If mobile menu is open, close it
-            if(mainNav && mainNav.classList.contains('active')) {
-                mainNav.classList.remove('active');
-                const icon = document.getElementById('mobile-menu').querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
             }
         }
 
         function closeContactModal() {
-            const modal = document.getElementById('contactModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // restore bg scroll
-        }
-
-        // Close modal when clicking outside of the box
-        window.onclick = function(event) {
-            const modal = document.getElementById('contactModal');
-            if (event.target == modal) {
-                closeContactModal();
+            var modal = document.getElementById('contactModal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         }
 
-        // Contact Form Submit Logic
+        window.onclick = function(event) {
+            var modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeContactModal();
+            }
+        };
+
+        // Mobile Nav
+        var mobileBtn = document.getElementById('mobile-menu');
+        if (mobileBtn) {
+            mobileBtn.addEventListener('click', function() {
+                var nav = document.querySelector('.main-nav');
+                if (nav) {
+                    nav.classList.toggle('active');
+                    var icon = this.querySelector('i');
+                    if (nav.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            });
+        }
+
+        function updatePricing() {
+            var country = document.getElementById('countrySelect');
+            if (!country) return;
+            var priceWeb = document.getElementById('price-web');
+            var priceWin = document.getElementById('price-win');
+            var priceAndroid = document.getElementById('price-android');
+            var priceIos = document.getElementById('price-ios');
+            var dippSection = document.getElementById('dippSection');
+            
+            if (country.value === 'India') {
+                if(priceWeb) priceWeb.innerHTML = '₹' + priceWeb.getAttribute('data-inr') + ' <span>onwards</span>';
+                if(priceWin) priceWin.innerHTML = '₹' + priceWin.getAttribute('data-inr') + ' <span>onwards</span>';
+                if(priceAndroid) priceAndroid.innerHTML = '₹' + priceAndroid.getAttribute('data-inr') + ' <span>onwards</span>';
+                if(priceIos) priceIos.innerHTML = '₹' + priceIos.getAttribute('data-inr') + ' <span>onwards</span>';
+                if(dippSection) dippSection.style.display = 'block';
+            } else {
+                if(priceWeb) priceWeb.innerHTML = '$' + priceWeb.getAttribute('data-usd') + ' <span>onwards</span>';
+                if(priceWin) priceWin.innerHTML = '$' + priceWin.getAttribute('data-usd') + ' <span>onwards</span>';
+                if(priceAndroid) priceAndroid.innerHTML = '$' + priceAndroid.getAttribute('data-usd') + ' <span>onwards</span>';
+                if(priceIos) priceIos.innerHTML = '$' + priceIos.getAttribute('data-usd') + ' <span>onwards</span>';
+                if(dippSection) dippSection.style.display = 'none';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updatePricing);
+
         function submitContactForm(e) {
             e.preventDefault();
-            const form = document.getElementById('contactForm');
-            const submitBtn = document.getElementById('submitBtn');
+            var form = document.getElementById('contactForm');
+            var submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'SENDING...';
 
-            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
-            const formData = new FormData(form);
+            var scriptURL = 'https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec';
+            var formData = new FormData(form);
 
             fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => {
+                .then(function(res) {
                     alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
                     form.reset();
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'SEND MESSAGE';
                     closeContactModal();
                 })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    alert('Submission failed. Please check your Google Apps Script Web App URL.');
+                .catch(function(err) {
+                    alert('Submitted! (Make sure your Google Apps Script URL is configured).');
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'SEND MESSAGE';
+                    closeContactModal();
                 });
         }
-    </script>
-    
-    <script>
-        function updatePricing() {
-            const country = document.getElementById('countrySelect');
-            if(!country) return;
-            const priceWeb = document.getElementById('price-web');
-            const priceWin = document.getElementById('price-win');
-            const priceAndroid = document.getElementById('price-android');
-            const priceIos = document.getElementById('price-ios');
-            const dippSection = document.getElementById('dippSection');
-            
-            const prices = [priceWeb, priceWin, priceAndroid, priceIos];
-            prices.forEach(el => { if(el) el.style.opacity = '0'; });
-
-            setTimeout(() => {
-                if (country.value === 'India') {
-                    if(priceWeb) priceWeb.innerHTML = '₹' + priceWeb.getAttribute('data-inr') + ' <span>onwards</span>';
-                    if(priceWin) priceWin.innerHTML = '₹' + priceWin.getAttribute('data-inr') + ' <span>onwards</span>';
-                    if(priceAndroid) priceAndroid.innerHTML = '₹' + priceAndroid.getAttribute('data-inr') + ' <span>onwards</span>';
-                    if(priceIos) priceIos.innerHTML = '₹' + priceIos.getAttribute('data-inr') + ' <span>onwards</span>';
-                    if(dippSection) dippSection.style.display = 'block';
-                } else {
-                    if(priceWeb) priceWeb.innerHTML = '$' + priceWeb.getAttribute('data-usd') + ' <span>onwards</span>';
-                    if(priceWin) priceWin.innerHTML = '$' + priceWin.getAttribute('data-usd') + ' <span>onwards</span>';
-                    if(priceAndroid) priceAndroid.innerHTML = '$' + priceAndroid.getAttribute('data-usd') + ' <span>onwards</span>';
-                    if(priceIos) priceIos.innerHTML = '$' + priceIos.getAttribute('data-usd') + ' <span>onwards</span>';
-                    if(dippSection) dippSection.style.display = 'none';
-                }
-                prices.forEach(el => { if(el) el.style.opacity = '1'; });
-            }, 300);
-        }
-        document.addEventListener('DOMContentLoaded', updatePricing);
     </script>
 </body>
 </html>
