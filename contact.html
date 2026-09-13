@@ -15,6 +15,10 @@
                     <img src="logo.png" alt="Avant Groups Logo">
                 </a>
             </div>
+            <!-- Mobile toggle button -->
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
@@ -25,7 +29,6 @@
             </nav>
         </div>
     </header>
-
     <main class="main-content">
         <section class="contact-page-section">
             <div class="contact-form-container">
@@ -33,7 +36,6 @@
                     <h2>Connect With Us</h2>
                     <p>AVANT GROUP</p>
                 </div>
-                
                 <form id="contactForm" onsubmit="submitContactForm(event)">
                     <div class="form-group">
                         <label>SERVICE REQUIRED</label>
@@ -46,12 +48,10 @@
                             <option value="Avant Energy">Avant Energy</option>
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label>FULL NAME</label>
                         <input type="text" name="name" placeholder="John Doe" required>
                     </div>
-
                     <div class="form-row">
                         <div class="form-group half">
                             <label>EMAIL</label>
@@ -61,7 +61,7 @@
                             <label>PHONE</label>
                             <div class="phone-input-group">
                                 <select name="country_code">
-                                    <option value="+93">Afghanistan (+93)</option>
+                                     <option value="+93">Afghanistan (+93)</option>
                                     <option value="+355">Albania (+355)</option>
                                     <option value="+213">Algeria (+213)</option>
                                     <option value="+376">Andorra (+376)</option>
@@ -230,27 +230,45 @@
                                     <option value="+967">Yemen (+967)</option>
                                     <option value="+260">Zambia (+260)</option>
                                     <option value="+263">Zimbabwe (+263)</option>
+
+                                    <!-- Simplified list for brevity in generation, assume full list is here -->
                                 </select>
                                 <input type="tel" name="phone" placeholder="9876543210" pattern="[0-9]{7,15}" title="Please enter a valid phone number (digits only)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label>MESSAGE</label>
                         <textarea name="message" rows="4" placeholder="How can we help you?" required></textarea>
                     </div>
-
                     <button type="submit" id="submitBtn" class="submit-btn">SEND MESSAGE</button>
                 </form>
             </div>
         </section>
     </main>
-
     <footer>
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
 
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if(mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+    </script>
     <script>
         function submitContactForm(e) {
             e.preventDefault();
@@ -259,26 +277,23 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'SENDING...';
 
+            // Replace with your Google Apps Script Web App URL
             const scriptURL = 'https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec';
             const formData = new FormData(form);
 
-            fetch(scriptURL, { 
-                method: 'POST', 
-                mode: 'no-cors',
-                body: formData 
-            })
-            .then(() => {
-                alert('Thank you! Your message has been sent successfully, We will contact you Soon');
-                form.reset();
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'SEND MESSAGE';
-            })
-            .catch(error => {
-                console.error('Error!', error.message);
-                alert('Submission failed. Please check your network connection.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'SEND MESSAGE';
-            });
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    alert('Thank you! Your message has been sent successfully, Our Team Will contact you soon');
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'SEND MESSAGE';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Submission failed. Please check your Google Apps Script Web App URL.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'SEND MESSAGE';
+                });
         }
     </script>
 </body>
