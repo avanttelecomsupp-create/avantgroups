@@ -6,232 +6,63 @@
     <title>Avant Telecom - Avant Groups</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="layout.js"></script>
     <style>
-        /* Self-contained Modal Styles to eliminate browser cache issues */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 99999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .modal-overlay.active {
-            display: flex !important;
-        }
-        .modal-content {
+        .mobile-padded-card {
             background: #ffffff;
-            width: 100%;
-            max-width: 580px;
+            padding: 40px;
             border-radius: 24px;
-            padding: 35px 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            animation: modalFadeIn 0.25s ease-out;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eaeaea;
+            text-align: left;
         }
-        @keyframes modalFadeIn {
-            from { transform: scale(0.95) translateY(10px); opacity: 0; }
-            to { transform: scale(1) translateY(0); opacity: 1; }
+
+        @media (max-width: 768px) {
+            .mobile-padded-card {
+                padding: 20px;
+            }
+            .mobile-title {
+                font-size: 1.8rem !important;
+            }
         }
-        .modal-close {
-            position: absolute;
-            top: 18px;
-            right: 20px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #f1f5f9;
-            color: #475569;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-        }
-        .modal-close:hover {
-            background: #e2e8f0;
-            color: #0f172a;
+        
+        .site-footer {
+            text-align: center;
+            padding: 24px 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 14px;
+            margin-top: auto;
         }
     </style>
-    <script src="layout.js"></script>
 </head>
-<body>
-    
+<body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
 
-    <main class="main-content">
-        <section class="services-section" style="max-width: 1200px; margin: 50px auto; padding: 0 20px;">
-            <div style="background: #ffffff; padding: 60px 50px; border-radius: 24px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: left;" class="mobile-padded-card">
-                
-                <div class="telecom-header-banner">
-                    <div class="telecom-logo-box">
-                        <img src="photo/Operator Logo/avant-telecom-high-resolution-logo-transparent.png" alt="Avant Telecom Logo">
+    <main class="main-content" style="flex: 1;">
+        <section class="services-section" style="max-width: 900px; margin: 50px auto; padding: 0 20px;">
+            <div class="mobile-padded-card">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+                    <div style="width: 60px; height: 60px; background-color: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #0f172a;">
+                        <i class="fas fa-tower-cell"></i>
                     </div>
-                    <div>
-                        <h1 style="font-size: 3.2rem; color: var(--primary-color); margin: 0; font-weight: 900; letter-spacing: -1px;" class="mobile-title">Avant Telecom</h1>
-                        <p style="color: #666; font-weight: 600; font-size: 1.1rem; margin-top: 8px;">A division of Avant Groups</p>
-                    </div>
+                    <h1 style="font-size: 2.5rem; color: #0f172a; margin: 0;" class="mobile-title">Avant Telecom</h1>
                 </div>
-                
-                <div class="highlight-card">
-                    <div class="subtitle">Connecting Today</div>
-                    <h2>Powering Tomorrow.</h2>
-                    <p>Avant Telecom delivers end-to-end telecom solutions with precision, passion, and performance. With a highly skilled technical team stationed strategically all over North East India, we specialize in rapid, reliable, and carrier-grade infrastructure rollouts across rugged regional corridors and pan-India domains.</p>
-                    <div class="contact-links">
-                        <a href="https://www.avanttelecom.in" target="_blank"><i class="fas fa-globe"></i> avanttelecom.in</a>
-                        <a href="mailto:support@avanttelecom.in"><i class="fas fa-envelope"></i> support@avanttelecom.in</a>
-                    </div>
-                </div>
-
-                <div class="capabilities-section">
-                    <div class="capabilities-header">
-                        <span>Capabilities</span>
-                        <h2>End-to-End Telecom Solutions</h2>
-                    </div>
-                    <div class="capabilities-grid">
-                        <div class="cap-card">
-                            <div class="cap-icon"><i class="fas fa-satellite-dish"></i></div>
-                            <h4>Microwave & UBR Solutions</h4>
-                            <p>Specialized deployment of high-capacity MW and Unlicensed Band Radio (UBR) links, including rigorous Line-of-Sight (LOS) surveys and transmission routing.</p>
-                        </div>
-                        <div class="cap-card">
-                            <div class="cap-icon"><i class="fas fa-broadcast-tower"></i></div>
-                            <h4>5G & 4G Installation</h4>
-                            <p>Turnkey installation, network commissioning, precise antenna height adjustments, and safe de-installation processes for major carrier sites.</p>
-                        </div>
-                        <div class="cap-card">
-                            <div class="cap-icon"><i class="fas fa-network-wired"></i></div>
-                            <h4>Optical Fiber Cable</h4>
-                            <p>Our expert team specializes in the installation of fiber optic cables, ensuring a seamless transition to high-speed, reliable communication networks.</p>
-                        </div>
-                        <div class="cap-card">
-                            <div class="cap-icon"><i class="fas fa-map-marked-alt"></i></div>
-                            <h4>Telecom Infra Development</h4>
-                            <p>Our Telecom Infrastructure Development journey begins with meticulous site planning, structural analysis, and comprehensive feasibility studies.</p>
-                        </div>
-                        <div class="cap-card">
-                            <div class="cap-icon"><i class="fas fa-hard-hat"></i></div>
-                            <h4>Civil & Electrical Infrastructure</h4>
-                            <p>Building the foundation with dependable electrical systems, civil engineering works, tower base construction, and structural pole erections.</p>
-                        </div>
-                        <div class="cap-card">
-                            <div class="cap-icon"><i class="fas fa-wrench"></i></div>
-                            <h4>Telecom Infra Maintenance</h4>
-                            <p>Proactive maintenance is the cornerstone of a reliable network. We offer scheduled inspections, prompt troubleshooting, and swift operational resolutions.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="partner-section">
-                    <h2 style="color: var(--primary-color); font-size: 2.2rem; margin-bottom: 15px; font-weight: 900;" class="mobile-subtitle">Trusted Technology Partners</h2>
-                    <p style="color: #666; font-size: 1.15rem; max-width: 700px; margin: 0 auto;">Proudly collaborating with the world's leading operators and equipment providers to execute cutting-edge UBR and MW deployments.</p>
-                    <div class="partner-grid">
-                        <div class="partner-logo"><img src="photo/Operator Logo/Reliance_Jio_Logo.svg.webp" alt="Reliance Jio"></div>
-                        <div class="partner-logo"><img src="photo/Operator Logo/Aviat_Networks_logo.svg" alt="Aviat Networks"></div>
-                        <div class="partner-logo"><img src="photo/Operator Logo/Ceragon.png" alt="Ceragon"></div>
-                        <div class="partner-logo"><img src="photo/Operator Logo/hfcl.png" alt="HFCL"></div>
-                        <div class="partner-logo"><img src="photo/Operator Logo/mimosa.png" alt="MIMOSA"></div>
-                    </div>
-                </div>
-
-                <div class="certificate-section">
-                    <h2 style="color: var(--primary-color); font-size: 2.2rem; text-align: center; margin-bottom: 15px; font-weight: 900;" class="mobile-subtitle">Official Certifications & Compliance</h2>
-                    <p style="color: #666; font-size: 1.15rem; text-align: center; margin-bottom: 40px;">Avant Telecom is a fully registered and strictly compliant corporate entity operating in India.</p>
-                    <div class="cert-grid">
-                        <div class="cert-card">
-                            <i class="fas fa-file-invoice-dollar"></i>
-                            <h4>GST Registered</h4>
-                            <p>Govt. of India</p>
-                            <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Status</span>
-                        </div>
-                        <div class="cert-card">
-                            <i class="fas fa-industry"></i>
-                            <h4>MSME (UDYAM)</h4>
-                            <p>Ministry of MSME</p>
-                            <span class="verified-badge"><i class="fas fa-check-circle"></i> Certified</span>
-                        </div>
-                        <div class="cert-card">
-                            <i class="fas fa-users-cog"></i>
-                            <h4>EPFO Compliant</h4>
-                            <p>Ministry of Labour</p>
-                            <span class="verified-badge"><i class="fas fa-check-circle"></i> Active Code</span>
-                        </div>
-                        <div class="cert-card">
-                            <i class="fas fa-shield-alt"></i>
-                            <h4>ESIC Registered</h4>
-                            <p>Social Security</p>
-                            <span class="verified-badge"><i class="fas fa-check-circle"></i> Covered</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 60px; text-align: center; padding-top: 40px; border-top: 1px solid #eaeaea;">
-                    <button type="button" onclick="openContactModal('Avant Telecom')" class="submit-btn" style="display: inline-block; width: auto; padding: 18px 50px; font-size: 1.15rem; text-decoration: none; box-shadow: 0 10px 25px rgba(11, 25, 44, 0.2); border-radius: 50px; cursor: pointer;">INQUIRE ABOUT TELECOM SERVICES</button>
+                <img src="photo/telecom_image.png" alt="Avant Telecom" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; margin-bottom: 30px;">
+                <div style="font-size: 1.1rem; color: #444; line-height: 1.8;">
+                    <p style="margin-bottom: 15px;">Avant Telecom delivers robust connectivity solutions and next-generation communication infrastructure. We specialize in expanding network coverage, deploying high-speed broadband architectures, and maintaining reliable digital pipelines.</p>
+                    <p>Our goal is to bridge the digital divide by providing scalable and secure telecommunication services that keep businesses and communities connected in a rapidly evolving digital world.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    
-
-    
-
-    
-                </div>
-                <div class="form-group" style="margin-bottom: 18px;">
-                    <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">MESSAGE</label>
-                    <textarea name="message" rows="4" placeholder="How can we help you?" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;"></textarea>
-                </div>
-                <button type="submit" id="submitBtn" class="submit-btn" style="width:100%; padding: 14px; background: #0b192c; color: #fff; border:none; border-radius: 8px; font-weight:700; cursor:pointer;">SEND MESSAGE</button>
-            </form>
-        </div>
-    </div>
+    <!-- Clean Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Avant Groups. All rights reserved.</p>
+    </footer>
 
     <script>
-        function openContactModal(serviceName) {
-            var modal = document.getElementById('contactModal');
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-            var select = document.getElementById('modalServiceSelect');
-            if (select) {
-                select.value = serviceName ? serviceName : '';
-            }
-            var nav = document.querySelector('.main-nav');
-            if (nav && nav.classList.contains('active')) {
-                nav.classList.remove('active');
-                var icon = document.querySelector('#mobile-menu i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-        }
-
-        function closeContactModal() {
-            var modal = document.getElementById('contactModal');
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        window.onclick = function(event) {
-            var modal = document.getElementById('contactModal');
-            if (event.target === modal) {
-                closeContactModal();
-            }
-        };
-
         var mobileBtn = document.getElementById('mobile-menu');
         if (mobileBtn) {
             mobileBtn.addEventListener('click', function() {
@@ -250,32 +81,6 @@
                     }
                 }
             });
-        }
-
-        function submitContactForm(e) {
-            e.preventDefault();
-            var form = document.getElementById('contactForm');
-            var submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'SENDING...';
-
-            var scriptURL = 'https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec';
-            var formData = new FormData(form);
-
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(function(res) {
-                    alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
-                    form.reset();
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE';
-                    closeContactModal();
-                })
-                .catch(function(err) {
-                    alert('Submitted! (Make sure your Google Apps Script URL is configured).');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE';
-                    closeContactModal();
-                });
         }
     </script>
 </body>
