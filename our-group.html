@@ -6,10 +6,29 @@
     <title>Our Group - Avant Groups</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="layout.js"></script>
 </head>
 <body>
-    
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logo.png" alt="Avant Groups Logo">
+                </a>
+            </div>
+            <!-- Mobile toggle button -->
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our-group.html" class="active">Our Group</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="#" onclick="openContactModal('')">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <main class="main-content">
         <section class="services-section">
             <h2>Our Group Companies & Vision</h2>
@@ -63,13 +82,57 @@
             </div>
         </section>
     </main>
-    
+    <footer>
+        <p>&copy; 2026 Avant Groups. All rights reserved.</p>
+    </footer>
 
     <!-- Floating Back Button -->
-    
+    <a href="javascript:history.back()" class="floating-back-btn" title="Go Back">
+        <i class="fas fa-chevron-left"></i>
+    </a>
 
     
-    
+    <!-- Contact Modal Overlay -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeContactModal()"><i class="fas fa-times"></i></span>
+            <div class="form-header">
+                <h2 style="color: var(--primary-color); font-weight: 800; margin-bottom: 4px; letter-spacing: -0.5px;">Connect With Us</h2>
+                <p style="font-size: 0.85rem; letter-spacing: 1.5px; color: #555; font-weight: 700;">AVANT GROUP</p>
+            </div>
+            <form id="contactForm" onsubmit="submitContactForm(event)">
+                <div class="form-group">
+                    <label>SERVICE REQUIRED</label>
+                    <select name="service" id="modalServiceSelect" required>
+                        <option value="" disabled selected>Select a Service...</option>
+                        <option value="Avant Telecom">Avant Telecom</option>
+                        <option value="Avant IT Services">Avant IT Services</option>
+                        <option value="Avant Logistics">Avant Logistics</option>
+                        <option value="Avant Agro">Avant Agro</option>
+                        <option value="Avant Energy">Avant Energy</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>FULL NAME</label>
+                    <input type="text" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>EMAIL</label>
+                        <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@domain.com)" required>
+                    </div>
+                    <div class="form-group half">
+                        <label>PHONE</label>
+                        <div class="phone-input-group">
+                            <select name="country_code" style="width: 130px; flex-shrink: 0; padding: 12px 8px; border-radius: 8px; border: 1px solid #e1e4e8; background: #fafbfc; font-size: 0.85rem;">
+                                <option value="+91" selected>India (+91)</option>
+                                <option value="+1">USA (+1)</option>
+                                <option value="+44">UK (+44)</option>
+                                <option value="+61">Aus (+61)</option>
+                            </select>
+                            <input type="tel" name="phone" placeholder="9876543210" pattern="[0-9]{7,15}" title="Please enter a valid phone number (digits only)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required style="flex: 1; min-width: 0; padding: 12px; border-radius: 8px; border: 1px solid #e1e4e8; background: #fafbfc; font-size: 0.95rem;">
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>MESSAGE</label>
@@ -144,7 +207,7 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'SENDING...';
 
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec';
+            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
             const formData = new FormData(form);
 
             fetch(scriptURL, { method: 'POST', body: formData })
