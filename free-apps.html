@@ -3,85 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Free Apps - Avant Groups</title>
+    <title>Free Applications - Avant IT Services</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="layout.js"></script>
-    <style>
-        .mobile-padded-card {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eaeaea;
-            text-align: left;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-padded-card {
-                padding: 20px;
-            }
-            .mobile-title {
-                font-size: 1.8rem !important;
-            }
-        }
-        
-        .site-footer {
-            text-align: center;
-            padding: 24px 20px;
-            background-color: #f8fafc;
-            border-top: 1px solid #e2e8f0;
-            color: #64748b;
-            font-size: 14px;
-            margin-top: auto;
-        }
-    </style>
 </head>
-<body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
-
-    <main class="main-content" style="flex: 1;">
-        <section class="services-section" style="max-width: 900px; margin: 50px auto; padding: 0 20px;">
-            <div class="mobile-padded-card">
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-                    <div style="width: 60px; height: 60px; background-color: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #0f172a;">
-                        <i class="fas fa-mobile-screen"></i>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logo.png" alt="Avant Groups Logo">
+                </a>
+            </div>
+            <!-- Mobile toggle button -->
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our-group.html">Our Group</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="#" onclick="openContactModal('')">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+        <section class="services-section" style="max-width: 1000px; margin: 50px auto; padding: 0 20px;">
+            <div style="background: #ffffff; padding: 50px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: center;" class="mobile-padded-card">
+                <h1 style="font-size: 2.8rem; color: var(--primary-color); margin-bottom: 10px; font-weight: 900;" class="mobile-title">Our Free Applications</h1>
+                <p style="color: #666; font-size: 1.15rem; margin-bottom: 50px;">Developed by Avant IT Services to empower your daily workflow.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; text-align: left;">
+                    <div style="border: 1px solid #eaeaea; border-radius: 12px; padding: 30px; transition: box-shadow 0.3s ease;">
+                        <i class="fas fa-exchange-alt" style="font-size: 2.5rem; color: var(--accent-it); margin-bottom: 15px;"></i>
+                        <h3 style="color: var(--primary-color); margin-bottom: 10px;">Currency Converter</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Real-time currency conversion tool for accurate financial calculations.</p>
+                        <button class="submit-btn" style="padding: 10px;">Access Tool</button>
                     </div>
-                    <h1 style="font-size: 2.5rem; color: #0f172a; margin: 0;" class="mobile-title">Free Applications</h1>
-                </div>
-                <img src="photo/apps_image.png" alt="Free Apps by Avant" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; margin-bottom: 30px;">
-                <div style="font-size: 1.1rem; color: #444; line-height: 1.8;">
-                    <p style="margin-bottom: 15px;">Explore our suite of complimentary digital tools and software solutions. Avant Groups is committed to providing accessible technology to enhance productivity and simplify daily workflows.</p>
-                    <p>Download our free desktop applications, mobile utilities, and educational software directly to your device.</p>
+                    <div style="border: 1px solid #eaeaea; border-radius: 12px; padding: 30px; transition: box-shadow 0.3s ease;">
+                        <i class="fas fa-check-square" style="font-size: 2.5rem; color: var(--accent-it); margin-bottom: 15px;"></i>
+                        <h3 style="color: var(--primary-color); margin-bottom: 10px;">Habit Builder</h3>
+                        <p style="color: #666; margin-bottom: 20px;">An application designed for tracking routines and building lasting daily habits.</p>
+                        <button class="submit-btn" style="padding: 10px;">Access Tool</button>
+                    </div>
+                    <div style="border: 1px solid #eaeaea; border-radius: 12px; padding: 30px; transition: box-shadow 0.3s ease;">
+                        <i class="fas fa-file-alt" style="font-size: 2.5rem; color: var(--accent-it); margin-bottom: 15px;"></i>
+                        <h3 style="color: var(--primary-color); margin-bottom: 10px;">Resume Optimizer</h3>
+                        <p style="color: #666; margin-bottom: 20px;">Web-based tool designed to format and optimize professional resumes seamlessly.</p>
+                        <button class="submit-btn" style="padding: 10px;">Access Tool</button>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <!-- Clean Footer -->
-    <footer class="site-footer">
+    <footer>
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
 
-    <script>
-        var mobileBtn = document.getElementById('mobile-menu');
-        if (mobileBtn) {
-            mobileBtn.addEventListener('click', function() {
-                var nav = document.querySelector('.main-nav');
-                if (nav) {
-                    nav.classList.toggle('active');
-                    var icon = this.querySelector('i');
-                    if (nav.classList.contains('active')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                        document.body.style.overflow = 'auto';
-                    }
+    <!-- Floating Back Button -->
+    <a href="javascript:history.back()" class="floating-back-btn" title="Go Back">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+
+    
+    <!-- Contact Modal Overlay -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeContactModal()"><i class="fas fa-times"></i></span>
+            <div class="form-header">
+                <h2 style="color: var(--primary-color); font-weight: 800; margin-bottom: 4px; letter-spacing: -0.5px;">Connect With Us</h2>
+                <p style="font-size: 0.85rem; letter-spacing: 1.5px; color: #555; font-weight: 700;">AVANT GROUP</p>
+            </div>
+            <form id="contactForm" onsubmit="submitContactForm(event)">
+                <div class="form-group">
+                    <label>SERVICE REQUIRED</label>
+                    <select name="service" id="modalServiceSelect" required>
+                        <option value="" disabled selected>Select a Service...</option>
+                        <option value="Avant Telecom">Avant Telecom</option>
+                        <option value="Avant IT Services">Avant IT Services</option>
+                        <option value="Avant Logistics">Avant Logistics</option>
+                        <option value="Avant Agro">Avant Agro</option>
+                        <option value="Avant Energy">Avant Energy</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>FULL NAME</label>
+                    <input type="text" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label>EMAIL</label>
+                        <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@domain.com)" required>
+                    </div>
+                    <div class="form-group half">
+                        <label>PHONE</label>
+                        <div class="phone-input-group">
+                            <select name="country_code" style="width: 130px; flex-shrink: 0; padding: 12px 8px; border-radius: 8px; border: 1px solid #e1e4e8; background: #fafbfc; font-size: 0.85rem;">
+                                <option value="+91" selected>India (+91)</option>
+                                <option value="+1">USA (+1)</option>
+                                <option value="+44">UK (+44)</option>
+                                <option value="+61">Aus (+61)</option>
+                            </select>
+                            <input type="tel" name="phone" placeholder="9876543210" pattern="[0-9]{7,15}" title="Please enter a valid phone number (digits only)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required style="flex: 1; min-width: 0; padding: 12px; border-radius: 8px; border: 1px solid #e1e4e8; background: #fafbfc; font-size: 0.95rem;">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>MESSAGE</label>
+                    <textarea name="message" rows="4" placeholder="How can we help you?" required></textarea>
+                </div>
+                <button type="submit" id="submitBtn" class="submit-btn">SEND MESSAGE</button>
+            </form>
+        </div>
+    </div>
+
+        <script>
+        // Apple-style Smooth Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if(mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.body.style.overflow = 'auto'; // Restore scrolling
                 }
             });
         }
+
+        // Modal Logic
+        function openContactModal(e, serviceName = '') {
+            if(e) e.preventDefault();
+            const modal = document.getElementById('contactModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // prevent bg scroll
+            
+            if(serviceName) {
+                const select = document.getElementById('modalServiceSelect');
+                if(select) select.value = serviceName;
+            }
+            
+            // If mobile menu is open, close it
+            if(mainNav && mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                const icon = document.getElementById('mobile-menu').querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // restore bg scroll
+        }
+
+        // Close modal when clicking outside of the box
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                closeContactModal();
+            }
+        }
+
+        // Contact Form Submit Logic
+        function submitContactForm(e) {
+            e.preventDefault();
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'SENDING...';
+
+            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+            const formData = new FormData(form);
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'SEND MESSAGE';
+                    closeContactModal();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Submission failed. Please check your Google Apps Script Web App URL.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'SEND MESSAGE';
+                });
+        }
     </script>
+    
 </body>
 </html>
