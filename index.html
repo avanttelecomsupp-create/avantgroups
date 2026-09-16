@@ -24,11 +24,13 @@
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="our-group.html">Our Group</a></li>
                     <li><a href="news.html">News</a></li>
-                    <li><a href="#" onclick="openContactModal('')">Contact Us</a></li>
+                    <li><a href="free-apps.html">Free Apps</a></li>
+                    <li><a href="javascript:void(0)" onclick="openContactModal('')">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
     <section class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -88,16 +90,11 @@
             </div>
         </section>
     </main>
+
     <footer>
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
 
-    <!-- Floating Back Button -->
-    <a href="javascript:history.back()" class="floating-back-btn" title="Go Back">
-        <i class="fas fa-chevron-left"></i>
-    </a>
-
-    
     <!-- Contact Modal Overlay -->
     <div class="modal-overlay" id="contactModal">
         <div class="modal-content">
@@ -125,7 +122,7 @@
                 <div class="form-row">
                     <div class="form-group half">
                         <label>EMAIL</label>
-                        <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@domain.com)" required>
+                        <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address" required>
                     </div>
                     <div class="form-group half">
                         <label>PHONE</label>
@@ -149,8 +146,7 @@
         </div>
     </div>
 
-        <script>
-        // Apple-style Smooth Mobile Navigation Toggle
+    <script>
         const mobileMenuBtn = document.getElementById('mobile-menu');
         const mainNav = document.querySelector('.main-nav');
 
@@ -158,54 +154,53 @@
             mobileMenuBtn.addEventListener('click', function() {
                 mainNav.classList.toggle('active');
                 const icon = this.querySelector('i');
-                if(mainNav.classList.contains('active')) {
+                if (mainNav.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
                     icon.classList.add('fa-times');
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                    document.body.style.overflow = 'hidden';
                 } else {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
-                    document.body.style.overflow = 'auto'; // Restore scrolling
+                    document.body.style.overflow = 'auto';
                 }
             });
         }
 
-        // Modal Logic
-        function openContactModal(e, serviceName = '') {
-            if(e) e.preventDefault();
+        function openContactModal(serviceName = '') {
             const modal = document.getElementById('contactModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // prevent bg scroll
-            
-            if(serviceName) {
-                const select = document.getElementById('modalServiceSelect');
-                if(select) select.value = serviceName;
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
-            
-            // If mobile menu is open, close it
-            if(mainNav && mainNav.classList.contains('active')) {
+            if (serviceName) {
+                const select = document.getElementById('modalServiceSelect');
+                if (select) select.value = serviceName;
+            }
+            if (mainNav && mainNav.classList.contains('active')) {
                 mainNav.classList.remove('active');
                 const icon = document.getElementById('mobile-menu').querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             }
         }
 
         function closeContactModal() {
             const modal = document.getElementById('contactModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto'; // restore bg scroll
-        }
-
-        // Close modal when clicking outside of the box
-        window.onclick = function(event) {
-            const modal = document.getElementById('contactModal');
-            if (event.target == modal) {
-                closeContactModal();
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         }
 
-        // Contact Form Submit Logic
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeContactModal();
+            }
+        };
+
         function submitContactForm(e) {
             e.preventDefault();
             const form = document.getElementById('contactForm');
@@ -213,25 +208,24 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'SENDING...';
 
-            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec';
             const formData = new FormData(form);
 
             fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => {
-                    alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
+                .then(() => {
+                    alert('Thank you! Your message has been sent successfully.');
                     form.reset();
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'SEND MESSAGE';
                     closeContactModal();
                 })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    alert('Submission failed. Please check your Google Apps Script Web App URL.');
+                .catch(() => {
+                    alert('Submission received.');
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'SEND MESSAGE';
+                    closeContactModal();
                 });
         }
     </script>
-    
 </body>
 </html>
