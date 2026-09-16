@@ -205,10 +205,28 @@
             color: #0f172a;
         }
     </style>
-    <script src="layout.js"></script>
 </head>
 <body>
-    
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logo.png" alt="Avant Groups Logo">
+                </a>
+            </div>
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our-group.html">Our Group</a></li>
+                    <li><a href="news.html" class="active">News</a></li>
+                    <li><a href="javascript:void(0)" onclick="openContactModal('')">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <main class="main-content">
         <div class="news-header-section">
@@ -238,9 +256,13 @@
         </div>
     </main>
 
-    
+    <footer>
+        <p>&copy; 2026 Avant Groups. All rights reserved.</p>
+    </footer>
 
-    
+    <a href="javascript:history.back()" class="floating-back-btn" title="Go Back">
+        <i class="fas fa-chevron-left"></i>
+    </a>
 
     <!-- Admin Login Modal -->
     <div class="modal-overlay" id="loginModal">
@@ -585,7 +607,7 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'SENDING...';
 
-            var scriptURL = 'https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec';
+            var scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
             var formData = new FormData(form);
 
             fetch(scriptURL, { method: 'POST', body: formData })
