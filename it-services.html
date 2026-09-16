@@ -3,85 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Avant IT - Avant Groups</title>
+    <title>Avant IT Services - Avant Groups</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="layout.js"></script>
     <style>
-        .mobile-padded-card {
+        /* Self-contained Modal Styles to eliminate any browser cache issues */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex !important;
+        }
+        .modal-content {
             background: #ffffff;
-            padding: 40px;
+            width: 100%;
+            max-width: 580px;
             border-radius: 24px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eaeaea;
-            text-align: left;
+            padding: 35px 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            animation: modalFadeIn 0.25s ease-out;
         }
-
-        @media (max-width: 768px) {
-            .mobile-padded-card {
-                padding: 20px;
-            }
-            .mobile-title {
-                font-size: 1.8rem !important;
-            }
+        @keyframes modalFadeIn {
+            from { transform: scale(0.95) translateY(10px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
         }
-        
-        .site-footer {
-            text-align: center;
-            padding: 24px 20px;
-            background-color: #f8fafc;
-            border-top: 1px solid #e2e8f0;
-            color: #64748b;
-            font-size: 14px;
-            margin-top: auto;
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .modal-close:hover {
+            background: #e2e8f0;
+            color: #0f172a;
         }
     </style>
 </head>
-<body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logo.png" alt="Avant Groups Logo">
+                </a>
+            </div>
+            <div class="mobile-menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our-group.html">Our Group</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="javascript:void(0)" onclick="openContactModal('Avant IT Services')">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <main class="main-content" style="flex: 1;">
-        <section class="services-section" style="max-width: 900px; margin: 50px auto; padding: 0 20px;">
-            <div class="mobile-padded-card">
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-                    <div style="width: 60px; height: 60px; background-color: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #0f172a;">
-                        <i class="fas fa-laptop-code"></i>
+    <main class="main-content">
+        <section class="services-section" style="max-width: 1200px; margin: 50px auto; padding: 0 20px;">
+            <div style="background: #ffffff; padding: 60px 50px; border-radius: 24px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: left;" class="mobile-padded-card">
+                
+                <div class="it-header-banner">
+                    <div class="it-logo-box">
+                        <img src="photo/Operator Logo/AIT.png" alt="Avant IT Services Logo">
                     </div>
-                    <h1 style="font-size: 2.5rem; color: #0f172a; margin: 0;" class="mobile-title">Avant IT Services</h1>
+                    <div>
+                        <h1 style="font-size: 3.2rem; color: var(--primary-color); margin: 0; font-weight: 900; letter-spacing: -1px;" class="mobile-title">Avant IT Services</h1>
+                        <p style="color: #666; font-weight: 600; font-size: 1.1rem; margin-top: 8px;">A division of Avant Groups</p>
+                    </div>
+                    <div class="country-toggle">
+                        <label for="countrySelect"><i class="fas fa-globe-asia"></i> Region:</label>
+                        <select id="countrySelect" onchange="updatePricing()">
+                            <option value="India">India (INR)</option>
+                            <option value="Others">Others (USD)</option>
+                        </select>
+                    </div>
                 </div>
-                <img src="photo/it_image.png" alt="Avant IT Services" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; margin-bottom: 30px;">
-                <div style="font-size: 1.1rem; color: #444; line-height: 1.8;">
-                    <p style="margin-bottom: 15px;">Avant IT drives digital transformation through custom software development, cloud computing solutions, and enterprise architecture. We build the digital tools that empower modern businesses to operate efficiently and scale rapidly.</p>
-                    <p>From cross-platform mobile applications to robust desktop software and web infrastructure, our engineering teams focus on delivering secure, user-centric, and high-performance technological solutions.</p>
+                
+                <div class="highlight-card">
+                    <div class="tagline"><i class="fas fa-handshake"></i> 100% Guaranteed — Pay After Satisfied Delivery</div>
+                    <h2>Your Vision, Digitally Engineered.</h2>
+                    <p>Avant IT Services delivers cutting-edge software solutions tailored to modern enterprise and individual needs. We specialize in building any kind of website, robust Android/iOS mobile applications, and native Windows executable software. Our absolute commitment to quality means <strong>you only pay when you are completely satisfied with the final product.</strong></p>
+                </div>
+
+                <div class="guarantee-banner">
+                    <h4><i class="fas fa-bolt"></i> Lightning Fast Turnaround</h4>
+                    <p>Standard timeline for simple Web Pages, Windows Applications, and Mobile Apps is just <strong>1 Day!</strong> <br><small style="color: #4a5568; font-weight: 400;">(For large-scale or complex projects, the delivery timeline will be set through mutual discussion with the client).</small></p>
+                </div>
+
+                <div id="dippSection" class="dipp-card">
+                    <div class="dipp-header">
+                        <i class="fas fa-rocket"></i>
+                        <h3 class="mobile-subtitle">30% OFF For DIPP Recognized Startups</h3>
+                    </div>
+                    <p><strong>We know the struggle because we lived it.</strong> Back in 2017, we faced a major problem: web developers demanded massive upfront payments before delivering anything, and charged exorbitant extra fees for every minor modification. A simple application ended up costing us over ₹250,000!</p>
+                    <p>We want to ensure no other founder has to face that barrier. If your company holds a valid DIPP (Startup India) certificate, you instantly avail a flat 30% discount on all our development fees.</p>
+                </div>
+
+                <div class="pricing-section">
+                    <h2 style="color: var(--primary-color); font-size: 2.2rem; margin-bottom: 10px; font-weight: 900; text-align: center;" class="mobile-subtitle">Transparent Pricing Structure</h2>
+                    <p style="color: #666; font-size: 1.1rem; text-align: center; max-width: 700px; margin: 0 auto;">Professional development services designed to scale with your budget.</p>
+                    <div class="pricing-grid">
+                        <div class="price-card">
+                            <i class="fas fa-globe"></i>
+                            <h4>Web Development</h4>
+                            <div class="price" id="price-web" data-inr="1,000" data-usd="60">₹1,000 <span>onwards</span></div>
+                            <div class="note">Any kind of website<br>(Excluding domain costs)</div>
+                        </div>
+                        <div class="price-card">
+                            <i class="fab fa-windows"></i>
+                            <h4>Windows Apps</h4>
+                            <div class="price" id="price-win" data-inr="1,500" data-usd="90">₹1,500 <span>onwards</span></div>
+                            <div class="note">.exe & .msi software<br>(32-bit & 64-bit)</div>
+                        </div>
+                        <div class="price-card">
+                            <i class="fab fa-android"></i>
+                            <h4>Android Apps</h4>
+                            <div class="price" id="price-android" data-inr="5,000" data-usd="300">₹5,000 <span>onwards</span></div>
+                            <div class="note">Custom mobile applications</div>
+                        </div>
+                        <div class="price-card">
+                            <i class="fab fa-apple"></i>
+                            <h4>iOS Apps</h4>
+                            <div class="price" id="price-ios" data-inr="6,000" data-usd="360">₹6,000 <span>onwards</span></div>
+                            <div class="note">Optimized for Apple Ecosystem</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="capabilities-section">
+                    <div class="capabilities-header">
+                        <span>Capabilities & Perks</span>
+                        <h2 class="mobile-subtitle">Included in Our Service</h2>
+                    </div>
+                    <div class="capabilities-grid">
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-desktop"></i></div>
+                            <h4>Windows Executable Apps</h4>
+                            <p>Robust native Windows applications optimized for any OS. Perfect for standalone utilities, point-of-sale systems, invoice generators, or enterprise desktop tools.</p>
+                        </div>
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <h4>Any Mobile or Web App</h4>
+                            <p>From complex custom e-commerce platforms to internal company portals and native mobile experiences, we deliver seamless UI/UX design.</p>
+                        </div>
+                        <div class="cap-card" style="border: 1px solid #c6f6d5; background: #f0fff4;">
+                            <div class="cap-icon" style="background: #1e8e3e; color: #fff;"><i class="fas fa-gift"></i></div>
+                            <h4>Complimentary Benefits</h4>
+                            <p>We believe in absolute transparency and supporting your growth. Every project includes:</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Three (3) Free Consultations</li>
+                                <li><i class="fas fa-check-circle"></i> No arbitrary fee increments</li>
+                                <li><i class="fas fa-check-circle"></i> Free Custom Mail Configuration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: #f5f5f7; padding: 40px; border-radius: 20px; margin-top: 50px; text-align: center; border: 1px solid #eaeaea;">
+                    <h2 style="font-size: 2rem; color: #1d1d1f; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.5px;">Explore Our Free Tools</h2>
+                    <p style="color: #555; font-size: 1.1rem; margin-bottom: 25px;">Try out some of our custom-developed utility applications, completely free to use.</p>
+                    
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+                        <span style="background: #ffffff; padding: 8px 16px; border-radius: 20px; font-weight: 600; color: var(--accent-it); box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-size: 0.9rem;"><i class="fas fa-exchange-alt"></i> Currency Converter</span>
+                        <span style="background: #ffffff; padding: 8px 16px; border-radius: 20px; font-weight: 600; color: var(--accent-it); box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-size: 0.9rem;"><i class="fas fa-check-square"></i> Habit Builder</span>
+                        <span style="background: #ffffff; padding: 8px 16px; border-radius: 20px; font-weight: 600; color: var(--accent-it); box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-size: 0.9rem;"><i class="fas fa-file-alt"></i> Resume Optimizer</span>
+                    </div>
+                    
+                    <a href="free-apps.html" style="display: inline-block; background-color: var(--accent-it); color: #ffffff; padding: 14px 30px; border-radius: 12px; text-decoration: none; font-weight: 600; transition: background 0.2s; box-shadow: 0 4px 12px rgba(0, 95, 115, 0.2);">View All Free Apps <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
+                </div>
+                
+                <div style="margin-top: 60px; text-align: center; padding-top: 40px; border-top: 1px solid #eaeaea;">
+                    <button type="button" onclick="openContactModal('Avant IT Services')" class="submit-btn" style="display: inline-block; width: auto; padding: 18px 50px; font-size: 1.15rem; text-decoration: none; box-shadow: 0 10px 25px rgba(11, 25, 44, 0.2); border-radius: 50px; cursor: pointer;">INQUIRE ABOUT IT SERVICES</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Clean Footer -->
-    <footer class="site-footer">
+    <footer>
         <p>&copy; 2026 Avant Groups. All rights reserved.</p>
     </footer>
-
-    <script>
-        var mobileBtn = document.getElementById('mobile-menu');
-        if (mobileBtn) {
-            mobileBtn.addEventListener('click', function() {
-                var nav = document.querySelector('.main-nav');
-                if (nav) {
-                    nav.classList.toggle('active');
-                    var icon = this.querySelector('i');
-                    if (nav.classList.contains('active')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                        document.body.style.overflow = 'auto';
-                    }
-                }
-            });
-        }
-    </script>
-</body>
-</html>
