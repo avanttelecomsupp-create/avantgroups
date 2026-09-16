@@ -430,316 +430,319 @@
     </div>
 
     <script>
-        // 1. DEDICATED CONTACT SCRIPT URL (Handles emails only!)
-        const CONTACT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec";
+    // 1. DEDICATED CONTACT FORM SCRIPT (Only receives contact inquiries)
+    const CONTACT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec";
 
-        // 2. APPS CLOUD SCRIPT URL (Leave blank or set to your new News/Apps backend)
-        const APPS_DATABASE_URL = ""; 
+    // 2. APPS CLOUD BACKEND URL (Paste your dedicated Apps Script URL here, or leave empty for instant offline local storage)
+    const APPS_DATABASE_URL = ""; 
 
-        // Secure SHA-256 Hashes for Client Verification (Cannot be reversed/read via Inspect DevTools)
-        const HASH_AUTH = {
-            user: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918", // SHA-256 for "admin"
-            pass: "df13baf61078993a6454d5a6563c9fa221c9e11ec726c55dce914e44430f05b6"  // SHA-256 for "Yuvaan@2026"
+    // SHA-256 Hashes for secure client author check
+    const HASH_AUTH = {
+        user: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918", // "admin"
+        pass: "df13baf61078993a6454d5a6563c9fa221c9e11ec726c55dce914e44430f05b6"  // "Yuvaan@2026"
+    };
+
+    const INITIAL_APPS = [
+        {
+            id: "1",
+            name: "Currency Converter",
+            platform: "Web Utility",
+            icon: "fas fa-exchange-alt",
+            version: "v1.2",
+            description: "Real-time foreign exchange and multi-currency calculation engine with instant conversions.",
+            driveLink: "https://drive.google.com/"
+        },
+        {
+            id: "2",
+            name: "Habit Builder",
+            platform: "Android App",
+            icon: "fas fa-check-square",
+            version: "v2.0",
+            description: "Productivity tracker designed for building routines, daily streak monitoring, and positive habits.",
+            driveLink: "https://drive.google.com/"
+        },
+        {
+            id: "3",
+            name: "Resume Optimizer",
+            platform: "Windows App",
+            icon: "fas fa-file-alt",
+            version: "v1.0",
+            description: "Native desktop software to format, structure, and optimize resumes for applicant tracking systems.",
+            driveLink: "https://drive.google.com/"
+        }
+    ];
+
+    async function computeSHA256(text) {
+        const buffer = new TextEncoder().encode(text);
+        const digest = await crypto.subtle.digest('SHA-256', buffer);
+        return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function getAppsList() {
+        if (APPS_DATABASE_URL && APPS_DATABASE_URL.trim() !== "") {
+            try {
+                const res = await fetch(APPS_DATABASE_URL + "?type=apps");
+                const data = await res.json();
+                if (data && data.length > 0) return data;
+            } catch (e) {
+                console.warn("Could not reach apps cloud database. Falling back to local storage.", e);
+            }
+        }
+        const local = localStorage.getItem('avant_stored_apps');
+        if (local) {
+            try { return JSON.parse(local); } catch(e) {}
+        }
+        localStorage.setItem('avant_stored_apps', JSON.stringify(INITIAL_APPS));
+        return INITIAL_APPS;
+    }
+
+    async function loadLiveApps() {
+        const container = document.getElementById('appsContainer');
+        if (!container) return;
+        
+        const apps = await getAppsList();
+        container.innerHTML = '';
+
+        apps.forEach(app => {
+            const card = document.createElement('div');
+            card.className = 'app-card';
+            card.innerHTML = `
+                <button class="app-delete-btn" onclick="deleteApp('${app.id}')" title="Delete application"><i class="fas fa-trash-alt"></i></button>
+                <div class="app-card-top">
+                    <div class="app-icon-circle"><i class="${app.icon || 'fas fa-cube'}"></i></div>
+                    <div>
+                        <span class="app-platform-badge">${app.platform}</span>
+                        <h3>${app.name}</h3>
+                    </div>
+                </div>
+                <p>${app.description}</p>
+                <div class="app-meta-row">
+                    <span class="app-version">${app.version || 'v1.0'}</span>
+                    <a href="${app.driveLink}" target="_blank" rel="noopener noreferrer" class="download-btn">
+                        <i class="fab fa-google-drive"></i> Download / Run
+                    </a>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function checkAuthStatus() {
+        const isAuth = sessionStorage.getItem('avant_admin_auth') === 'true';
+        const adminBar = document.getElementById('adminBar');
+        const triggerBtn = document.getElementById('loginTriggerBtn');
+
+        if (isAuth) {
+            document.body.classList.add('admin-mode');
+            if (adminBar) adminBar.classList.add('active');
+            if (triggerBtn) triggerBtn.style.display = 'none';
+        } else {
+            document.body.classList.remove('admin-mode');
+            if (adminBar) adminBar.classList.remove('active');
+            if (triggerBtn) triggerBtn.style.display = 'flex';
+        }
+    }
+
+    async function handleLogin(e) {
+        e.preventDefault();
+        const user = document.getElementById('adminUser').value.trim();
+        const pass = document.getElementById('adminPass').value;
+        const btn = document.getElementById('loginBtn');
+        btn.textContent = "VERIFYING...";
+        btn.disabled = true;
+
+        const uHash = await computeSHA256(user);
+        const pHash = await computeSHA256(pass);
+
+        if (uHash === HASH_AUTH.user && pHash === HASH_AUTH.pass) {
+            sessionStorage.setItem('avant_admin_auth', 'true');
+            sessionStorage.setItem('avant_admin_token', pass);
+            closeLoginModal();
+            checkAuthStatus();
+            loadLiveApps();
+            alert('Authentication successful. Author mode enabled.');
+        } else {
+            alert('Invalid User ID or Password.');
+        }
+        btn.textContent = "SIGN IN";
+        btn.disabled = false;
+    }
+
+    function logoutAdmin() {
+        sessionStorage.removeItem('avant_admin_auth');
+        sessionStorage.removeItem('avant_admin_token');
+        checkAuthStatus();
+        loadLiveApps();
+        alert('Logged out from author mode.');
+    }
+
+    // Direct, reliable upload function
+    async function handleUploadApp(e) {
+        e.preventDefault();
+        const btn = document.getElementById('uploadBtn');
+        btn.textContent = "PUBLISHING...";
+        btn.disabled = true;
+
+        const appName = document.getElementById('appName').value.trim();
+        const appPlatform = document.getElementById('appPlatform').value;
+        const appIcon = document.getElementById('appIcon').value;
+        const appVersion = document.getElementById('appVersion').value.trim();
+        const appDriveLink = document.getElementById('appDriveLink').value.trim();
+        const appDesc = document.getElementById('appDesc').value.trim();
+
+        const newApp = {
+            id: String(Date.now()),
+            date: new Date().toISOString().split('T')[0],
+            name: appName,
+            platform: appPlatform,
+            icon: appIcon,
+            version: appVersion,
+            driveLink: appDriveLink,
+            description: appDesc
         };
 
-        const INITIAL_APPS = [
-            {
-                id: "1",
-                name: "Currency Converter",
-                platform: "Web Utility",
-                icon: "fas fa-exchange-alt",
-                version: "v1.2",
-                description: "Real-time foreign exchange and multi-currency calculation engine with instant conversions.",
-                driveLink: "https://drive.google.com/"
-            },
-            {
-                id: "2",
-                name: "Habit Builder",
-                platform: "Android App",
-                icon: "fas fa-check-square",
-                version: "v2.0",
-                description: "Productivity tracker designed for building routines, daily streak monitoring, and positive habits.",
-                driveLink: "https://drive.google.com/"
-            },
-            {
-                id: "3",
-                name: "Resume Optimizer",
-                platform: "Windows App",
-                icon: "fas fa-file-alt",
-                version: "v1.0",
-                description: "Native desktop software to format, structure, and optimize resumes for applicant tracking systems.",
-                driveLink: "https://drive.google.com/"
-            }
-        ];
+        // 1. Immediately store to local cache so upload always succeeds
+        let localList = await getAppsList();
+        localList.unshift(newApp);
+        localStorage.setItem('avant_stored_apps', JSON.stringify(localList));
 
-        async function computeSHA256(text) {
-            const buffer = new TextEncoder().encode(text);
-            const digest = await crypto.subtle.digest('SHA-256', buffer);
-            return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
-        // Get stored apps from Cloud or Local
-        async function getAppsList() {
-            if (APPS_DATABASE_URL) {
-                try {
-                    const res = await fetch(APPS_DATABASE_URL + "?type=apps");
-                    const data = await res.json();
-                    if (data && data.length > 0) return data;
-                } catch (e) {
-                    console.warn("Could not reach apps cloud database. Falling back to local storage.", e);
-                }
-            }
-            const local = localStorage.getItem('avant_stored_apps');
-            if (local) {
-                try { return JSON.parse(local); } catch(e) {}
-            }
-            localStorage.setItem('avant_stored_apps', JSON.stringify(INITIAL_APPS));
-            return INITIAL_APPS;
-        }
-
-        // Render Cards
-        async function loadLiveApps() {
-            const container = document.getElementById('appsContainer');
-            const apps = await getAppsList();
-            container.innerHTML = '';
-
-            apps.forEach(app => {
-                const card = document.createElement('div');
-                card.className = 'app-card';
-                card.innerHTML = `
-                    <button class="app-delete-btn" onclick="deleteApp('${app.id}')" title="Delete application"><i class="fas fa-trash-alt"></i></button>
-                    <div class="app-card-top">
-                        <div class="app-icon-circle"><i class="${app.icon || 'fas fa-cube'}"></i></div>
-                        <div>
-                            <span class="app-platform-badge">${app.platform}</span>
-                            <h3>${app.name}</h3>
-                        </div>
-                    </div>
-                    <p>${app.description}</p>
-                    <div class="app-meta-row">
-                        <span class="app-version">${app.version || 'v1.0'}</span>
-                        <a href="${app.driveLink}" target="_blank" rel="noopener noreferrer" class="download-btn">
-                            <i class="fab fa-google-drive"></i> Download / Run
-                        </a>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // Check Auth Status
-        function checkAuthStatus() {
-            const isAuth = sessionStorage.getItem('avant_admin_auth') === 'true';
-            const adminBar = document.getElementById('adminBar');
-            const triggerBtn = document.getElementById('loginTriggerBtn');
-
-            if (isAuth) {
-                document.body.classList.add('admin-mode');
-                adminBar.classList.add('active');
-                triggerBtn.style.display = 'none';
-            } else {
-                document.body.classList.remove('admin-mode');
-                adminBar.classList.remove('active');
-                triggerBtn.style.display = 'flex';
+        // 2. Synchronize to Google Sheets Cloud if URL configured
+        if (APPS_DATABASE_URL && APPS_DATABASE_URL.trim() !== "") {
+            try {
+                await fetch(APPS_DATABASE_URL, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        action: "addApp",
+                        pass: sessionStorage.getItem('avant_admin_token') || "Yuvaan@2026",
+                        ...newApp
+                    })
+                });
+            } catch (cloudErr) {
+                console.warn("Cloud backend synchronization error:", cloudErr);
             }
         }
 
-        // Safe Login: Verified without triggering contact form email
-        async function handleLogin(e) {
-            e.preventDefault();
-            const user = document.getElementById('adminUser').value.trim();
-            const pass = document.getElementById('adminPass').value;
-            const btn = document.getElementById('loginBtn');
-            btn.textContent = "VERIFYING...";
-            btn.disabled = true;
+        alert('Software application published successfully!');
+        closeUploadAppModal();
+        e.target.reset();
+        await loadLiveApps();
 
-            const uHash = await computeSHA256(user);
-            const pHash = await computeSHA256(pass);
+        btn.textContent = "PUBLISH SOFTWARE TO PORTAL";
+        btn.disabled = false;
+    }
 
-            if (uHash === HASH_AUTH.user && pHash === HASH_AUTH.pass) {
-                sessionStorage.setItem('avant_admin_auth', 'true');
-                sessionStorage.setItem('avant_admin_token', pass);
-                closeLoginModal();
-                checkAuthStatus();
-                alert('Authentication successful. Author mode enabled.');
-            } else {
-                alert('Invalid User ID or Password.');
-            }
-            btn.textContent = "SIGN IN";
-            btn.disabled = false;
-        }
+    async function deleteApp(id) {
+        if (!confirm('Are you sure you want to remove this application from the portal?')) return;
 
-        function logoutAdmin() {
-            sessionStorage.removeItem('avant_admin_auth');
-            sessionStorage.removeItem('avant_admin_token');
-            checkAuthStatus();
-            alert('Logged out from author mode.');
-        }
+        let localList = await getAppsList();
+        localList = localList.filter(app => String(app.id) !== String(id));
+        localStorage.setItem('avant_stored_apps', JSON.stringify(localList));
 
-        // Upload Application
-        async function handleUploadApp(e) {
-            e.preventDefault();
-            const btn = document.getElementById('uploadBtn');
-            btn.textContent = "PUBLISHING...";
-            btn.disabled = true;
-
-            const newApp = {
-                id: String(Date.now()),
-                date: new Date().toISOString().split('T')[0],
-                name: document.getElementById('appName').value.trim(),
-                platform: document.getElementById('appPlatform').value,
-                icon: document.getElementById('appIcon').value,
-                version: document.getElementById('appVersion').value.trim(),
-                driveLink: document.getElementById('appDriveLink').value.trim(),
-                description: document.getElementById('appDesc').value.trim()
-            };
-
-            // Save locally
-            let localList = await getAppsList();
-            localList.unshift(newApp);
-            localStorage.setItem('avant_stored_apps', JSON.stringify(localList));
-
-            // Sync with cloud if configured
-            if (APPS_DATABASE_URL) {
-                try {
-                    await fetch(APPS_DATABASE_URL, {
-                        method: "POST",
-                        body: JSON.stringify({ action: "addApp", pass: sessionStorage.getItem('avant_admin_token') || "Yuvaan@2026", ...newApp })
-                    });
-                } catch(err) {
-                    console.warn("Cloud sync skipped:", err);
-                }
-            }
-
-            alert('Software published successfully to the portal!');
-            closeUploadAppModal();
-            e.target.reset();
-            loadLiveApps();
-            btn.textContent = "PUBLISH SOFTWARE TO PORTAL";
-            btn.disabled = false;
-        }
-
-        // Delete Application
-        async function deleteApp(id) {
-            if (!confirm('Are you sure you want to remove this application from the portal?')) return;
-
-            let localList = await getAppsList();
-            localList = localList.filter(app => String(app.id) !== String(id));
-            localStorage.setItem('avant_stored_apps', JSON.stringify(localList));
-
-            if (APPS_DATABASE_URL) {
-                try {
-                    await fetch(APPS_DATABASE_URL, {
-                        method: "POST",
-                        body: JSON.stringify({ action: "deleteApp", pass: sessionStorage.getItem('avant_admin_token') || "Yuvaan@2026", id: id })
-                    });
-                } catch(err) {
-                    console.warn("Cloud delete failed:", err);
-                }
-            }
-
-            loadLiveApps();
-        }
-
-        // Modal Controls
-        function openLoginModal() {
-            document.getElementById('loginModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLoginModal() {
-            document.getElementById('loginModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function openUploadAppModal() {
-            document.getElementById('uploadAppModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeUploadAppModal() {
-            document.getElementById('uploadAppModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function openContactModal(serviceName) {
-            const modal = document.getElementById('contactModal');
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-            const select = document.getElementById('modalServiceSelect');
-            if (select) {
-                select.value = serviceName ? serviceName : '';
+        if (APPS_DATABASE_URL && APPS_DATABASE_URL.trim() !== "") {
+            try {
+                await fetch(APPS_DATABASE_URL, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        action: "deleteApp",
+                        pass: sessionStorage.getItem('avant_admin_token') || "Yuvaan@2026",
+                        id: id
+                    })
+                });
+            } catch(err) {
+                console.warn("Cloud delete error:", err);
             }
         }
-        function closeContactModal() {
-            const modal = document.getElementById('contactModal');
-            if (modal) {
-                modal.classList.remove('active');
+
+        loadLiveApps();
+    }
+
+    function openLoginModal() {
+        const m = document.getElementById('loginModal');
+        if (m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    }
+    function closeLoginModal() {
+        const m = document.getElementById('loginModal');
+        if (m) { m.classList.remove('active'); document.body.style.overflow = 'auto'; }
+    }
+    function openUploadAppModal() {
+        const m = document.getElementById('uploadAppModal');
+        if (m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    }
+    function closeUploadAppModal() {
+        const m = document.getElementById('uploadAppModal');
+        if (m) { m.classList.remove('active'); document.body.style.overflow = 'auto'; }
+    }
+
+    function openContactModal(serviceName) {
+        const modal = document.getElementById('contactModal');
+        if (modal) { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        const select = document.getElementById('modalServiceSelect');
+        if (select) select.value = serviceName ? serviceName : '';
+    }
+    function closeContactModal() {
+        const modal = document.getElementById('contactModal');
+        if (modal) { modal.classList.remove('active'); document.body.style.overflow = 'auto'; }
+    }
+
+    window.addEventListener('click', function(event) {
+        ['loginModal', 'uploadAppModal', 'contactModal'].forEach(id => {
+            const m = document.getElementById(id);
+            if (event.target === m) {
+                m.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
-        }
+        });
+    });
 
-        window.addEventListener('click', function(event) {
-            ['loginModal', 'uploadAppModal', 'contactModal'].forEach(id => {
-                const m = document.getElementById(id);
-                if (event.target === m) {
-                    m.classList.remove('active');
+    const mobileBtn = document.getElementById('mobile-menu');
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', function() {
+            const nav = document.querySelector('.main-nav');
+            if (nav) {
+                nav.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (nav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                     document.body.style.overflow = 'auto';
                 }
-            });
+            }
         });
+    }
 
-        // Mobile Nav
-        const mobileBtn = document.getElementById('mobile-menu');
-        if (mobileBtn) {
-            mobileBtn.addEventListener('click', function() {
-                const nav = document.querySelector('.main-nav');
-                if (nav) {
-                    nav.classList.toggle('active');
-                    const icon = this.querySelector('i');
-                    if (nav.classList.contains('active')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                        document.body.style.overflow = 'auto';
-                    }
-                }
+    function submitContactForm(e) {
+        e.preventDefault();
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'SENDING...';
+
+        const formData = new FormData(form);
+
+        fetch(CONTACT_SCRIPT_URL, { method: 'POST', body: formData })
+            .then(() => {
+                alert('Thank you! Your message has been received.');
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SEND MESSAGE';
+                closeContactModal();
+            })
+            .catch(() => {
+                alert('Submitted successfully.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SEND MESSAGE';
+                closeContactModal();
             });
-        }
+    }
 
-        // Contact form submission logic
-        function submitContactForm(e) {
-            e.preventDefault();
-            const form = document.getElementById('contactForm');
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'SENDING...';
-
-            const formData = new FormData(form);
-
-            fetch(CONTACT_SCRIPT_URL, { method: 'POST', body: formData })
-                .then(() => {
-                    alert('Thank you! Your message has been received.');
-                    form.reset();
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE';
-                    closeContactModal();
-                })
-                .catch(() => {
-                    alert('Submitted successfully.');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE';
-                    closeContactModal();
-                });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            checkAuthStatus();
-            loadLiveApps();
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', () => {
+        checkAuthStatus();
+        loadLiveApps();
+    });
+</script>
 </body>
 </html>
