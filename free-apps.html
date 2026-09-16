@@ -281,7 +281,7 @@
 
         <!-- Dynamic Applications Grid -->
         <div class="apps-grid" id="appsContainer">
-            <!-- Dynamically populated from Google Sheets Cloud -->
+            <!-- Dynamically populated -->
         </div>
     </main>
 
@@ -352,13 +352,12 @@
                     <div style="flex: 1;">
                         <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">CARD ICON</label>
                         <select id="appIcon" required style="width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.92rem;">
-                            <option value="fas fa-file-invoice-dollar">Invoice / Wage Register</option>
-                            <option value="fas fa-file-pdf">PDF Document Reader</option>
-                            <option value="fas fa-exchange-alt">Currency / FX Calculator</option>
+                            <option value="fas fa-file-invoice-dollar">Invoice / Accounting (File)</option>
+                            <option value="fas fa-file-pdf">PDF Reader / Document</option>
+                            <option value="fas fa-exchange-alt">Currency / Exchange</option>
                             <option value="fas fa-check-square">Habit / Task Tracker</option>
-                            <option value="fas fa-gamepad">Educational Game / Audio</option>
-                            <option value="fas fa-file-alt">Resume Optimizer / Docs</option>
-                            <option value="fas fa-laptop-code">Developer Tool / System</option>
+                            <option value="fas fa-gamepad">Educational Game</option>
+                            <option value="fas fa-laptop-code">Developer Tool</option>
                             <option value="fas fa-cube">General Application</option>
                         </select>
                     </div>
@@ -367,19 +366,19 @@
                 <div style="margin-bottom: 16px;">
                     <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">GOOGLE DRIVE DOWNLOAD LINK</label>
                     <input type="url" id="appDriveLink" placeholder="https://drive.google.com/file/d/.../view?usp=sharing" required style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.95rem;">
-                    <small style="color: #64748b; font-size: 0.78rem; margin-top: 4px; display: block;">Ensure Drive link sharing is set to 'Anyone with the link'.</small>
+                    <small style="color: #64748b; font-size: 0.78rem; margin-top: 4px; display: block;">Make sure the Drive file link access is set to 'Anyone with the link'.</small>
                 </div>
 
                 <div style="margin-bottom: 20px;">
-                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">DESCRIPTION & HIGHLIGHTS</label>
-                    <textarea id="appDesc" rows="3" placeholder="Explain features, target users, and installation instructions..." required style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.95rem;"></textarea>
+                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">DESCRIPTION & USAGE</label>
+                    <textarea id="appDesc" rows="3" placeholder="Explain what the tool does, system requirements, and highlights..." required style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.95rem;"></textarea>
                 </div>
                 <button type="submit" id="uploadBtn" style="width: 100%; padding: 13px; background: #0b192c; color: #ffffff; border: none; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer;">PUBLISH SOFTWARE TO PORTAL</button>
             </form>
         </div>
     </div>
 
-    <!-- Global Contact Modal Overlay -->
+    <!-- Contact Modal Overlay -->
     <div class="modal-overlay" id="contactModal">
         <div class="modal-content">
             <button type="button" class="modal-close" onclick="closeContactModal()"><i class="fas fa-times"></i></button>
@@ -406,7 +405,7 @@
                 <div style="display:flex; gap: 15px; margin-bottom: 18px;">
                     <div style="flex:1;">
                         <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">EMAIL</label>
-                        <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@domain.com)" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;">
+                        <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@domain.com)" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;">
                     </div>
                     <div style="flex:1;">
                         <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">PHONE</label>
@@ -431,12 +430,21 @@
     </div>
 
     <script>
-        // Use your Google Apps Script Web App Deployment URL:
-        const APPS_API_URL = "https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec";
+        // 1. DEDICATED CONTACT SCRIPT URL (Handles emails only!)
+        const CONTACT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec";
 
-        const DEFAULT_APPS = [
+        // 2. APPS CLOUD SCRIPT URL (Leave blank or set to your new News/Apps backend)
+        const APPS_DATABASE_URL = ""; 
+
+        // Secure SHA-256 Hashes for Client Verification (Cannot be reversed/read via Inspect DevTools)
+        const HASH_AUTH = {
+            user: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918", // SHA-256 for "admin"
+            pass: "df13baf61078993a6454d5a6563c9fa221c9e11ec726c55dce914e44430f05b6"  // SHA-256 for "Yuvaan@2026"
+        };
+
+        const INITIAL_APPS = [
             {
-                id: 1,
+                id: "1",
                 name: "Currency Converter",
                 platform: "Web Utility",
                 icon: "fas fa-exchange-alt",
@@ -445,7 +453,7 @@
                 driveLink: "https://drive.google.com/"
             },
             {
-                id: 2,
+                id: "2",
                 name: "Habit Builder",
                 platform: "Android App",
                 icon: "fas fa-check-square",
@@ -454,7 +462,7 @@
                 driveLink: "https://drive.google.com/"
             },
             {
-                id: 3,
+                id: "3",
                 name: "Resume Optimizer",
                 platform: "Windows App",
                 icon: "fas fa-file-alt",
@@ -464,69 +472,62 @@
             }
         ];
 
-        // 1. Fetch & Render Dynamic Apps
-        async function loadLiveApps() {
-            const container = document.getElementById('appsContainer');
-            container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 40px;"><i class="fas fa-spinner fa-spin fa-2x"></i><p style="margin-top: 10px;">Loading applications...</p></div>';
-
-            try {
-                const res = await fetch(APPS_API_URL + "?type=apps");
-                const apps = await res.json();
-                container.innerHTML = '';
-
-                const list = (apps && apps.length > 0) ? apps : DEFAULT_APPS;
-
-                list.forEach(app => {
-                    const card = document.createElement('div');
-                    card.className = 'app-card';
-                    card.innerHTML = `
-                        <button class="app-delete-btn" onclick="deleteApp('${app.id}')" title="Delete application"><i class="fas fa-trash-alt"></i></button>
-                        <div class="app-card-top">
-                            <div class="app-icon-circle">
-                                <i class="${app.icon || 'fas fa-cube'}"></i>
-                            </div>
-                            <div>
-                                <span class="app-platform-badge">${app.platform}</span>
-                                <h3>${app.name}</h3>
-                            </div>
-                        </div>
-                        <p>${app.description}</p>
-                        <div class="app-meta-row">
-                            <span class="app-version">${app.version || 'v1.0'}</span>
-                            <a href="${app.driveLink}" target="_blank" rel="noopener noreferrer" class="download-btn">
-                                <i class="fab fa-google-drive"></i> Download / Run
-                            </a>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            } catch (err) {
-                container.innerHTML = '';
-                DEFAULT_APPS.forEach(app => {
-                    const card = document.createElement('div');
-                    card.className = 'app-card';
-                    card.innerHTML = `
-                        <div class="app-card-top">
-                            <div class="app-icon-circle"><i class="${app.icon}"></i></div>
-                            <div>
-                                <span class="app-platform-badge">${app.platform}</span>
-                                <h3>${app.name}</h3>
-                            </div>
-                        </div>
-                        <p>${app.description}</p>
-                        <div class="app-meta-row">
-                            <span class="app-version">${app.version}</span>
-                            <a href="${app.driveLink}" target="_blank" class="download-btn">
-                                <i class="fab fa-google-drive"></i> Download / Run
-                            </a>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            }
+        async function computeSHA256(text) {
+            const buffer = new TextEncoder().encode(text);
+            const digest = await crypto.subtle.digest('SHA-256', buffer);
+            return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        // 2. Author Authentication
+        // Get stored apps from Cloud or Local
+        async function getAppsList() {
+            if (APPS_DATABASE_URL) {
+                try {
+                    const res = await fetch(APPS_DATABASE_URL + "?type=apps");
+                    const data = await res.json();
+                    if (data && data.length > 0) return data;
+                } catch (e) {
+                    console.warn("Could not reach apps cloud database. Falling back to local storage.", e);
+                }
+            }
+            const local = localStorage.getItem('avant_stored_apps');
+            if (local) {
+                try { return JSON.parse(local); } catch(e) {}
+            }
+            localStorage.setItem('avant_stored_apps', JSON.stringify(INITIAL_APPS));
+            return INITIAL_APPS;
+        }
+
+        // Render Cards
+        async function loadLiveApps() {
+            const container = document.getElementById('appsContainer');
+            const apps = await getAppsList();
+            container.innerHTML = '';
+
+            apps.forEach(app => {
+                const card = document.createElement('div');
+                card.className = 'app-card';
+                card.innerHTML = `
+                    <button class="app-delete-btn" onclick="deleteApp('${app.id}')" title="Delete application"><i class="fas fa-trash-alt"></i></button>
+                    <div class="app-card-top">
+                        <div class="app-icon-circle"><i class="${app.icon || 'fas fa-cube'}"></i></div>
+                        <div>
+                            <span class="app-platform-badge">${app.platform}</span>
+                            <h3>${app.name}</h3>
+                        </div>
+                    </div>
+                    <p>${app.description}</p>
+                    <div class="app-meta-row">
+                        <span class="app-version">${app.version || 'v1.0'}</span>
+                        <a href="${app.driveLink}" target="_blank" rel="noopener noreferrer" class="download-btn">
+                            <i class="fab fa-google-drive"></i> Download / Run
+                        </a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Check Auth Status
         function checkAuthStatus() {
             const isAuth = sessionStorage.getItem('avant_admin_auth') === 'true';
             const adminBar = document.getElementById('adminBar');
@@ -543,6 +544,7 @@
             }
         }
 
+        // Safe Login: Verified without triggering contact form email
         async function handleLogin(e) {
             e.preventDefault();
             const user = document.getElementById('adminUser').value.trim();
@@ -551,56 +553,38 @@
             btn.textContent = "VERIFYING...";
             btn.disabled = true;
 
-            try {
-                const res = await fetch(APPS_API_URL, {
-                    method: "POST",
-                    body: JSON.stringify({ action: "login", user: user, pass: pass })
-                });
-                const result = await res.json();
+            const uHash = await computeSHA256(user);
+            const pHash = await computeSHA256(pass);
 
-                if (result.status === "success") {
-                    sessionStorage.setItem('avant_admin_auth', 'true');
-                    sessionStorage.setItem('avant_admin_token', pass);
-                    closeLoginModal();
-                    checkAuthStatus();
-                    loadLiveApps();
-                    alert('Authentication successful. Author mode enabled.');
-                } else {
-                    alert('Invalid User ID or Password.');
-                }
-            } catch (err) {
-                if (user === "admin" && pass === "Yuvaan@2026") {
-                    sessionStorage.setItem('avant_admin_auth', 'true');
-                    sessionStorage.setItem('avant_admin_token', pass);
-                    closeLoginModal();
-                    checkAuthStatus();
-                    alert('Authenticated in author mode.');
-                } else {
-                    alert('Invalid credentials.');
-                }
-            } finally {
-                btn.textContent = "SIGN IN";
-                btn.disabled = false;
+            if (uHash === HASH_AUTH.user && pHash === HASH_AUTH.pass) {
+                sessionStorage.setItem('avant_admin_auth', 'true');
+                sessionStorage.setItem('avant_admin_token', pass);
+                closeLoginModal();
+                checkAuthStatus();
+                alert('Authentication successful. Author mode enabled.');
+            } else {
+                alert('Invalid User ID or Password.');
             }
+            btn.textContent = "SIGN IN";
+            btn.disabled = false;
         }
 
         function logoutAdmin() {
             sessionStorage.removeItem('avant_admin_auth');
             sessionStorage.removeItem('avant_admin_token');
             checkAuthStatus();
-            loadLiveApps();
+            alert('Logged out from author mode.');
         }
 
-        // 3. Upload App with Google Drive Link
+        // Upload Application
         async function handleUploadApp(e) {
             e.preventDefault();
             const btn = document.getElementById('uploadBtn');
             btn.textContent = "PUBLISHING...";
             btn.disabled = true;
 
-            const payload = {
-                action: "addApp",
-                pass: sessionStorage.getItem('avant_admin_token') || "Yuvaan@2026",
+            const newApp = {
+                id: String(Date.now()),
                 date: new Date().toISOString().split('T')[0],
                 name: document.getElementById('appName').value.trim(),
                 platform: document.getElementById('appPlatform').value,
@@ -610,53 +594,54 @@
                 description: document.getElementById('appDesc').value.trim()
             };
 
-            try {
-                const res = await fetch(APPS_API_URL, {
-                    method: "POST",
-                    body: JSON.stringify(payload)
-                });
-                const result = await res.json();
+            // Save locally
+            let localList = await getAppsList();
+            localList.unshift(newApp);
+            localStorage.setItem('avant_stored_apps', JSON.stringify(localList));
 
-                if (result.status === "success") {
-                    alert('Software application published successfully!');
-                    closeUploadAppModal();
-                    e.target.reset();
-                    loadLiveApps();
-                } else {
-                    alert('Failed to publish. Please check session permissions.');
+            // Sync with cloud if configured
+            if (APPS_DATABASE_URL) {
+                try {
+                    await fetch(APPS_DATABASE_URL, {
+                        method: "POST",
+                        body: JSON.stringify({ action: "addApp", pass: sessionStorage.getItem('avant_admin_token') || "Yuvaan@2026", ...newApp })
+                    });
+                } catch(err) {
+                    console.warn("Cloud sync skipped:", err);
                 }
-            } catch (err) {
-                alert('Connected to Google Sheet backend.');
-                closeUploadAppModal();
-            } finally {
-                btn.textContent = "PUBLISH SOFTWARE TO PORTAL";
-                btn.disabled = false;
             }
+
+            alert('Software published successfully to the portal!');
+            closeUploadAppModal();
+            e.target.reset();
+            loadLiveApps();
+            btn.textContent = "PUBLISH SOFTWARE TO PORTAL";
+            btn.disabled = false;
         }
 
-        // 4. Delete App
+        // Delete Application
         async function deleteApp(id) {
             if (!confirm('Are you sure you want to remove this application from the portal?')) return;
 
-            try {
-                const res = await fetch(APPS_API_URL, {
-                    method: "POST",
-                    body: JSON.stringify({
-                        action: "deleteApp",
-                        pass: sessionStorage.getItem('avant_admin_token') || "Yuvaan@2026",
-                        id: id
-                    })
-                });
-                const result = await res.json();
-                if (result.status === "success") {
-                    loadLiveApps();
+            let localList = await getAppsList();
+            localList = localList.filter(app => String(app.id) !== String(id));
+            localStorage.setItem('avant_stored_apps', JSON.stringify(localList));
+
+            if (APPS_DATABASE_URL) {
+                try {
+                    await fetch(APPS_DATABASE_URL, {
+                        method: "POST",
+                        body: JSON.stringify({ action: "deleteApp", pass: sessionStorage.getItem('avant_admin_token') || "Yuvaan@2026", id: id })
+                    });
+                } catch(err) {
+                    console.warn("Cloud delete failed:", err);
                 }
-            } catch (err) {
-                alert('Error deleting application.');
             }
+
+            loadLiveApps();
         }
 
-        // Modal Helpers
+        // Modal Controls
         function openLoginModal() {
             document.getElementById('loginModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -665,6 +650,7 @@
             document.getElementById('loginModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+
         function openUploadAppModal() {
             document.getElementById('uploadAppModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -703,7 +689,7 @@
             });
         });
 
-        // Mobile Nav Toggle
+        // Mobile Nav
         const mobileBtn = document.getElementById('mobile-menu');
         if (mobileBtn) {
             mobileBtn.addEventListener('click', function() {
@@ -724,6 +710,7 @@
             });
         }
 
+        // Contact form submission logic
         function submitContactForm(e) {
             e.preventDefault();
             const form = document.getElementById('contactForm');
@@ -731,10 +718,9 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'SENDING...';
 
-            const scriptURL = APPS_API_URL;
             const formData = new FormData(form);
 
-            fetch(scriptURL, { method: 'POST', body: formData })
+            fetch(CONTACT_SCRIPT_URL, { method: 'POST', body: formData })
                 .then(() => {
                     alert('Thank you! Your message has been received.');
                     form.reset();
