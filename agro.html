@@ -6,140 +6,66 @@
     <title>Avant Agro - Avant Groups</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="layout.js"></script>
     <style>
-        /* Self-contained Modal Styles */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 99999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .modal-overlay.active {
-            display: flex !important;
-        }
-        .modal-content {
+        /* Mobile padding adjustment for card */
+        .mobile-padded-card {
             background: #ffffff;
-            width: 100%;
-            max-width: 580px;
+            padding: 40px;
             border-radius: 24px;
-            padding: 35px 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            animation: modalFadeIn 0.25s ease-out;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eaeaea;
+            text-align: left;
         }
-        @keyframes modalFadeIn {
-            from { transform: scale(0.95) translateY(10px); opacity: 0; }
-            to { transform: scale(1) translateY(0); opacity: 1; }
+
+        @media (max-width: 768px) {
+            .mobile-padded-card {
+                padding: 20px;
+            }
+            .mobile-title {
+                font-size: 1.8rem !important;
+            }
         }
-        .modal-close {
-            position: absolute;
-            top: 18px;
-            right: 20px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #f1f5f9;
-            color: #475569;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-        }
-        .modal-close:hover {
-            background: #e2e8f0;
-            color: #0f172a;
+        
+        /* Minimal Footer */
+        .site-footer {
+            text-align: center;
+            padding: 24px 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 14px;
+            margin-top: auto;
         }
     </style>
-    <script src="layout.js"></script>
 </head>
-<body>
-    
+<body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
 
-    <main class="main-content">
+    <main class="main-content" style="flex: 1;">
         <section class="services-section" style="max-width: 900px; margin: 50px auto; padding: 0 20px;">
-            <div style="background: #ffffff; padding: 40px; border-radius: 24px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: left;" class="mobile-padded-card">
+            <div class="mobile-padded-card">
                 <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-                    <div style="width: 60px; height: 60px; background-color: var(--bg-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--primary-color);">
+                    <div style="width: 60px; height: 60px; background-color: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #0f172a;">
                         <i class="fas fa-seedling"></i>
                     </div>
-                    <h1 style="font-size: 2.5rem; color: var(--primary-color); margin: 0;" class="mobile-title">Avant Agro</h1>
+                    <h1 style="font-size: 2.5rem; color: #0f172a; margin: 0;" class="mobile-title">Avant Agro</h1>
                 </div>
                 <img src="photo/agro_image.png" alt="Avant Agro" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; margin-bottom: 30px;">
                 <div style="font-size: 1.1rem; color: #444; line-height: 1.8;">
                     <p style="margin-bottom: 15px;">Avant Agro is committed to sustainable agriculture and global food security. We invest in modern farming techniques, eco-friendly crop management, and agricultural technology to maximize yields while protecting the environment.</p>
-<p>From seed to harvest, our supply chain ensures premium quality produce. We are dedicated to supporting local farming communities and pioneering practices that preserve our soil and water resources for future generations.</p>
-                </div>
-                <div style="margin-top: 40px; text-align: center;">
-                    <button type="button" onclick="openContactModal('Avant Agro')" class="submit-btn" style="display: inline-block; width: auto; padding: 16px 45px; font-size: 1.1rem; text-decoration: none; box-shadow: 0 10px 25px rgba(11, 25, 44, 0.2); border-radius: 50px; cursor: pointer;">INQUIRE ABOUT AVANT AGRO</button>
+                    <p>From seed to harvest, our supply chain ensures premium quality produce. We are dedicated to supporting local farming communities and pioneering practices that preserve our soil and water resources for future generations.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    
+    <!-- Clean Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Avant Groups. All rights reserved.</p>
+    </footer>
 
-    
-
-    
-                </div>
-                <div class="form-group" style="margin-bottom: 18px;">
-                    <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">MESSAGE</label>
-                    <textarea name="message" rows="4" placeholder="How can we help you?" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;"></textarea>
-                </div>
-                <button type="submit" id="submitBtn" class="submit-btn" style="width:100%; padding: 14px; background: #0b192c; color: #fff; border:none; border-radius: 8px; font-weight:700; cursor:pointer;">SEND MESSAGE</button>
-            </form>
-        </div>
-    </div>
-
+    <!-- Simple script for mobile menu if needed by layout.js -->
     <script>
-        function openContactModal(serviceName) {
-            var modal = document.getElementById('contactModal');
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-            var select = document.getElementById('modalServiceSelect');
-            if (select) {
-                select.value = serviceName ? serviceName : '';
-            }
-            var nav = document.querySelector('.main-nav');
-            if (nav && nav.classList.contains('active')) {
-                nav.classList.remove('active');
-                var icon = document.querySelector('#mobile-menu i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-        }
-
-        function closeContactModal() {
-            var modal = document.getElementById('contactModal');
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        window.onclick = function(event) {
-            var modal = document.getElementById('contactModal');
-            if (event.target === modal) {
-                closeContactModal();
-            }
-        };
-
         var mobileBtn = document.getElementById('mobile-menu');
         if (mobileBtn) {
             mobileBtn.addEventListener('click', function() {
@@ -158,32 +84,6 @@
                     }
                 }
             });
-        }
-
-        function submitContactForm(e) {
-            e.preventDefault();
-            var form = document.getElementById('contactForm');
-            var submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'SENDING...';
-
-            var scriptURL = 'https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec';
-            var formData = new FormData(form);
-
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(function(res) {
-                    alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
-                    form.reset();
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE';
-                    closeContactModal();
-                })
-                .catch(function(err) {
-                    alert('Submitted! (Make sure your Google Apps Script URL is configured).');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE';
-                    closeContactModal();
-                });
         }
     </script>
 </body>
