@@ -3,634 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Free Applications & Software Downloads - Avant IT Services</title>
+    <title>Free Apps - Avant Groups</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="layout.js"></script>
     <style>
-        .apps-header-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1100px;
-            margin: 40px auto 20px auto;
-            padding: 0 20px;
-        }
-        .admin-trigger-btn {
-            background: rgba(11, 25, 44, 0.06);
-            color: var(--primary-color);
-            border: 1px solid #d2d2d7;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .admin-trigger-btn:hover {
-            background: var(--primary-color);
-            color: #ffffff;
-            border-color: var(--primary-color);
-        }
-        .admin-bar {
-            display: none;
-            max-width: 1100px;
-            margin: 0 auto 30px auto;
-            padding: 18px 24px;
+        .mobile-padded-card {
             background: #ffffff;
-            border-radius: 16px;
-            border: 1px solid #e1e4e8;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-        }
-        .admin-bar.active {
-            display: flex;
-        }
-        .admin-action-btn {
-            background: #005f73;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
-        }
-        .admin-action-btn:hover {
-            background: #0a9396;
-        }
-        .admin-logout-btn {
-            background: transparent;
-            color: #dc2626;
-            border: 1px solid #fca5a5;
-            padding: 8px 14px;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .admin-logout-btn:hover {
-            background: #fee2e2;
-        }
-
-        .apps-feed-container {
-            max-width: 1100px;
-            margin: 0 auto 60px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-        .app-card {
-            background: #ffffff;
-            padding: 30px 25px;
-            border-radius: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-            border: 1px solid #eaeaea;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .app-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-        }
-        .app-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .app-date {
-            font-size: 0.82rem;
-            color: #64748b;
-            font-weight: 600;
-        }
-        .app-badge {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 4px 10px;
-            border-radius: 12px;
-            background: #e0f2fe;
-            color: #0369a1;
-        }
-        .app-icon {
-            width: 60px;
-            height: 60px;
-            background: #f8fafc;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            color: #005f73;
-            margin-bottom: 18px;
-            border: 1px solid #f1f5f9;
-        }
-        .app-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 1.35rem;
-            font-weight: 700;
-        }
-        .app-card p {
-            color: #475569;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
-        .download-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 12px 20px;
-            background: #005f73;
-            color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .download-btn:hover {
-            background: #0a9396;
-            color: #ffffff;
-        }
-        .app-delete-btn {
-            display: none;
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #fee2e2;
-            color: #dc2626;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            z-index: 5;
-        }
-        body.admin-mode .app-delete-btn {
-            display: flex;
-        }
-
-        /* Modal Styles */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 99999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .modal-overlay.active {
-            display: flex !important;
-        }
-        .modal-content {
-            background: #ffffff;
-            width: 100%;
-            max-width: 560px;
+            padding: 40px;
             border-radius: 24px;
-            padding: 35px 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            animation: modalFadeIn 0.25s ease-out;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eaeaea;
+            text-align: left;
         }
-        @keyframes modalFadeIn {
-            from { transform: scale(0.95) translateY(10px); opacity: 0; }
-            to { transform: scale(1) translateY(0); opacity: 1; }
+
+        @media (max-width: 768px) {
+            .mobile-padded-card {
+                padding: 20px;
+            }
+            .mobile-title {
+                font-size: 1.8rem !important;
+            }
         }
-        .modal-close {
-            position: absolute;
-            top: 18px;
-            right: 20px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #f1f5f9;
-            color: #475569;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border: none;
-        }
-        .modal-close:hover {
-            background: #e2e8f0;
-            color: #0f172a;
+        
+        .site-footer {
+            text-align: center;
+            padding: 24px 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 14px;
+            margin-top: auto;
         }
     </style>
-    <script src="layout.js"></script>
 </head>
-<body>
-    
+<body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
 
-    <main class="main-content">
-        <div class="apps-header-section">
-            <div>
-                <h1 style="font-size: 2.5rem; color: var(--primary-color); font-weight: 800; letter-spacing: -0.5px;">Free Software & Applications</h1>
-                <p style="color: #64748b; font-size: 1.05rem; margin-top: 4px;">Download utilities, web apps, and native tools engineered by Avant IT Services.</p>
+    <main class="main-content" style="flex: 1;">
+        <section class="services-section" style="max-width: 900px; margin: 50px auto; padding: 0 20px;">
+            <div class="mobile-padded-card">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+                    <div style="width: 60px; height: 60px; background-color: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #0f172a;">
+                        <i class="fas fa-mobile-screen"></i>
+                    </div>
+                    <h1 style="font-size: 2.5rem; color: #0f172a; margin: 0;" class="mobile-title">Free Applications</h1>
+                </div>
+                <img src="photo/apps_image.png" alt="Free Apps by Avant" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; margin-bottom: 30px;">
+                <div style="font-size: 1.1rem; color: #444; line-height: 1.8;">
+                    <p style="margin-bottom: 15px;">Explore our suite of complimentary digital tools and software solutions. Avant Groups is committed to providing accessible technology to enhance productivity and simplify daily workflows.</p>
+                    <p>Download our free desktop applications, mobile utilities, and educational software directly to your device.</p>
+                </div>
             </div>
-            <button class="admin-trigger-btn" id="loginTriggerBtn" onclick="openLoginModal()">
-                <i class="fas fa-lock"></i> Developer Login
-            </button>
-        </div>
-
-        <!-- Admin Control Toolbar (Appears after login) -->
-        <div class="admin-bar" id="adminBar">
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-size: 0.95rem; font-weight: 700; color: #1e293b;"><i class="fas fa-user-shield" style="color:#005f73;"></i> Logged in as App Manager</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <button class="admin-action-btn" onclick="openPublishAppModal()"><i class="fas fa-upload"></i> Upload & Post Application</button>
-                <button class="admin-logout-btn" onclick="logoutAdmin()">Logout</button>
-            </div>
-        </div>
-
-        <!-- Applications Feed Container -->
-        <div class="apps-feed-container" id="appsFeed">
-            <!-- App Cards loaded dynamically -->
-        </div>
+        </section>
     </main>
 
-    
-
-    
-
-    <!-- Admin Login Modal -->
-    <div class="modal-overlay" id="loginModal">
-        <div class="modal-content" style="max-width: 420px;">
-            <button type="button" class="modal-close" onclick="closeLoginModal()"><i class="fas fa-times"></i></button>
-            <div style="text-align: center; margin-bottom: 25px;">
-                <div style="width: 56px; height: 56px; background: #e0f2fe; color: #0284c7; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 12px;">
-                    <i class="fas fa-user-lock"></i>
-                </div>
-                <h2 style="color: var(--primary-color); font-weight: 800; font-size: 1.6rem; letter-spacing: -0.5px;">Developer Login</h2>
-                <p style="color: #64748b; font-size: 0.88rem;">Enter credentials to publish or remove applications</p>
-            </div>
-            <form onsubmit="handleLogin(event)">
-                <div style="margin-bottom: 16px;">
-                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">USER ID</label>
-                    <input type="text" id="adminUser" placeholder="Enter User ID" required style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.95rem;">
-                </div>
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">PASSWORD</label>
-                    <input type="password" id="adminPass" placeholder="Enter Password" required style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.95rem;">
-                </div>
-                <button type="submit" style="width: 100%; padding: 13px; background: #0b192c; color: #ffffff; border: none; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer;">SIGN IN</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Publish App Modal -->
-    <div class="modal-overlay" id="publishAppModal">
-        <div class="modal-content">
-            <button type="button" class="modal-close" onclick="closePublishAppModal()"><i class="fas fa-times"></i></button>
-            <div style="margin-bottom: 25px;">
-                <h2 style="color: var(--primary-color); font-weight: 800; font-size: 1.6rem; letter-spacing: -0.5px;">Publish New Application</h2>
-                <p style="color: #64748b; font-size: 0.88rem;">Post an application release with download access</p>
-            </div>
-            <form onsubmit="handlePublishApp(event)">
-                <div style="display: flex; gap: 15px; margin-bottom: 16px;">
-                    <div style="flex: 1;">
-                        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">RELEASE DATE</label>
-                        <input type="date" id="appDate" required style="width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.92rem;">
-                    </div>
-                    <div style="flex: 1;">
-                        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">PLATFORM TYPE</label>
-                        <select id="appType" required style="width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.92rem;">
-                            <option value="Windows App">Windows (.exe / .msi)</option>
-                            <option value="Web Utility">Web Utility Tool</option>
-                            <option value="Android APK">Android (.apk)</option>
-                            <option value="Multi-Platform">Cross Platform</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 16px;">
-                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">APPLICATION TITLE</label>
-                    <input type="text" id="appTitle" placeholder="e.g. Avant Invoice Generator v2.0" required style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.95rem;">
-                </div>
-
-                <div style="margin-bottom: 16px;">
-                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">APPLICATION ICON</label>
-                    <select id="appIcon" required style="width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.92rem;">
-                        <option value="fas fa-desktop">Desktop App (Window / PC)</option>
-                        <option value="fas fa-file-invoice-dollar">Invoice / Utility Tool</option>
-                        <option value="fas fa-mobile-alt">Mobile App (Android/iOS)</option>
-                        <option value="fas fa-tools">General Utility</option>
-                        <option value="fas fa-chart-line">Productivity / Finance</option>
-                        <option value="fas fa-cloud-download-alt">Cloud Tool</option>
-                    </select>
-                </div>
-
-                <!-- Either Direct File Upload or Direct Download URL -->
-                <div style="background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 12px; padding: 15px; margin-bottom: 16px;">
-                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #005f73; margin-bottom: 6px;">METHOD 1: UPLOAD LOCAL FILE (< 5MB)</label>
-                    <input type="file" id="appFileInput" style="width: 100%; font-size: 0.85rem; color: #475569;">
-                    <small style="display: block; color: #94a3b8; margin-top: 4px;">Supported: .zip, .exe, .pdf, .apk, .txt</small>
-
-                    <div style="text-align: center; margin: 8px 0; font-size: 0.75rem; font-weight: 700; color: #64748b;">— OR —</div>
-
-                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #005f73; margin-bottom: 6px;">METHOD 2: ENTER DOWNLOAD URL (Google Drive / GitHub / Direct Link)</label>
-                    <input type="url" id="appUrlInput" placeholder="https://drive.google.com/... or https://github.com/..." style="width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: #ffffff; font-size: 0.9rem;">
-                </div>
-
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">DESCRIPTION & RELEASE NOTES</label>
-                    <textarea id="appContent" rows="3" placeholder="Key features, compatibility, and user guide..." required style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fafbfc; font-size: 0.95rem;"></textarea>
-                </div>
-
-                <button type="submit" id="publishBtn" style="width: 100%; padding: 13px; background: #005f73; color: #ffffff; border: none; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer;">PUBLISH APPLICATION</button>
-            </form>
-        </div>
-    </div>
-
-    
-                </div>
-                <div style="margin-bottom: 18px;">
-                    <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">MESSAGE</label>
-                    <textarea name="message" rows="4" placeholder="How can we help you?" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;"></textarea>
-                </div>
-                <button type="submit" id="submitBtn" class="submit-btn" style="width:100%; padding: 14px; background: #0b192c; color: #fff; border:none; border-radius: 8px; font-weight:700; cursor:pointer;">SEND MESSAGE</button>
-            </form>
-        </div>
-    </div>
+    <!-- Clean Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Avant Groups. All rights reserved.</p>
+    </footer>
 
     <script>
-        // --- 1. CREDENTIAL CONFIGURATION ---
-        var ADMIN_CONFIG = {
-            userId: "admin",
-            password: "Yuvaan@2026"
-        };
-
-        // --- 2. DEFAULT APPS LIST ---
-        var DEFAULT_APPS = [
-            {
-                id: 101,
-                date: "2026-09-12",
-                type: "Windows App",
-                title: "Resume Optimizer Pro",
-                icon: "fas fa-file-alt",
-                content: "Web and desktop utility designed to format, calibrate, and optimize professional resumes for ATS tracking systems.",
-                downloadUrl: "https://avantgroups.in/",
-                fileName: "Resume_Optimizer_Setup.exe"
-            },
-            {
-                id: 102,
-                date: "2026-09-08",
-                type: "Web Utility",
-                title: "Real-Time Currency Converter",
-                icon: "fas fa-exchange-alt",
-                content: "Dynamic currency conversion engine supporting real-time cross-rates between USD, INR, EUR, and global currencies.",
-                downloadUrl: "https://avantgroups.in/",
-                fileName: "Currency_Converter.html"
-            },
-            {
-                id: 103,
-                date: "2026-09-01",
-                type: "Android APK",
-                title: "Habit Builder & Routine Tracker",
-                icon: "fas fa-check-square",
-                content: "Daily routine organizer and goal scheduler designed for personal productivity and habit consistency.",
-                downloadUrl: "https://avantgroups.in/",
-                fileName: "HabitBuilder_v1.0.apk"
-            }
-        ];
-
-        // --- 3. STORAGE & RENDER ---
-        function getStoredApps() {
-            var stored = localStorage.getItem('avant_apps_feed');
-            if (!stored) {
-                localStorage.setItem('avant_apps_feed', JSON.stringify(DEFAULT_APPS));
-                return DEFAULT_APPS;
-            }
-            try {
-                return JSON.parse(stored);
-            } catch(e) {
-                return DEFAULT_APPS;
-            }
-        }
-
-        function formatDisplayDate(dateStr) {
-            if (!dateStr) return "";
-            var parts = dateStr.split('-');
-            if (parts.length !== 3) return dateStr;
-            var d = new Date(parts[0], parts[1] - 1, parts[2]);
-            return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        }
-
-        function renderApps() {
-            var apps = getStoredApps();
-            var container = document.getElementById('appsFeed');
-            container.innerHTML = '';
-
-            apps.forEach(function(app) {
-                var card = document.createElement('div');
-                card.className = 'app-card';
-                card.innerHTML = 
-                    '<button class="app-delete-btn" onclick="deleteApp(' + app.id + ')" title="Delete Application"><i class="fas fa-trash-alt"></i></button>' +
-                    '<div>' +
-                        '<div class="app-meta">' +
-                            '<span class="app-date"><i class="far fa-calendar-alt"></i> ' + formatDisplayDate(app.date) + '</span>' +
-                            '<span class="app-badge">' + app.type + '</span>' +
-                        '</div>' +
-                        '<div class="app-icon"><i class="' + app.icon + '"></i></div>' +
-                        '<h3>' + app.title + '</h3>' +
-                        '<p>' + app.content + '</p>' +
-                    '</div>' +
-                    '<a href="' + app.downloadUrl + '" download="' + (app.fileName || 'download') + '" target="_blank" class="download-btn">' +
-                        '<i class="fas fa-download"></i> Download Free App' +
-                    '</a>';
-                container.appendChild(card);
-            });
-        }
-
-        // --- 4. AUTHENTICATION ---
-        function checkAuthStatus() {
-            var isAuth = sessionStorage.getItem('avant_admin_auth') === 'true';
-            var adminBar = document.getElementById('adminBar');
-            var triggerBtn = document.getElementById('loginTriggerBtn');
-
-            if (isAuth) {
-                document.body.classList.add('admin-mode');
-                adminBar.classList.add('active');
-                triggerBtn.style.display = 'none';
-            } else {
-                document.body.classList.remove('admin-mode');
-                adminBar.classList.remove('active');
-                triggerBtn.style.display = 'flex';
-            }
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            var u = document.getElementById('adminUser').value.trim();
-            var p = document.getElementById('adminPass').value;
-
-            if (u === ADMIN_CONFIG.userId && p === ADMIN_CONFIG.password) {
-                sessionStorage.setItem('avant_admin_auth', 'true');
-                closeLoginModal();
-                checkAuthStatus();
-                alert('Authentication successful. Developer mode activated.');
-            } else {
-                alert('Invalid User ID or Password.');
-            }
-        }
-
-        function logoutAdmin() {
-            sessionStorage.removeItem('avant_admin_auth');
-            checkAuthStatus();
-        }
-
-        // --- 5. UPLOAD & PUBLISH APP ---
-        function handlePublishApp(e) {
-            e.preventDefault();
-            var dateVal = document.getElementById('appDate').value;
-            var typeVal = document.getElementById('appType').value;
-            var titleVal = document.getElementById('appTitle').value.trim();
-            var iconVal = document.getElementById('appIcon').value;
-            var contentVal = document.getElementById('appContent').value.trim();
-            var fileInput = document.getElementById('appFileInput');
-            var urlInput = document.getElementById('appUrlInput').value.trim();
-
-            if (!dateVal || !titleVal || !contentVal) {
-                alert('Please fill out all required fields.');
-                return;
-            }
-
-            var publishBtn = document.getElementById('publishBtn');
-            publishBtn.disabled = true;
-            publishBtn.textContent = 'Processing File...';
-
-            function finalizeSave(downloadUrl, fileName) {
-                var apps = getStoredApps();
-                var newApp = {
-                    id: Date.now(),
-                    date: dateVal,
-                    type: typeVal,
-                    title: titleVal,
-                    icon: iconVal,
-                    content: contentVal,
-                    downloadUrl: downloadUrl,
-                    fileName: fileName
-                };
-                apps.unshift(newApp);
-                localStorage.setItem('avant_apps_feed', JSON.stringify(apps));
-
-                renderApps();
-                closePublishAppModal();
-                e.target.reset();
-                publishBtn.disabled = false;
-                publishBtn.textContent = 'PUBLISH APPLICATION';
-                alert('Application uploaded and published successfully!');
-            }
-
-            // Check if local file was selected
-            if (fileInput.files && fileInput.files[0]) {
-                var file = fileInput.files[0];
-                var reader = new FileReader();
-                reader.onload = function(event) {
-                    finalizeSave(event.target.result, file.name);
-                };
-                reader.readAsDataURL(file);
-            } else if (urlInput) {
-                finalizeSave(urlInput, titleVal.replace(/\s+/g, '_') + '.zip');
-            } else {
-                alert('Please either upload a file or provide a download URL.');
-                publishBtn.disabled = false;
-                publishBtn.textContent = 'PUBLISH APPLICATION';
-            }
-        }
-
-        function deleteApp(id) {
-            if (!confirm('Are you sure you want to remove this application listing?')) return;
-            var apps = getStoredApps().filter(function(a) { return a.id !== id; });
-            localStorage.setItem('avant_apps_feed', JSON.stringify(apps));
-            renderApps();
-        }
-
-        // --- 6. MODAL HELPERS ---
-        function openLoginModal() {
-            document.getElementById('loginModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLoginModal() {
-            document.getElementById('loginModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function openPublishAppModal() {
-            var today = new Date().toISOString().split('T')[0];
-            var datePicker = document.getElementById('appDate');
-            if (datePicker) datePicker.value = today;
-
-            document.getElementById('publishAppModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closePublishAppModal() {
-            document.getElementById('publishAppModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Global Contact Modal Handlers
-        function openContactModal(serviceName) {
-            var modal = document.getElementById('contactModal');
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-            var select = document.getElementById('modalServiceSelect');
-            if (select) {
-                select.value = serviceName ? serviceName : '';
-            }
-        }
-        function closeContactModal() {
-            var modal = document.getElementById('contactModal');
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        window.onclick = function(event) {
-            ['contactModal', 'loginModal', 'publishAppModal'].forEach(function(modalId) {
-                var m = document.getElementById(modalId);
-                if (event.target === m) {
-                    m.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        };
-
-        // Mobile Nav
         var mobileBtn = document.getElementById('mobile-menu');
         if (mobileBtn) {
             mobileBtn.addEventListener('click', function() {
@@ -650,37 +82,6 @@
                 }
             });
         }
-
-        function submitContactForm(e) {
-            e.preventDefault();
-            var form = document.getElementById('contactForm');
-            var submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'SENDING...';
-
-            var scriptURL = 'https://script.google.com/macros/s/AKfycbxO5bFjlRamGT6pGc4AnDP80mBiB0oZgtDR2aDcbFcRZERsg8mZsuMfuqHLS9YZK14BIg/exec';
-            var formData = new FormData(form);
-
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(function(res) {
-                    alert('Thank you! Your message has been sent successfully to info@avantgroups.in');
-                    form.reset();
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE';
-                    closeContactModal();
-                })
-                .catch(function(err) {
-                    alert('Submitted! (Make sure your Google Apps Script URL is configured).');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE';
-                    closeContactModal();
-                });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            renderApps();
-            checkAuthStatus();
-        });
     </script>
 </body>
 </html>
