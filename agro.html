@@ -61,6 +61,62 @@
             background: #e2e8f0;
             color: #0f172a;
         }
+
+        /* Spice Showcase Grid (Matches existing card aesthetic) */
+        .spice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin: 28px 0;
+        }
+        .spice-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .spice-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-color: #cbd5e1;
+        }
+        .spice-item h3 {
+            font-size: 1.15rem;
+            color: var(--primary-color, #0b192c);
+            margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .spice-item p {
+            font-size: 0.95rem;
+            color: #555;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .agro-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #eaeaea;
+        }
+        .feature-badge {
+            background: #f1f5f9;
+            color: #1e293b;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feature-badge i {
+            color: var(--primary-color, #0b192c);
+        }
     </style>
 </head>
 <body>
@@ -95,10 +151,54 @@
                     </div>
                     <h1 style="font-size: 2.5rem; color: var(--primary-color); margin: 0;" class="mobile-title">Avant Agro</h1>
                 </div>
-                <img src="photo/agro_image.png" alt="Avant Agro" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; margin-bottom: 30px;">
+                
+                <img src="photo/agro_image.png" alt="Avant Agro - Northeast Spices" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; margin-bottom: 30px;">
+                
                 <div style="font-size: 1.1rem; color: #444; line-height: 1.8;">
-                    <p style="margin-bottom: 15px;">Avant Agro is committed to sustainable agriculture and global food security. We invest in modern farming techniques, eco-friendly crop management, and agricultural technology to maximize yields while protecting the environment.</p>
-<p>From seed to harvest, our supply chain ensures premium quality produce. We are dedicated to supporting local farming communities and pioneering practices that preserve our soil and water resources for future generations.</p>
+                    <p style="margin-bottom: 15px;">
+                        <strong>Avant Agro</strong> is a premier supplier of authentic, farm-fresh spices cultivated in the fertile foothills and valleys of <strong>Northeast India</strong>. Sourced directly from local cultivators, our spices are renowned for their rich natural oils, intense aroma, and uncompromised purity.
+                    </p>
+                    <p style="margin-bottom: 25px;">
+                        Whether you require bulk wholesale consignments or customized commercial supply, our streamlined logistics network ensures reliable, timely delivery of the finest Northeast produce to any destination.
+                    </p>
+
+                    <h2 style="font-size: 1.5rem; color: var(--primary-color); margin-bottom: 15px;">Our Core Spice Portfolio</h2>
+                    
+                    <div class="spice-grid">
+                        <div class="spice-item">
+                            <h3><i class="fas fa-leaf"></i> Turmeric (Haldi)</h3>
+                            <p>High-curcumin Northeast turmeric varieties (including Lakadong & local grades), prized for vibrant golden color and medicinal potency. Available as whole dry fingers or pure powder.</p>
+                        </div>
+                        <div class="spice-item">
+                            <h3><i class="fas fa-spa"></i> Fresh & Dry Ginger</h3>
+                            <p>Low-fiber, zesty Northeast ginger bursting with essential oils and sharp, earthy flavor—ideal for culinary processing, extracts, and wholesale markets.</p>
+                        </div>
+                        <div class="spice-item">
+                            <h3><i class="fas fa-seedling"></i> Garlic (Lahsun)</h3>
+                            <p>Bold, aromatic, and carefully cured Northeast garlic bulbs with high allicin content, sorted and graded for extended shelf life during long-distance transit.</p>
+                        </div>
+                        <div class="spice-item">
+                            <h3><i class="fas fa-mortar-pestle"></i> Cumin (Jeera)</h3>
+                            <p>Select-grade cumin seeds rich in natural volatile oils, thoroughly cleaned and hygienically packed to lock in their warm, distinctive aroma.</p>
+                        </div>
+                        <div class="spice-item">
+                            <h3><i class="fas fa-award"></i> Cardamom (Elaichi)</h3>
+                            <p>Handpicked green and large black cardamom pods sourced from the misty hills of the Northeast, delivering an unmistakable sweet-smoky depth.</p>
+                        </div>
+                    </div>
+
+                    <div class="agro-features">
+                        <span class="feature-badge"><i class="fas fa-check-circle"></i> 100% Pure & Unadulterated</span>
+                        <span class="feature-badge"><i class="fas fa-mountain"></i> Direct from Northeast Farms</span>
+                        <span class="feature-badge"><i class="fas fa-truck-moving"></i> Pan-India & Global Delivery</span>
+                        <span class="feature-badge"><i class="fas fa-boxes"></i> Bulk & Custom Packaging</span>
+                    </div>
+
+                    <div style="margin-top: 35px; text-align: center;">
+                        <button type="button" onclick="openContactModal('Avant Agro')" style="padding: 15px 32px; background: var(--primary-color, #0b192c); color: #ffffff; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(11, 25, 44, 0.15); transition: transform 0.2s;">
+                            <i class="fas fa-paper-plane"></i> Inquire for Bulk & Supply Orders
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
