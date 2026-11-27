@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Self-contained Modal Styles */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -20,9 +19,7 @@
             justify-content: center;
             padding: 20px;
         }
-        .modal-overlay.active {
-            display: flex !important;
-        }
+        .modal-overlay.active { display: flex !important; }
         .modal-content {
             background: #ffffff;
             width: 100%;
@@ -42,24 +39,31 @@
         }
         .modal-close {
             position: absolute;
-            top: 18px;
-            right: 20px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #f1f5f9;
-            color: #475569;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
+            top: 18px; right: 20px; width: 36px; height: 36px; border-radius: 50%;
+            background: #f1f5f9; color: #475569; display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; cursor: pointer; border: none; transition: all 0.2s;
         }
-        .modal-close:hover {
-            background: #e2e8f0;
-            color: #0f172a;
+        .modal-close:hover { background: #e2e8f0; color: #0f172a; }
+        .energy-quote-btn {
+            background: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .energy-quote-btn:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+        .price-card {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -80,25 +84,123 @@
                     <li><a href="our-group.html">Our Group</a></li>
                     <li><a href="news.html">News</a></li>
                     <li><a href="free-apps.html">Free Apps</a></li>
-                    <li><a href="javascript:void(0)" onclick="openContactModal('')">Contact Us</a></li>
+                    <li><a href="javascript:void(0)" onclick="openContactModal('Avant Energy')">Contact Us</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="main-content">
-        <section class="services-section" style="max-width: 900px; margin: 50px auto; padding: 0 20px;">
-            <div style="background: #ffffff; padding: 40px; border-radius: 24px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: left;" class="mobile-padded-card">
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-                    <div style="width: 60px; height: 60px; background-color: var(--bg-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--primary-color);">
-                        <i class="fas fa-solar-panel"></i>
+        <section class="services-section" style="max-width: 1200px; margin: 50px auto; padding: 0 20px;">
+            <div style="background: #ffffff; padding: 60px 50px; border-radius: 24px; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05); border: 1px solid #eaeaea; text-align: left;" class="mobile-padded-card">
+                
+                <div class="it-header-banner">
+                    <div class="it-logo-box">
+                        <img src="photo/Operator Logo/AE.png" alt="Avant Energy Logo" onerror="this.src='logo.png'">
                     </div>
-                    <h1 style="font-size: 2.5rem; color: var(--primary-color); margin: 0;" class="mobile-title">Avant Energy</h1>
+                    <div>
+                        <h1 style="font-size: 3.2rem; color: var(--primary-color); margin: 0; font-weight: 900; letter-spacing: -1px;" class="mobile-title">Avant Energy</h1>
+                        <p style="color: #666; font-weight: 600; font-size: 1.1rem; margin-top: 8px;">A division of Avant Groups</p>
+                    </div>
+                    <div class="country-toggle">
+                        <button type="button" class="energy-quote-btn" onclick="openContactModal('Avant Energy')">
+                            <i class="fas fa-solar-panel"></i> Get a Quote
+                        </button>
+                    </div>
                 </div>
-                <img src="photo/energy_image.png" alt="Avant Energy" style="width: 100%; height: 400px; object-fit: cover; border-radius: 16px; margin-bottom: 30px;">
-                <div style="font-size: 1.1rem; color: #444; line-height: 1.8;">
-                    <p style="margin-bottom: 15px;">Avant Energy is committed to sustainable agriculture and global food security. We invest in modern farming techniques, eco-friendly crop management, and agricultural technology to maximize yields while protecting the environment.</p>
-<p>From seed to harvest, our supply chain ensures premium quality produce. We are dedicated to supporting local farming communities and pioneering practices that preserve our soil and water resources for future generations.</p>
+                
+                <div class="highlight-card">
+                    <div class="tagline"><i class="fas fa-leaf"></i> Clean, Reliable &amp; Sustainable Power Solutions</div>
+                    <h2>Powering Growth With Green Energy.</h2>
+                    <p>Avant Energy delivers end-to-end renewable energy and power infrastructure solutions for homes, commercial establishments, telecom sites, and industrial facilities across Assam and Northeast India. From high-efficiency rooftop solar installations to hybrid battery storage and power backup systems, we help you <strong>cut electricity costs and transition to clean, uninterrupted power.</strong></p>
+                </div>
+
+                <div class="guarantee-banner">
+                    <h4><i class="fas fa-bolt"></i> Turnkey Installation &amp; Long-Term Reliability</h4>
+                    <p>Complete site assessment, engineering design, grid synchronization, and commissioning handled by experienced technicians for <strong>maximum energy yield and safety!</strong> <br><small style="color: #4a5568; font-weight: 400;">(System capacity, structural mounting, and battery backup sizing are customized after a site survey).</small></p>
+                </div>
+
+                <div class="dipp-card">
+                    <div class="dipp-header">
+                        <i class="fas fa-sun"></i>
+                        <h3 class="mobile-subtitle">Smart Solar &amp; Energy Efficiency for Every Need</h3>
+                    </div>
+                    <p><strong>Rising utility bills and unstable grid power shouldn't slow down your operations.</strong> Transitioning to solar and modern power management pays for itself through consistent monthly savings and reliable uptime.</p>
+                    <p>We handle the entire lifecycle—from load calculation and tier-1 equipment sourcing to net-metering documentation, subsidy guidance, installation, and ongoing Annual Maintenance Contracts (AMC).</p>
+                </div>
+
+                <div class="pricing-section">
+                    <h2 style="color: var(--primary-color); font-size: 2.2rem; margin-bottom: 10px; font-weight: 900; text-align: center;" class="mobile-subtitle">Core Green Energy Services</h2>
+                    <p style="color: #666; font-size: 1.1rem; text-align: center; max-width: 700px; margin: 0 auto;">Scalable solar and power backup systems tailored for residential, commercial, and industrial sites.</p>
+                    <div class="pricing-grid">
+                        <div class="price-card" onclick="openContactModal('Avant Energy')">
+                            <i class="fas fa-solar-panel"></i>
+                            <h4>Rooftop Solar</h4>
+                            <div class="price">On-Grid <span>systems</span></div>
+                            <div class="note">Residential &amp; commercial<br>net-metering installations</div>
+                        </div>
+                        <div class="price-card" onclick="openContactModal('Avant Energy')">
+                            <i class="fas fa-battery-full"></i>
+                            <h4>Hybrid &amp; Off-Grid</h4>
+                            <div class="price">24/7 <span>backup</span></div>
+                            <div class="note">Solar + lithium/tubular battery<br>storage for zero downtime</div>
+                        </div>
+                        <div class="price-card" onclick="openContactModal('Avant Energy')">
+                            <i class="fas fa-industry"></i>
+                            <h4>Industrial &amp; Site Power</h4>
+                            <div class="price">High-Load <span>EPC</span></div>
+                            <div class="note">Factories, warehouses, offices<br>&amp; telecom site power setups</div>
+                        </div>
+                        <div class="price-card" onclick="openContactModal('Avant Energy')">
+                            <i class="fas fa-tools"></i>
+                            <h4>O&amp;M and Energy Audits</h4>
+                            <div class="price">Full <span>AMC</span></div>
+                            <div class="note">System health checks, cleaning,<br>upgrades &amp; fault repair</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="capabilities-section">
+                    <div class="capabilities-header">
+                        <span>Capabilities &amp; Perks</span>
+                        <h2 class="mobile-subtitle">Included in Our Service</h2>
+                    </div>
+                    <div class="capabilities-grid">
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-drafting-compass"></i></div>
+                            <h4>Custom Site Engineering</h4>
+                            <p>Precision shadow analysis, wind-resistant mounting structures, and proper DC/AC protection built to withstand Northeast India's heavy monsoon and weather conditions.</p>
+                        </div>
+                        <div class="cap-card">
+                            <div class="cap-icon"><i class="fas fa-charging-station"></i></div>
+                            <h4>Modern Power Infrastructure</h4>
+                            <p>Seamless integration of solar inverters, smart meters, DC distribution boxes (DCDB), earthing, lightning arresters, and EV charging readiness.</p>
+                        </div>
+                        <div class="cap-card" style="border: 1px solid #c6f6d5; background: #f0fff4;">
+                            <div class="cap-icon" style="background: #1e8e3e; color: #fff;"><i class="fas fa-check-double"></i></div>
+                            <h4>Key Advantages</h4>
+                            <p>Built for long-term performance, safety compliance, and hassle-free ownership:</p>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Free Initial Site &amp; Load Consultation</li>
+                                <li><i class="fas fa-check-circle"></i> Certified Tier-1 Panels &amp; Inverters</li>
+                                <li><i class="fas fa-check-circle"></i> Dedicated Post-Installation Support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: #f5f5f7; padding: 40px; border-radius: 20px; margin-top: 50px; text-align: center; border: 1px solid #eaeaea;">
+                    <h2 style="font-size: 2rem; color: #1d1d1f; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.5px;">Switch to Clean Energy Today</h2>
+                    <p style="color: #555; font-size: 1.1rem; margin-bottom: 25px;">Tell us about your monthly electricity usage or site requirements for a tailored solar &amp; power proposal.</p>
+                    
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+                        <span style="background: #ffffff; padding: 8px 16px; border-radius: 20px; font-weight: 600; color: var(--primary-color); box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-size: 0.9rem;"><i class="fas fa-solar-panel"></i> Rooftop Solar</span>
+                        <span style="background: #ffffff; padding: 8px 16px; border-radius: 20px; font-weight: 600; color: var(--primary-color); box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-size: 0.9rem;"><i class="fas fa-battery-three-quarters"></i> Hybrid Storage</span>
+                        <span style="background: #ffffff; padding: 8px 16px; border-radius: 20px; font-weight: 600; color: var(--primary-color); box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-size: 0.9rem;"><i class="fas fa-bolt"></i> Power Backup</span>
+                        <span style="background: #ffffff; padding: 8px 16px; border-radius: 20px; font-weight: 600; color: var(--primary-color); box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-size: 0.9rem;"><i class="fas fa-wrench"></i> AMC &amp; Maintenance</span>
+                    </div>
+                    
+                    <a href="javascript:void(0)" onclick="openContactModal('Avant Energy')" style="display: inline-block; background-color: var(--primary-color); color: #ffffff; padding: 14px 30px; border-radius: 12px; text-decoration: none; font-weight: 600; transition: background 0.2s; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">Request an Energy Quote <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
                 </div>
             </div>
         </section>
@@ -123,40 +225,40 @@
             <form id="contactForm" onsubmit="submitContactForm(event)">
                 <div class="form-group" style="margin-bottom: 18px;">
                     <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">SERVICE REQUIRED</label>
-                    <select name="service" id="modalServiceSelect" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;">
-                        <option value="" disabled selected>Select a Service...</option>
+                    <select name="service" id="modalServiceSelect" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8;">
+                        <option value="" disabled>Select a Service...</option>
                         <option value="Avant Telecom">Avant Telecom</option>
                         <option value="Avant IT Services">Avant IT Services</option>
                         <option value="Avant Logistics">Avant Logistics</option>
-                        <option value="Avant Energy">Avant Energy</option>
-                        <option value="Avant Energy">Avant Energy</option>
+                        <option value="Avant Agro">Avant Agro</option>
+                        <option value="Avant Energy" selected>Avant Energy</option>
                     </select>
                 </div>
                 <div class="form-group" style="margin-bottom: 18px;">
                     <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">FULL NAME</label>
-                    <input type="text" name="name" placeholder="John Doe" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;">
+                    <input type="text" name="name" placeholder="John Doe" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8;">
                 </div>
                 <div class="form-row" style="display:flex; gap: 15px; margin-bottom: 18px;">
                     <div class="form-group half" style="flex:1;">
                         <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">EMAIL</label>
-                        <input type="email" name="email" placeholder="john@company.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g., name@domain.com)" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;">
+                        <input type="email" name="email" placeholder="john@company.com" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8;">
                     </div>
                     <div class="form-group half" style="flex:1;">
                         <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">PHONE</label>
                         <div class="phone-input-group" style="display:flex; gap:8px;">
-                            <select name="country_code" style="width:130px; flex-shrink:0; padding: 12px 8px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.85rem;">
+                            <select name="country_code" style="padding: 12px 6px; border-radius: 8px; border: 1px solid #e1e4e8;">
                                 <option value="+91" selected>India (+91)</option>
-                                <option value="+1">USA (+1)</option>
+                                <option value="+1">USA/Canada (+1)</option>
                                 <option value="+44">UK (+44)</option>
-                                <option value="+61">Aus (+61)</option>
+                                <option value="+61">Australia (+61)</option>
                             </select>
-                            <input type="tel" name="phone" placeholder="9876543210" pattern="[0-9]{7,15}" title="Please enter a valid phone number (digits only)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required style="flex:1; min-width:0; padding: 12px 12px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;">
+                            <input type="tel" name="phone" placeholder="9876543210" required style="flex:1; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8;">
                         </div>
                     </div>
                 </div>
                 <div class="form-group" style="margin-bottom: 18px;">
                     <label style="display:block; font-size: 0.75rem; font-weight: 700; color: #333; margin-bottom: 6px;">MESSAGE</label>
-                    <textarea name="message" rows="4" placeholder="How can we help you?" required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8; background:#fafbfc; font-size:0.95rem;"></textarea>
+                    <textarea name="message" rows="4" placeholder="Tell us about your site location, power requirement (kW), or solar inquiry..." required style="width:100%; padding: 12px 15px; border-radius: 8px; border: 1px solid #e1e4e8;"></textarea>
                 </div>
                 <button type="submit" id="submitBtn" class="submit-btn" style="width:100%; padding: 14px; background: #0b192c; color: #fff; border:none; border-radius: 8px; font-weight:700; cursor:pointer;">SEND MESSAGE</button>
             </form>
@@ -170,9 +272,11 @@
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
-            var select = document.getElementById('modalServiceSelect');
-            if (select) {
-                select.value = serviceName ? serviceName : '';
+            if (serviceName) {
+                var select = document.getElementById('modalServiceSelect');
+                if (select) {
+                    select.value = serviceName;
+                }
             }
             var nav = document.querySelector('.main-nav');
             if (nav && nav.classList.contains('active')) {
